@@ -1,0 +1,9 @@
+area {
+    background:#fff;
+    display:block;
+    opacity:5;
+}
+
+#area:hover{
+    opacity: 0.5;
+}

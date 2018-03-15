@@ -1,0 +1,110 @@
+html{
+    font-size: 11px !important;
+    height: 100% !important
+}
+
+body {
+    background-color: #ffffff;
+    font-size: 11px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    margin: 0px;
+    padding: 0px;
+    color: #000000;
+}
+
+.ui-widget {  
+    font-size: 11px !important; 
+} 
+.ui-menubar .ui-menuitem-link .ui-icon.fa{
+    overflow: visible;
+    margin-top: 3px;
+} 
+.ui-button-text-icon-left .ui-button-text {
+    padding: .3em 1em .3em 2.1em;
+    margin-left: 5px;
+    overflow: visible;
+}
+.ui-icon.fa{
+    overflow: visible;
+}
+
+.ui-wizard-step-title {
+    font-size: 11px !important;
+}
+
+.fluidIcon{
+    background-image: url(icones/fluid.ico) !important;
+    background-size: 15px;
+}
+span.ui-panel-title teste{font-size: 20px}
+
+
+.comercialIcon{
+    background-image: url(icones/iconeCliente.ico) !important;
+    background-size: 20px;
+    background-position: center;
+}
+
+.cataVentoIcon{
+    background-image: url(icones/cataVento.ico) !important;
+    background-size: 15px;
+}
+
+.verde{
+    background-color: rgb(153,255,102) !important;
+    background-image: none !important;
+    color: black !important;
+}
+.amarelo{
+    background-color: rgb(255,255,102) !important;
+    background-image: none !important;
+    color: black !important;
+}
+.vermelho{
+    background-color: rgb(255,71,71) !important;
+    background-image: none !important;
+    color: white !important;
+}
+
+.linhaAzul{
+    background-color: #fcf0ba !important;
+    background-image: none !important;
+    color: black !important;
+}
+
+.ui-datagrid .ui-paginator {
+    background: green;
+}
+
+.regradoNivelRiscoBaixo{
+    width: 10px; 
+    text-align: center;
+    opacity: 0.99;
+    background: forestgreen;
+    color: white;
+}
+
+.regradoNivelRiscoMedio{
+    width: 10px; 
+    text-align: center;
+    opacity: 0.99;
+    background: yellow;
+    color: black;
+}
+
+.regradoNivelRiscoMedio{
+    width: 10px; 
+    text-align: center;
+    opacity: 0.99;
+    background: red;
+    color: white;
+}

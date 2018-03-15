@@ -1,0 +1,84 @@
+.diarios{
+    background: #fff;
+    display: inline-block;
+    margin: 4px;
+    box-shadow: 4px 1px 10px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height:  100px;
+    width: 105px;
+    background-color: red;
+}
+
+.taxaIncorreta{
+    background: #fff;
+    display: inline-block;
+    margin: 4px;
+    box-shadow: 4px 1px 10px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height:  80px;
+    width: 200px;
+    background-color: forestgreen;
+    margin-top: 10px;
+}
+
+.negocios{
+    background: #fff;
+    display: inline-block;
+    margin: 4px;
+    box-shadow: 4px 1px 10px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height:  100px;
+    width: 105px;
+    background-color: royalblue;
+}
+
+.validacaoCheques{
+    background: #fff;
+    display: inline-block;
+    margin: 4px;
+    box-shadow: 4px 1px 10px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height:  100px;
+    width: 105px;
+    background-color: orange;
+}
+
+.ci{
+    background: #fff;
+    display: inline-block;
+    margin: 4px;
+    box-shadow: 4px 1px 10px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height:  100px;
+    width: 105px;
+    background-color: forestgreen;
+}
+
+.cirucloPPR1{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    font-size: 25px;
+    color: #fff;
+    box-shadow: 4px 1px 10px #ccc;
+    line-height: 110px;
+    text-align: center;
+    background-color: orange;
+}
+
+.cirucloPPR2{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    font-size: 25px;
+    color: #fff;
+    box-shadow: 4px 1px 10px #ccc;
+    line-height: 110px;
+    text-align: center;
+    background-color: forestgreen;
+}

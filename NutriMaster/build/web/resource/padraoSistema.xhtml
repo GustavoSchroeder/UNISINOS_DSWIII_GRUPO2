@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="icon" href="/sig/img/favicon.ico" type="image/x-icon"/>
+        <link href="/NutriMaster/resource/css/default.css" rel="stylesheet" type="text/css" media="print,screen"/>
+        <link href="/NutriMaster/resource/css/cssLayout.css" rel="stylesheet" type="text/css" media="print,screen"/>
+        <script type="text/JavaScript" src="/NutriMaster/js/locales.js"></script>
+        <script type="text/JavaScript" src="/NutriMaster/js/func.js"></script>
+        <script type="text/JavaScript" src="/NutriMaster/js/jquery.easing.1.3.js"></script>
+        <link href="/NutriMaster/resource/css/style.css" rel="stylesheet" type="text/css" media="print,screen"/>
+        <script type="text/JavaScript" src="/NutriMaster/js/jquery.maphilight.js"></script>
+        <script type="text/JavaScript" src="/NutriMaster/js/jquery.maphilight.min.js"></script>
+        <script type="text/JavaScript" src="/NutriMaster/js/imageMapResizer.js"></script>
+        <script type="text/JavaScript" src="/NutriMaster/js/imageMapResizer.min.js"></script>
+        <link rel="stylesheet" href="/NutriMaster/resource/css/botoesInicio.css" type="text/css" media="screen"/>
+        <title>NutriMaster</title>
+    </h:head>
+
+
+    <style>
+        .ui-menu .ui-menu-parent .ui-menu-child {
+            display: none;
+            width: 14.5em;
+            padding: .3em;
+            position: absolute;
+            margin: 0;
+            outline: 0;
+            line-height: 1.3;
+            text-decoration: none;
+            font-size: 100%;
+            list-style: none;
+        }
+    </style>
+
+    <h:body>
+        <b:navBar brandImg="/NutriMaster/imagens/nutrimaster.png" brand-img-style="width: 50px" brand="Brand" brandHref="#" fluid="true">
+            <b:navbarLinks>
+                <b:navLink value="Link" href="#"></b:navLink>
+                <b:navLink value="Link" href="#"></b:navLink>
+                <b:dropMenu value="Dropdown" iconAwesome="birthday-cake">
+                    <b:navLink value="Action" href="#"></b:navLink>
+                    <b:navLink value="Another action" href="#"></b:navLink>
+                    <b:navLink value="Something else here" href="#"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:dropMenu value="Nested submenu" iconAwesome="birthday-cake" iconAlign="right">
+                        <b:navLink value="You can nest menus" href="#"></b:navLink>
+                        <b:dropMenu value="Nested sub-submenu">
+                            <b:navLink value="... as deep as ..." href="#"></b:navLink>
+                            <b:dropMenu value="Nested sub-sub-submenu">
+                                <b:navLink value="... you want!" href="#"></b:navLink>
+                            </b:dropMenu>
+                        </b:dropMenu>
+
+                    </b:dropMenu>
+                    <b:navLink value="One more separated link" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+            <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+            <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+            <b:navbarLinks pull="right" styleClass="hidden-xs">
+                <b:navLink value="Link" href="#"></b:navLink>
+                <b:dropMenu value="Dropdown">
+                    <b:navLink value="Action" href="#"></b:navLink>
+                    <b:navLink value="Another action" href="#"></b:navLink>
+                    <b:navLink value="Something else here" href="#"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:navLink value="One more separated link" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+        </b:navBar>
+    </h:body>
+</html>
