@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="Grupo 2"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <b:form>
+            <b:growl id="growlMsg" placementFrom="bottom"
+                     show-detail="true" show-summary="true" allowDismiss="true"
+                     delay="10000" escape="true" />
+
+            <b:panelGrid columns="2">
+                <b:panel title="Who are you?" look="primary">
+                    <b:inputText value="#{usuarioBean.usuario.nome}" label="Qual seu nome?" />
+                    <b:inputText value="#{usuarioBean.usuario.usuario}" label="Usuário" />
+                    <b:inputText value="#{usuarioBean.usuario.senha}" label="Senha"/>
+                </b:panel>
+            </b:panelGrid>
+            <b:commandButton value="Cadastrar" action="#{usuarioBean.cadastrarUsuario()}"/>
+        </b:form>
+    </h:body>
+
+</ui:composition>
