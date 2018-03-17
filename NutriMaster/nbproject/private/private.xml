@@ -3,20 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="DSWII">
-            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/web/resource/css/cssLayout.css</file>
-            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/src/java/pojo/usuario/Endereco.java</file>
-            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/web/resource/padraoSistema.xhtml</file>
             <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/web/index.xhtml</file>
-            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/src/java/pojo/usuario/Usuario.java</file>
+            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/web/novoUsuario.xhtml</file>
             <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/src/java/controller/userControl/UsuarioBean.java</file>
-            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/src/java/util/JPAUtil.java</file>
-        </group>
-        <group>
-            <file>file:/Users/gustavolazarottoschroeder/Desktop/NutriMaster/src/conf/persistence.xml</file>
-            <file>file:/Users/gustavolazarottoschroeder/Desktop/NutriMaster/src/java/pojo/usuario/Usuario.java</file>
-            <file>file:/Users/gustavolazarottoschroeder/Desktop/NutriMaster/web/index.xhtml</file>
+            <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
