@@ -1,15 +1,11 @@
 package pojo.usuario;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -24,7 +20,6 @@ public class Usuario implements Serializable {
     private String usuario;
     private String senha;
     private Endereco endereco;
-    private List<InfoPaciente> infoPaciente;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +31,6 @@ public class Usuario implements Serializable {
         this.id = id;
     }
     
-    @NotNull (message = "Qual seu nome?")
     public String getNome() {
         return nome;
     }
@@ -45,7 +39,6 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    @NotNull (message = "Você não definiu seu usuário")
     public String getUsuario() {
         return usuario;
     }
@@ -54,7 +47,6 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
     }
 
-    @NotNull (message = "Ooops, e sua senha?")
     public String getSenha() {
         return senha;
     }
@@ -64,22 +56,11 @@ public class Usuario implements Serializable {
     }
 
     @OneToOne
-    @NotNull
     public Endereco getEndereco() {
         return endereco;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
-    }
-
-    @NotNull
-    @OneToMany (fetch = FetchType.EAGER)
-    public List<InfoPaciente> getInfoPaciente() {
-        return infoPaciente;
-    }
-
-    public void setInfoPaciente(List<InfoPaciente> infoPaciente) {
-        this.infoPaciente = infoPaciente;
     }
 }

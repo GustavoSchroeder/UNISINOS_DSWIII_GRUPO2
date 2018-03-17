@@ -19,14 +19,10 @@
         </session-timeout>
     </session-config>
     <context-param>
-        <param-name>BootsFaces_USETHEME</param-name>
-        <param-value>default</param-value>
+        <param-name>BootsFaces_THEME</param-name>
+        <param-value>cerulean</param-value>
     </context-param>
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-    <mime-mapping>
-        <extension>woff</extension>
-        <mime-type>fonts/glyphicons-halflings-regular.woff2</mime-type>
-    </mime-mapping>
 </web-app>
