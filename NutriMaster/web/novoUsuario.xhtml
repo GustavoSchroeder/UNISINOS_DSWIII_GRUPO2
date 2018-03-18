@@ -7,24 +7,44 @@
                 xmlns:b="http://bootsfaces.net/ui">
 
     <h:head>
-        <title>Project Name</title>
+        <title>Novo Usuário - NutriMaster</title>
         <meta name="author" content="Grupo 2"></meta>
     </h:head>
+    <b:jumbotron>
+        <h1>Seja bem vindo!</h1>
+        <p>O primeiro passo para melhorar sua saúde e autoestima é realizar o cadastro em nosso sistema, vá em frente!</p>
+    </b:jumbotron>
     <!-- Add 50px padding top to the body for the navbar -->
     <h:body style="padding-top: 50px; padding-bottom: 20px;">
         <b:form>
-            <b:growl id="growlMsg" placementFrom="bottom"
-                     show-detail="true" show-summary="true" allowDismiss="true"
-                     delay="10000" escape="true" />
-
-            <b:panelGrid columns="2">
-                <b:panel title="Who are you?" look="primary">
-                    <b:inputText value="#{usuarioBean.usuario.nome}" label="Qual seu nome?" />
-                    <b:inputText value="#{usuarioBean.usuario.usuario}" label="Usuário" />
-                    <b:inputText value="#{usuarioBean.usuario.senha}" label="Senha"/>
+            <b:panelGrid columns="1">
+                <b:panel title="Sobre você" look="primary">
+                    <b:inputText value="#{usuarioBean.usuario.nome}" label="Qual seu nome?" required="true" />
+                    <b:inputText value="#{usuarioBean.usuario.usuario}" label="Usuário" required="true"/>
+                    <b:inputText value="#{usuarioBean.usuario.senha}" type="password" label="Senha" required="true"/>
+                </b:panel>
+                <b:panel title="Endereço" look="primary">
+                    <b:inputText value="#{usuarioBean.endereco.endereco}" label="Endereço" required="true"/>
+                    <b:inputText value="#{usuarioBean.endereco.bairro}" label="Bairro" required="true"/>
+                    <b:inputText value="#{usuarioBean.endereco.cidade}" label="Cidade" required="true"/>
+                    <b:inputText value="#{usuarioBean.endereco.cep}" label="Cidade" required="true"/>
+                    <b:selectOneMenu value="#{usuarioBean.endereco.uf}"
+                                     required="true" label="Selecione seu estado:" labelColMd="2">
+                        <f:selectItems value="#{usuarioBean.retornaListaUF()}"/>
+                    </b:selectOneMenu>
+                </b:panel>
+                <b:panel title="Sobre seu corpo" look="primary">
+                    <b:panelGrid columns="2">
+                        <h:outputText value="Qual seu peso?" />
+                        <p:inputNumber id="input1" value="#{usuarioBean.infoPaciente.peso}"
+                                       decimalSeparator="," thousandSeparator="."/>  
+                        <h:outputText value="Qual sua altura?" />        
+                        <p:inputNumber id="input2" value="#{usuarioBean.infoPaciente.altura}"
+                                       decimalSeparator="," thousandSeparator="."/> 
+                    </b:panelGrid>
                 </b:panel>
             </b:panelGrid>
-            <b:commandButton value="Cadastrar" action="#{usuarioBean.cadastrarUsuario()}"/>
+            <b:commandButton value="Cadastrar" action="#{usuarioBean.cadastrarUsuario()}" look="success"/>
         </b:form>
     </h:body>
 

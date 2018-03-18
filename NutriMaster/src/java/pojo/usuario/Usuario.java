@@ -64,7 +64,6 @@ public class Usuario implements Serializable {
     }
 
     @OneToOne
-    @NotNull
     public Endereco getEndereco() {
         return endereco;
     }
@@ -73,7 +72,6 @@ public class Usuario implements Serializable {
         this.endereco = endereco;
     }
 
-    @NotNull
     @OneToMany (fetch = FetchType.EAGER)
     public List<InfoPaciente> getInfoPaciente() {
         return infoPaciente;

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -19,14 +20,20 @@ public class InfoPaciente implements Serializable {
     private Double peso;
     private Double altura;
     
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getDataMarcacao() {
+        return dataMarcacao;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
 
-    public Date getDataMarcacao() {
-        return dataMarcacao;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setDataMarcacao(Date dataMarcacao) {

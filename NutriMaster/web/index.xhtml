@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:b="http://bootsfaces.net/ui">
@@ -19,17 +18,17 @@
             </b:navbarLinks>
             <h:form styleClass="navbar-form navbar-right">
                 <div class="form-group">
-                    <b:inputText placeholder="Email" fieldSize="sm"/>
+                    <b:inputText placeholder="Email" fieldSize="sm" value="#{usuarioBean.usuarioLogin}"/>
                     <!--input type="text" class="form-control" placeholder="Search"/-->
                 </div>
                 <div class="form-group">
-                    <b:inputText placeholder="Password" type="password" fieldSize="sm"/>
+                    <b:inputText placeholder="Password" type="password" fieldSize="sm" value="#{usuarioBean.senhaLogIn}"/>
                 </div> 
                 #{' '}
-                <b:commandButton action="a" value="Sign in" look="success">
+                <b:commandButton action="#{usuarioBean.realizarLogIn()}" value="Sign in" look="success">
                     <b:icon name="globe" size="lg" />
                 </b:commandButton>
-                <b:commandButton action="/faces/novoUsuario.xhtml" value="Register" look="primary">
+                <b:commandButton action="#{usuarioBean.novoUsuario()}" value="Register" look="primary">
                     <b:icon name="globe" size="lg" />
                 </b:commandButton>
             </h:form>
