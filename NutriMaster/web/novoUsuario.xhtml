@@ -27,11 +27,15 @@
                     <b:inputText value="#{usuarioBean.endereco.endereco}" label="Endereço" required="true"/>
                     <b:inputText value="#{usuarioBean.endereco.bairro}" label="Bairro" required="true"/>
                     <b:inputText value="#{usuarioBean.endereco.cidade}" label="Cidade" required="true"/>
-                    <b:inputText value="#{usuarioBean.endereco.cep}" label="Cidade" required="true"/>
                     <b:selectOneMenu value="#{usuarioBean.endereco.uf}"
                                      required="true" label="Selecione seu estado:" labelColMd="2">
                         <f:selectItems value="#{usuarioBean.retornaListaUF()}"/>
                     </b:selectOneMenu>
+                    <h:panelGrid columns="1">
+                        <h:outputText value="Cep*" style="font-size: 14px; line-height: 1.428571429; color: #333333; font-weight: bold;"/>
+                        <p:inputMask value="#{usuarioBean.endereco.cep}" mask="99999-9"  required="true"/>
+                    </h:panelGrid>
+
                 </b:panel>
                 <b:panel title="Sobre seu corpo" look="primary">
                     <b:panelGrid columns="2">
