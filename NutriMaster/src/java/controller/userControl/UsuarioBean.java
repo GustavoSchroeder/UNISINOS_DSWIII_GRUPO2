@@ -47,6 +47,7 @@ public class UsuarioBean implements Serializable {
         this.infoPaciente.setDataMarcacao(new Date());
         listOfInfo.add(this.infoPaciente);
         this.usuario.setInfoPaciente(listOfInfo);
+        this.usuario.setAdministrador(Boolean.FALSE);
 
         //persistencia
         em.getTransaction().begin();
@@ -68,6 +69,12 @@ public class UsuarioBean implements Serializable {
     }
 
     public String realizarLogIn() throws NoSuchAlgorithmException {
+        if(this.usuarioLogin.trim().equalsIgnoreCase("") 
+                || this.senhaLogIn.trim().equalsIgnoreCase("")){
+             FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Oops!", "Usuário não encontrado :("));
+            return null;
+         }
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT i FROM Usuario i WHERE i.usuario = :usuario AND i.senha = :senha");
         query.setParameter("usuario", this.usuarioLogin);

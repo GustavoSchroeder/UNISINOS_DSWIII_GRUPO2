@@ -3,19 +3,22 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:b="http://bootsfaces.net/ui">
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml">
 
     <!--template="/resource/padraoSistema.xhtml"-->
     <h:head>
         <title>NutriMaster</title>
-        <meta name="author" content="The Author"></meta>
+        <meta name="author" content="Gustavo Lazarotto Schroeder"></meta>
     </h:head>
     <!-- Add 50px padding top to the body for the navbar -->
     <h:body style="padding-top: 50px; padding-bottom: 20px;">
         <b:navBar brand="NutriMaster" brandHref="#" inverse="true" fixed="top">
-            <b:navbarLinks>
-
-            </b:navbarLinks>
+            <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
+         show-detail="true" show-summary="false" allowDismiss="true"
+         delay="10000" escape="true" />
+          
             <h:form styleClass="navbar-form navbar-right">
                 <div class="form-group">
                     <b:inputText placeholder="Email" fieldSize="sm" value="#{usuarioBean.usuarioLogin}"/>
@@ -35,12 +38,10 @@
         </b:navBar>
         <b:jumbotron>
             <b:container>
-                <h1>Bem vindo ao mundo da Nutrição!</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. 
-                    Use it as a starting point to create something more unique.
-                </p>
+                <h1>Bem vindo ao mundo da Nutrição</h1>
+                <p>NutriMaster é o software ideal para pessoas que desejam ter uma vida saudável e descomplidada!s               </p>
                 <p>
-                    <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/jumbotron.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
+                    <a href="https://pt.wikipedia.org/wiki/Nutrição" class="btn btn-lg btn-info">Mais informações</a>
                 </p>
             </b:container>
 
@@ -68,7 +69,7 @@
             </b:row>
             <hr/>
             <footer>
-                <p>© Company 2014</p>
+                <p>© Desenvolvimento de Software III - Grupo 2</p>
             </footer>
         </b:container>
     </h:body>
