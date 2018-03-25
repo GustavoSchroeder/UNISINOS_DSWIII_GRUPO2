@@ -75,8 +75,10 @@ public class UsuarioBean implements Serializable {
             context.addMessage(null, new FacesMessage("Oops!", "Usuário não encontrado :("));
             return null;
          }
+        
         EntityManager em = JPAUtil.getEntityManager();
-        Query query = em.createQuery("SELECT i FROM Usuario i WHERE i.usuario = :usuario AND i.senha = :senha");
+        Query query = em.createQuery("SELECT i FROM Usuario i "
+                + "WHERE i.usuario = :usuario AND i.senha = :senha");
         query.setParameter("usuario", this.usuarioLogin);
         query.setParameter("senha", retornaMD5(this.senhaLogIn));
         List<Usuario> usuarios = query.getResultList();
@@ -106,61 +108,19 @@ public class UsuarioBean implements Serializable {
         byte[] hashMd5 = md.digest();
         return (stringHexa(hashMd5));
     }
-
-    private Boolean verificaPendenciasCadastro() {
-        Integer cont = 0;
-        if (this.usuario.getNome().equalsIgnoreCase("")) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Oops!", "Você não disse seu nome :("));
-            cont++;
-        }
-        if (this.usuario.getUsuario().equalsIgnoreCase("")) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Oops!", "Qual seu usuário?"));
-            cont++;
-        }
-        if (this.usuario.getSenha().equalsIgnoreCase("")) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Oops!", "Qual sua senha?"));
-            cont++;
-        }
-//        if (null ==  this.endereco.getEndereco() || this.endereco.getEndereco().equalsIgnoreCase("")) {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Oops!", "Qual seu endereço?"));
-//            cont++;
-//        }
-//        if (this.endereco.getBairro().equalsIgnoreCase("")) {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Oops!", "Qual seu bairro?"));
-//            cont++;
-//        }
-//        if (this.endereco.getCep().equalsIgnoreCase("")) {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Oops!", "Qual seu CEP?"));
-//            cont++;
-//        }
-//        if (this.endereco.getCidade().equalsIgnoreCase("")) {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Oops!", "Qual sua cidade?"));
-//            cont++;
-//        }
-//        if (this.endereco.getEndereco().equalsIgnoreCase("")) {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Oops!", "Qual seu endereço?"));
-//            cont++;
-//        }
-//        if (null == this.endereco.getNro()) {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Oops!", "Você esqueceu do número"));
-//            cont++;
-//        }
-//        if (this.endereco.getUf().equalsIgnoreCase("")) {
-//            FacesContext context = FacesContext.getCurrentInstance();
-//            context.addMessage(null, new FacesMessage("Oops!", "Qual seu estado?"));
-//            cont++;
-//        }
-
-        return cont != 0;
+    
+    public List<Usuario> retornaUsuariosPacientes(){
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query = em.createQuery("SELECT i FROM Usuario i "
+                + "WHERE i.administrador = :adm ORDER BY i.nome");
+        query.setParameter("adm", Boolean.FALSE);
+        try{
+            return query.getResultList();
+        }catch(NullPointerException e){
+            return new ArrayList<>();
+        }finally{
+            em.close();
+        }   
     }
 
     public List<String> retornaListaUF() {
