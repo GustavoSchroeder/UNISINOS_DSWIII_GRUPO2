@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form>
+        <h:head>
+            <title>NutriMaster</title>
+            <meta name="author" content="The Author"></meta>
+        </h:head>
+        <!-- Add 50px padding top to the body for the navbar -->
+        <h:body style="padding-top: 50px; padding-bottom: 20px;">
+            <b:jumbotron>
+                <b:container>
+                    <h2>Cadastrar Dieta</h2>
+                </b:container>
+            </b:jumbotron>
+            <b:jumbotron>
+                <!--Escrever um Converter-->
+                <p:outputLabel for="paciente" value="Paciente" />
+                <p:selectOneMenu id="paciente" value="#" filter="true" filterMatchMode="contains" style="width:125px">
+                    <f:selectItem itemValue="#{usuarioBean.retornaUsuariosPacientes()}"/>
+                </p:selectOneMenu>
+            </b:jumbotron>
+        </h:body>
+    </h:form>
+</ui:composition>

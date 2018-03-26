@@ -18,28 +18,22 @@
 
             </b:navbarLinks>
             <h:form styleClass="navbar-form navbar-right">
-                <b:commandButton action="a" value="Seja bem vindo, #{usuarioBean.usuario.nome}!" look="success"/>
+                <b:commandButton action="a" value="#{usuarioBean.usuario.nome}!" look="success"/>
             </h:form>
         </b:navBar>
         <b:jumbotron>
             <b:container>
-                <h1>Bem vindo ao mundo da Nutrição!</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. 
-                    Use it as a starting point to create something more unique.
-                </p>
-                <p>
-                    <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/jumbotron.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
-                </p>
+                <h2>Bem vindo ao mundo da Nutrição, #{usuarioBean.usuario.nome}!</h2>
             </b:container>
 
         </b:jumbotron>
         <b:container>
             <b:row>
                 <b:column col-md="4">
-                    <h2>Heading</h2>
+                    <h2>Criar Dieta</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
                         ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
+                    <p><b:button outcome="/paciente/dieta.xhtml" value="Criar Dieta»"/></p>
                 </b:column>
                 <b:column col-md="4">
                     <h2>Heading</h2>
