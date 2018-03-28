@@ -19,9 +19,9 @@ import util.JPAUtil;
 @ManagedBean
 @ViewScoped
 public class DietaBean implements Serializable{
-    @ManagedProperty("calendarioAlimentacaoBean")
+    @ManagedProperty("#{calendarioAlimentacaoBean}")
     private CalendarioAlimentacaoBean calendarioAlimentacaoBean;
-    @ManagedProperty("usuarioBean")
+    @ManagedProperty("#{usuarioBean}")
     private UsuarioBean usuarioBean;
     private Dieta dieta;
     private Usuario paciente;
@@ -41,14 +41,6 @@ public class DietaBean implements Serializable{
         em.getTransaction().commit();
         em.close();
         this.dieta = new Dieta();
-    }
-
-    public CalendarioAlimentacaoBean getCalendarioAlimentacaoBean() {
-        return calendarioAlimentacaoBean;
-    }
-
-    public void setCalendarioAlimentacaoBean(CalendarioAlimentacaoBean calendarioAlimentacaoBean) {
-        this.calendarioAlimentacaoBean = calendarioAlimentacaoBean;
     }
 
     public UsuarioBean getUsuarioBean() {
@@ -74,4 +66,15 @@ public class DietaBean implements Serializable{
     public void setPaciente(Usuario paciente) {
         this.paciente = paciente;
     }
+
+    public CalendarioAlimentacaoBean getCalendarioAlimentacaoBean() {
+        return calendarioAlimentacaoBean;
+    }
+
+    public void setCalendarioAlimentacaoBean(CalendarioAlimentacaoBean calendarioAlimentacaoBean) {
+        this.calendarioAlimentacaoBean = calendarioAlimentacaoBean;
+    }
+    
+    
 }
+

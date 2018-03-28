@@ -109,6 +109,26 @@ public class UsuarioBean implements Serializable {
         return (stringHexa(hashMd5));
     }
     
+       public Usuario buscaPorId(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Usuario usuario;
+        usuario = em.find(Usuario.class, id);
+        em.close();
+        return usuario;
+    }
+       
+       public List<UsuarioBean> buscaPorNome(String nome){
+           EntityManager em = JPAUtil.getEntityManager();
+           Query query = em.createQuery("SELECT i FROM Usuario i WHERE i.nome = :nome ORDER BY i.nome ASC");
+           try{
+               return query.getResultList();
+           }catch(NullPointerException e){
+               return new ArrayList<>();
+           }finally{
+             em.close();   
+           }
+       }
+    
     public List<Usuario> retornaUsuariosPacientes(){
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT i FROM Usuario i "

@@ -6,25 +6,62 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui">
 
-    <h:form>
-        <h:head>
-            <title>NutriMaster</title>
-            <meta name="author" content="The Author"></meta>
-        </h:head>
-        <!-- Add 50px padding top to the body for the navbar -->
-        <h:body style="padding-top: 50px; padding-bottom: 20px;">
-            <b:jumbotron>
-                <b:container>
-                    <h2>Cadastrar Dieta</h2>
-                </b:container>
-            </b:jumbotron>
+    <h:head>
+        <title>NutriMaster</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <b:navBar brand="NutriMaster" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+
+            </b:navbarLinks>
+            <h:form styleClass="navbar-form navbar-right">
+                <b:commandButton action="a" value="Seja bem vindo, #{usuarioBean.usuario.nome}!" look="success"/>
+            </h:form>
+        </b:navBar>
+
+        <h:form id="formDieta">
+
+            <h2>Cadastrar Dieta</h2>
+
             <b:jumbotron>
                 <!--Escrever um Converter-->
-                <p:outputLabel for="paciente" value="Paciente" />
-                <p:selectOneMenu id="paciente" value="#" filter="true" filterMatchMode="contains" style="width:125px">
-                    <f:selectItem itemValue="#{usuarioBean.retornaUsuariosPacientes()}"/>
-                </p:selectOneMenu>
+                <p:panelGrid columns="3" layout="grid">
+                    <p:outputLabel for="paciente" value="Paciente" style="text-align: center"/>
+                    <p:outputLabel for="semana" value="Dia da Semana" style="text-align: center"/>
+                    <p:outputLabel for="alimento" value="Alimentos" style="text-align: center"/>
+
+                    <p:selectOneMenu id="paciente" required="false" value="##{dietaBean.paciente}" filter="true" filterMatchMode="contains" style="width:125px" converter="usuarioConverter">
+                        <f:selectItems value="#{usuarioBean.retornaUsuariosPacientes()}" var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="semana" value="#{calendarioAlimentacaoBean.diaSemana}" filter="true" filterMatchMode="contains" style="width:125px">
+                        <f:selectItems value="#{calendarioAlimentacaoBean.retornaDiasSemana()}"/>
+                    </p:selectOneMenu>
+
+                    <h:panelGrid columns="2">
+                        <p:selectOneMenu id="alimento" value="#{calendarioAlimentacaoBean.alimento}" filter="true" filterMatchMode="contains" style="width:125px" converter="alimentoConverter">
+                            <f:selectItems value="#{calendarioAlimentacaoBean.retornaListAlimentos()}" var="alimento" itemLabel="#{alimento.alimento}" itemValue="#{alimento}"/>
+                        </p:selectOneMenu>
+                        <p:commandButton icon="fa fa-plus" onclick="PF('dlg2').show();" title="Adicionar Alimentos"/>
+                    </h:panelGrid>
+                </p:panelGrid>
             </b:jumbotron>
-        </h:body>
-    </h:form>
+            <!--Problema Primefaces-->
+            <p:dialog id="dialogAlimento" header="Adicionar Alimento" widgetVar="dlg2" modal="true" width="500px">
+                <p:panelGrid columns="2" layout="grid">
+                    <h:outputText value="Alimento:"/>
+                    <p:inputText value="#{calendarioAlimentacaoBean.alimento.alimento}"/>
+                    <h:outputText value="Gorduras Totais:"/>
+                    <p:inputNumber value="#{calendarioAlimentacaoBean.alimento.gordurasTotais}" decimalPlaces="2"  symbol=" g" symbolPosition="s"/>
+                    <h:outputText value="Valor Energético:"/>
+                    <p:inputNumber value="#{calendarioAlimentacaoBean.alimento.vlrEnergetico}" decimalPlaces="2" symbol=" kal" symbolPosition="s"/>
+                    <p:commandButton value="Cadastrar" action="#{calendarioAlimentacaoBean.cadastrarAlimento()}"/>
+                </p:panelGrid>
+            </p:dialog>  
+        </h:form>
+
+    </h:body>
+
 </ui:composition>

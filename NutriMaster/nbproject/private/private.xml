@@ -9,19 +9,16 @@
             <file>file:/C:/Users/gustavo_schroeder/Desktop/DSWIII_GRUPO2_-master/NutriMaster/web/WEB-INF/web.xml</file>
         </group>
         <group>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/usuario/InfoPaciente.java</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/novoUsuario.xhtml</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/WEB-INF/web.xml</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/Alimento.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/telaInicial.xhtml</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/usuario/Usuario.java</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/index.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/converter/UsuarioConverter.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/userControl/UsuarioBean.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/CalendarioAlimentacao.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/resource/padraoSistema.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/converter/AlimentoConverter.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/CalendarioAlimentacaoBean.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/DietaBean.java</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/Dieta.java</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/conf/persistence.xml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/dieta.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/Alimento.java</file>
         </group>
     </open-files>
 </project-private>
