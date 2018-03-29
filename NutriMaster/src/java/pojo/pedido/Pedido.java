@@ -19,11 +19,10 @@ import javax.persistence.Id;
 public class Pedido {
     
     private Long id;
-    private int numeroPedido;
     private String loja;
-    private List<Produto> produtos;
+    private List<ItemPedido> itemPedido;
     private double frete;
-    private double valorTotal;
+    private double valor;
     private Pagamento pagamento;
 
     @Id
@@ -36,14 +35,6 @@ public class Pedido {
         this.id = id;
     }
 
-    public int getNumeroPedido() {
-        return numeroPedido;
-    }
-
-    public void setNumeroPedido(int numeroPedido) {
-        this.numeroPedido = numeroPedido;
-    }
-
     public String getLoja() {
         return loja;
     }
@@ -52,12 +43,12 @@ public class Pedido {
         this.loja = loja;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<ItemPedido> getItemPedido() {
+        return itemPedido;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItemPedido(List<ItemPedido> itemPedido) {
+        this.itemPedido = itemPedido;
     }
 
     public double getFrete() {
@@ -68,12 +59,12 @@ public class Pedido {
         this.frete = frete;
     }
 
-    public double getValorTotal() {
-        return valorTotal;
+    public double getValor() {
+        return valor;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
     public Pagamento getPagamento() {

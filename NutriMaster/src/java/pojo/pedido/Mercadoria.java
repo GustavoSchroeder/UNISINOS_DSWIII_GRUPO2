@@ -16,13 +16,13 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Produto {
+public class Mercadoria {
     
     private Long id;
-    private double valorBase;
+    private float valorBase;
     private int tipo;
     private String descricao;
-    private double imposto;
+    private float imposto;
     private String referencia;
 
     @Id
@@ -35,11 +35,11 @@ public class Produto {
         this.id = id;
     }
 
-    public double getValorBase() {
+    public float getValorBase() {
         return valorBase;
     }
 
-    public void setValorBase(double valorBase) {
+    public void setValorBase(float valorBase) {
         this.valorBase = valorBase;
     }
 
@@ -59,11 +59,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public double getImposto() {
+    public float getImposto() {
         return imposto;
     }
 
-    public void setImposto(double imposto) {
+    public void setImposto(float imposto) {
         this.imposto = imposto;
     }
 
