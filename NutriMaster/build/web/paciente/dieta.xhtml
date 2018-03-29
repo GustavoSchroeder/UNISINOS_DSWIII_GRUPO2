@@ -27,39 +27,52 @@
 
             <b:jumbotron>
                 <!--Escrever um Converter-->
-                <p:panelGrid columns="3" layout="grid">
-                    <p:outputLabel for="paciente" value="Paciente" style="text-align: center"/>
-                    <p:outputLabel for="semana" value="Dia da Semana" style="text-align: center"/>
-                    <p:outputLabel for="alimento" value="Alimentos" style="text-align: center"/>
+                    <p:panelGrid columns="1" layout="grid" style="width: 100%">
+                        <p:panelGrid columns="2" style="width: 70%; margin: 0 auto;" layout="grid">
+                            <p:outputLabel for="paciente" value="Paciente" style="text-align: center"/>
+                            <p:outputLabel for="semana" value="Dia da Semana" style="text-align: center"/>
+                            <p:selectOneMenu id="paciente" required="false" value="#{dietaBean.pacienteStr}" filter="true" filterMatchMode="contains" style="width:125px">
+                                <f:selectItem itemLabel="-" itemValue="null" />
+                                <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
+                                <p:ajax update="formDieta"/>
+                            </p:selectOneMenu>
+                            <p:selectOneMenu id="semana" value="#{calendarioAlimentacaoBean.diaSemana}" filter="true" filterMatchMode="contains" style="width:125px">
+                                <f:selectItems value="#{calendarioAlimentacaoBean.retornaDiasSemana()}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
 
-                    <p:selectOneMenu id="paciente" required="false" value="##{dietaBean.paciente}" filter="true" filterMatchMode="contains" style="width:125px" converter="usuarioConverter">
-                        <f:selectItems value="#{usuarioBean.retornaUsuariosPacientes()}" var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"/>
-                    </p:selectOneMenu>
+                        <p:panelGrid columns="2" style="width: 70%; margin: 0 auto;">
+                            <p:outputLabel for="alimento" value="Alimentos" style="text-align: center"/>
+                            <h:outputLabel for="basic" value="Qtde.: " />
+                            <h:panelGrid columns="2">
+                                <p:selectOneMenu id="alimento" value="#{calendarioAlimentacaoBean.alimento}" filter="true" filterMatchMode="contains" style="width:125px">
+                                    <f:selectItems value="#{calendarioAlimentacaoBean.retornaListNomeAlimentos()}"/>
+                                </p:selectOneMenu>
+                                <p:commandButton icon="fa fa-plus" onclick="PF('dlg2').show();" title="Adicionar Alimentos"/>
+                            </h:panelGrid>
+                            <p:spinner id="basic" value="#{calendarioAlimentacaoBean.qtdeAlimento}" maxlength="2" size="3"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Adicionar Alimento a Lista" action="#{calendarioAlimentacaoBean.adicionarAlimentoLista()}" update="formDieta"/>
+                    </p:panelGrid>
 
-                    <p:selectOneMenu id="semana" value="#{calendarioAlimentacaoBean.diaSemana}" filter="true" filterMatchMode="contains" style="width:125px">
-                        <f:selectItems value="#{calendarioAlimentacaoBean.retornaDiasSemana()}"/>
-                    </p:selectOneMenu>
+                          </b:jumbotron>
 
-                    <h:panelGrid columns="2">
-                        <p:selectOneMenu id="alimento" value="#{calendarioAlimentacaoBean.alimento}" filter="true" filterMatchMode="contains" style="width:125px" converter="alimentoConverter">
-                            <f:selectItems value="#{calendarioAlimentacaoBean.retornaListAlimentos()}" var="alimento" itemLabel="#{alimento.alimento}" itemValue="#{alimento}"/>
-                        </p:selectOneMenu>
-                        <p:commandButton icon="fa fa-plus" onclick="PF('dlg2').show();" title="Adicionar Alimentos"/>
-                    </h:panelGrid>
-                </p:panelGrid>
-            </b:jumbotron>
-            <!--Problema Primefaces-->
+
+        </h:form>
+
+        <h:form>
             <p:dialog id="dialogAlimento" header="Adicionar Alimento" widgetVar="dlg2" modal="true" width="500px">
                 <p:panelGrid columns="2" layout="grid">
                     <h:outputText value="Alimento:"/>
-                    <p:inputText value="#{calendarioAlimentacaoBean.alimento.alimento}"/>
+                    <p:inputText value="#{calendarioAlimentacaoBean.objAlimento.alimento}"/>
                     <h:outputText value="Gorduras Totais:"/>
-                    <p:inputNumber value="#{calendarioAlimentacaoBean.alimento.gordurasTotais}" decimalPlaces="2"  symbol=" g" symbolPosition="s"/>
+                    <p:inputNumber value="#{calendarioAlimentacaoBean.objAlimento.gordurasTotais}" decimalPlaces="2"  symbol=" g" symbolPosition="s"/>
                     <h:outputText value="Valor Energético:"/>
-                    <p:inputNumber value="#{calendarioAlimentacaoBean.alimento.vlrEnergetico}" decimalPlaces="2" symbol=" kal" symbolPosition="s"/>
+                    <p:inputNumber value="#{calendarioAlimentacaoBean.objAlimento.vlrEnergetico}" decimalPlaces="2" symbol=" kal" symbolPosition="s"/>
                     <p:commandButton value="Cadastrar" action="#{calendarioAlimentacaoBean.cadastrarAlimento()}"/>
                 </p:panelGrid>
-            </p:dialog>  
+
+            </p:dialog> 
         </h:form>
 
     </h:body>

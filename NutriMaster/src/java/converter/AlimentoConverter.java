@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package converter;
 
 import controller.dieta.CalendarioAlimentacaoBean;
@@ -19,7 +14,7 @@ import javax.faces.convert.FacesConverter;
  */
 @FacesConverter("alimentoConverter")
 public class AlimentoConverter implements Converter {
-
+    
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
         if (string != null && string.trim().length() > 0) {

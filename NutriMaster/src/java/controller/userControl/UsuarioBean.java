@@ -128,6 +128,29 @@ public class UsuarioBean implements Serializable {
              em.close();   
            }
        }
+       
+       public String retornaNome(String nome){
+           return nome.substring(nome.indexOf(';')+1);
+       }
+       
+         public List<String> retornaUsuariosPacientesCod(){
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query = em.createQuery("SELECT i FROM Usuario i "
+                + "WHERE i.administrador = :adm ORDER BY i.nome");
+        query.setParameter("adm", Boolean.FALSE);
+        List<String> usuarios = new ArrayList<>();
+        List<Usuario> user =  query.getResultList();
+        for (Usuario object : user) {
+            usuarios.add(object.getId() + ";" + object.getNome());
+        }
+        try{
+            return usuarios;
+        }catch(NullPointerException e){
+            return new ArrayList<>();
+        }finally{
+            em.close();
+        }   
+    }
     
     public List<Usuario> retornaUsuariosPacientes(){
         EntityManager em = JPAUtil.getEntityManager();
