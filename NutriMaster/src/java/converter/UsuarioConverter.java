@@ -7,11 +7,13 @@ package converter;
 
 import controller.userControl.UsuarioBean;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
+import pojo.usuario.Usuario;
 
 /**
  *
@@ -22,10 +24,10 @@ public class UsuarioConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        if (string != null && string.trim().length() > 0) {
+        if (string != null && !string.equalsIgnoreCase("null") && string.trim().length() > 0) {
             try {
                 UsuarioBean usuarioBean = (UsuarioBean) fc.getELContext().getELResolver().getValue(fc.getELContext(), null, "usuarioBean");
-                return usuarioBean.buscaPorId(Long.parseLong(string));
+                return usuarioBean.buscaPorId(usuarioBean.getUsuario().getId());
             } catch (NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Associando não existente."));
             }
@@ -42,4 +44,7 @@ public class UsuarioConverter implements Converter {
 //        return pesquisa.getNome();
         return o + "";
     }
+
+    
+    
 }

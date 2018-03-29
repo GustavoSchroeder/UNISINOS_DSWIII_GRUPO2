@@ -25,10 +25,18 @@ public class DietaBean implements Serializable{
     private UsuarioBean usuarioBean;
     private Dieta dieta;
     private Usuario paciente;
-
+    private String pacienteStr;
+   
     public DietaBean() {
         this.dieta = new Dieta();
         this.paciente = new Usuario();
+        this.pacienteStr = "";
+    }
+    
+    public void atribuirPaciente(){
+        EntityManager em = JPAUtil.getEntityManager();
+        this.paciente = em.find(Usuario.class, this.pacienteStr.substring(0, this.pacienteStr.indexOf(';')));
+        em.close();
     }
     
     public void cadastrarDieta(){
@@ -73,6 +81,14 @@ public class DietaBean implements Serializable{
 
     public void setCalendarioAlimentacaoBean(CalendarioAlimentacaoBean calendarioAlimentacaoBean) {
         this.calendarioAlimentacaoBean = calendarioAlimentacaoBean;
+    }
+
+    public String getPacienteStr() {
+        return pacienteStr;
+    }
+
+    public void setPacienteStr(String pacienteStr) {
+        this.pacienteStr = pacienteStr;
     }
     
     

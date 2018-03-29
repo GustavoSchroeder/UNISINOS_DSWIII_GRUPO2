@@ -19,12 +19,12 @@ import pojo.usuario.Usuario;
  *
  * @author gustavolazarottoschroeder
  */
-
 @Entity
 public class CalendarioAlimentacao implements Serializable {
+
     private Long id;
     private String diaSemana;
-    private List<Alimento> alimento;
+    private List<AlimentoQuantidade> alimento;
     private Usuario usuario;
     private Date dataValido;
 
@@ -46,13 +46,13 @@ public class CalendarioAlimentacao implements Serializable {
         this.diaSemana = diaSemana;
     }
 
-    @OneToMany (fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT) 
-    public List<Alimento> getAlimento() {
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    public List<AlimentoQuantidade> getAlimento() {
         return alimento;
     }
 
-    public void setAlimento(List<Alimento> alimento) {
+    public void setAlimento(List<AlimentoQuantidade> alimento) {
         this.alimento = alimento;
     }
 
@@ -73,6 +73,5 @@ public class CalendarioAlimentacao implements Serializable {
     public void setDataValido(Date dataValido) {
         this.dataValido = dataValido;
     }
-    
-    
+
 }
