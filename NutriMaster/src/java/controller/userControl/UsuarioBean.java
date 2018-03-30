@@ -62,20 +62,33 @@ public class UsuarioBean implements Serializable {
         this.usuario = new Usuario();
         return "index.xhtml";
     }
-    
-    public String novoUsuario(){
+
+    public String novoUsuario() {
         this.usuario = new Usuario();
         return "novoUsuario.xhtml";
     }
 
+    public String isUsuarioAllowedOnDieta() {
+        if (this.usuario.getAdministrador()) {
+            return "/paciente/dieta.xhtml";
+        }
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Oops!", "Você não pode criar sua própria dieta, contate seu nutricionista."));
+        return null;
+    }
+
+    public String logOut() {
+        return "/index.xhtml?faces-redirect=true";
+    }
+
     public String realizarLogIn() throws NoSuchAlgorithmException {
-        if(this.usuarioLogin.trim().equalsIgnoreCase("") 
-                || this.senhaLogIn.trim().equalsIgnoreCase("")){
-             FacesContext context = FacesContext.getCurrentInstance();
+        if (this.usuarioLogin.trim().equalsIgnoreCase("")
+                || this.senhaLogIn.trim().equalsIgnoreCase("")) {
+            FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Oops!", "Usuário não encontrado :("));
             return null;
-         }
-        
+        }
+
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT i FROM Usuario i "
                 + "WHERE i.usuario = :usuario AND i.senha = :senha");
@@ -108,62 +121,77 @@ public class UsuarioBean implements Serializable {
         byte[] hashMd5 = md.digest();
         return (stringHexa(hashMd5));
     }
-    
-       public Usuario buscaPorId(Long id) {
+
+    public Usuario buscaPorId(Long id) {
         EntityManager em = JPAUtil.getEntityManager();
         Usuario usuario;
         usuario = em.find(Usuario.class, id);
         em.close();
         return usuario;
     }
-       
-       public List<UsuarioBean> buscaPorNome(String nome){
-           EntityManager em = JPAUtil.getEntityManager();
-           Query query = em.createQuery("SELECT i FROM Usuario i WHERE i.nome = :nome ORDER BY i.nome ASC");
-           try{
-               return query.getResultList();
-           }catch(NullPointerException e){
-               return new ArrayList<>();
-           }finally{
-             em.close();   
-           }
-       }
-       
-       public String retornaNome(String nome){
-           return nome.substring(nome.indexOf(';')+1);
-       }
-       
-         public List<String> retornaUsuariosPacientesCod(){
+
+    public List<UsuarioBean> buscaPorNome(String nome) {
         EntityManager em = JPAUtil.getEntityManager();
-        Query query = em.createQuery("SELECT i FROM Usuario i "
-                + "WHERE i.administrador = :adm ORDER BY i.nome");
+        Query query = em.createQuery("SELECT i FROM Usuario i WHERE i.nome = :nome ORDER BY i.nome ASC");
+        try {
+            return query.getResultList();
+        } catch (NullPointerException e) {
+            return new ArrayList<>();
+        } finally {
+            em.close();
+        }
+    }
+
+    public Usuario retornaUsuarioById(String usuario) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.find(Usuario.class, extractID(usuario));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    private Long extractID(String usuario) {
+        return Long.parseLong(usuario.substring(0, usuario.indexOf(";")));
+    }
+
+    public String retornaNome(String nome) {
+        return nome.substring(nome.indexOf(';') + 1);
+    }
+
+    public List<String> retornaUsuariosPacientesCod() {
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query = em.createQuery("SELECT i FROM Usuario i WHERE i.administrador = :adm ORDER BY i.nome");
         query.setParameter("adm", Boolean.FALSE);
         List<String> usuarios = new ArrayList<>();
-        List<Usuario> user =  query.getResultList();
+        List<Usuario> user = query.getResultList();
         for (Usuario object : user) {
             usuarios.add(object.getId() + ";" + object.getNome());
         }
-        try{
+        try {
             return usuarios;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             return new ArrayList<>();
-        }finally{
+        } finally {
             em.close();
-        }   
+        }
     }
-    
-    public List<Usuario> retornaUsuariosPacientes(){
+
+    public List<Usuario> retornaUsuariosPacientes() {
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT i FROM Usuario i "
                 + "WHERE i.administrador = :adm ORDER BY i.nome");
         query.setParameter("adm", Boolean.FALSE);
-        try{
+        try {
             return query.getResultList();
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             return new ArrayList<>();
-        }finally{
+        } finally {
             em.close();
-        }   
+        }
     }
 
     public List<String> retornaListaUF() {

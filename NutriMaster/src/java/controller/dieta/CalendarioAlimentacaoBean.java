@@ -42,6 +42,7 @@ public class CalendarioAlimentacaoBean implements Serializable {
         this.alimento = "";
         this.calendariosCadastrados = new CalendarioAlimentacao();
         this.objAlimento = new Alimento();
+        this.diaSemana = "Segunda-Feira";
     }
 
     public Alimento retornaAlimentoById(String nome) {
@@ -70,7 +71,7 @@ public class CalendarioAlimentacaoBean implements Serializable {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
         for (AlimentoQuantidade a : this.alimentos) {
-            em.merge(a);
+            em.persist(a);
         }
         em.getTransaction().commit();
         em.close();
@@ -109,16 +110,14 @@ public class CalendarioAlimentacaoBean implements Serializable {
     }
 
     private Date retornaUltimaDataCadastrada(EntityManager em, Usuario u) {
-        Query query = em.createQuery("SELECT i FROM CalendarioAlimentacao i "
+        Query query = em.createQuery("SELECT i.dataValido FROM CalendarioAlimentacao i "
                 + "WHERE i.usuario = :usuario ORDER BY i.dataValido DESC");
         query.setParameter("usuario", u);
         try {
             return (Date) query.getResultList().get(0);
         } catch (IndexOutOfBoundsException e) {
             return new Date();
-        } finally {
-
-        }
+        } 
     }
 
     public void cadastrarCalendarioAlimentacao(Usuario u) {
@@ -178,11 +177,11 @@ public class CalendarioAlimentacaoBean implements Serializable {
 
     public final List<String> retornaDiasSemana() {
         List<String> dias = new ArrayList<>();
-        dias.add("Segunda");
-        dias.add("Terça");
-        dias.add("Quarta");
-        dias.add("Quinta");
-        dias.add("Sexta");
+        dias.add("Segunda-Feira");
+        dias.add("Terça-Feira");
+        dias.add("Quarta-Feira");
+        dias.add("Quinta-Feira");
+        dias.add("Sexta-Feira");
         dias.add("Sábado");
         dias.add("Domingo");
         return dias;

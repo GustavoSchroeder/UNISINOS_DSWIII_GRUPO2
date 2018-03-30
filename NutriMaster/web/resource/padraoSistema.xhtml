@@ -2,22 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>NutriMaster :: Sua saúde nossa alegria</title>
-        <meta name="author" content="Gustavo Lazarotto Schroeder"></meta>
-    </h:head>
+    <ui:insert name="top">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>NutriMaster :: Sua saúde nossa alegria</title>
+            <meta name="author" content="Gustavo Lazarotto Schroeder"></meta>
+        </h:head>
 
-    <h:body>
-         <b:navBar brand="NutriMaster" brandHref="#" inverse="true" fixed="top">
-            <b:navbarLinks>
+        <h:body>
+            <b:navBar brand="NutriMaster" brandHref="#" inverse="true" fixed="top">
+                <b:navbarLinks>
 
-            </b:navbarLinks>
-            <h:form styleClass="navbar-form navbar-right">
-                <b:commandButton action="a" value="Seja bem vindo, #{usuarioBean.usuario.nome}!" look="success"/>
-            </h:form>
-        </b:navBar>
-    </h:body>
+                </b:navbarLinks>
+                <h:form styleClass="navbar-form navbar-right">
+                    <b:commandButton action="a" value="Seja bem vindo, #{usuarioBean.usuario.nome}!" look="success"/>
+                    <b:commandButton action="#{usuarioBean.logOut()}" value="LogOut" look="danger"/>
+                </h:form>
+            </b:navBar>
+        </h:body>
+    </ui:insert>
+    <ui:insert name="content">
+        
+    </ui:insert>
 </html>
