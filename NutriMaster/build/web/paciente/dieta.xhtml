@@ -19,18 +19,18 @@
                 <b:jumbotron>
                     <!--Escrever um Converter-->
                     <p:panelGrid columns="2" style="width: 100%" layout="grid">
-                        <h:panelGrid columns="1"  style="width: 95%; margin: 0 auto;">
+                        <p:panelGrid columns="1" layout="grid"  style="width: 95%; margin: 0 auto;">
                             <h:panelGrid columns="1" style="width: 60%; margin: 0 auto; margin-bottom: 2%; text-align: center">
-                                <h:outputText value="Título da Dieta"/>
+                                <h:outputText value="Título da Dieta" style="font-weight: bold" />
                                 <p:inputText value="#{dietaBean.dieta.dieta}"/>
                             </h:panelGrid>
-                            <p:panelGrid columns="3" style="width: 90%; margin: 0 auto;" layout="grid">
+                            <h:panelGrid columns="3" style="width: 90%; margin: 0 auto;" >
                                 <p:outputLabel for="paciente" value="Paciente" style="text-align: center"/>
                                 <p:outputLabel for="semana" value="Dia da Semana" style="text-align: center"/>
                                 <p:outputLabel for="popup" value="Vcto. Dieta:" />
 
                                 <p:selectOneMenu id="paciente" required="false" value="#{dietaBean.pacienteStr}" filter="true" filterMatchMode="contains" style="width:160px">
-                                    <f:selectItem itemLabel="-" itemValue="null" />
+                                    <f:selectItem itemLabel="" itemValue="null" />
                                     <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
                                     <p:ajax update="formDieta"/>
                                 </p:selectOneMenu>
@@ -39,11 +39,12 @@
                                     <p:ajax update="formDieta"/>
                                 </p:selectOneMenu>
                                 <p:calendar id="popup" value="#{dietaBean.dieta.vencimentoDieta}" size="8" style="margin-left: 5%"/>
-                            </p:panelGrid>
+                            </h:panelGrid>
 
-                            <p:panelGrid columns="2" style="width: 90%; margin: 0 auto;">
+                            <h:panelGrid columns="3" style="width: 90%; margin: 0 auto;">
                                 <p:outputLabel for="alimento" value="Alimentos" style="text-align: center"/>
                                 <h:outputLabel for="basic" value="Qtde.: " />
+                                <h:outputText value="Lista: " style="font-weight: bold"/>
                                 <h:panelGrid columns="2">
                                     <p:selectOneMenu id="alimento" value="#{calendarioAlimentacaoBean.alimento}" filter="true" filterMatchMode="contains" style="width:125px">
                                         <f:selectItems value="#{calendarioAlimentacaoBean.retornaListNomeAlimentos()}"/>
@@ -51,9 +52,9 @@
                                     <p:commandButton icon="fa fa-plus" onclick="PF('dlg2').show();" title="Adicionar Alimentos"/>
                                 </h:panelGrid>
                                 <p:spinner id="basic" value="#{calendarioAlimentacaoBean.qtdeAlimento}" maxlength="2" size="3"/>
-                                <p:commandButton value="Adicionar Alimento a Lista" action="#{calendarioAlimentacaoBean.adicionarAlimentoLista()}" update="formDieta"/>
-                            </p:panelGrid>
-                        </h:panelGrid>
+                                <p:commandButton value="Adicionar Alimento" action="#{calendarioAlimentacaoBean.adicionarAlimentoLista()}" update="formDieta"/>
+                            </h:panelGrid>
+                        </p:panelGrid>
 
                         <p:panelGrid id="lista" columns="1" layout="grid" style="width: 100%">
                             <h2>Dieta para #{calendarioAlimentacaoBean.diaSemana}</h2>
