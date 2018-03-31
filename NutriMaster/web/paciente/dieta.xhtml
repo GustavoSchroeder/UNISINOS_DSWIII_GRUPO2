@@ -32,11 +32,11 @@
                                 <p:selectOneMenu id="paciente" required="false" value="#{dietaBean.pacienteStr}" filter="true" filterMatchMode="contains" style="width:160px">
                                     <f:selectItem itemLabel="" itemValue="null" />
                                     <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
-                                    <p:ajax update="formDieta"/>
+                                    <p:ajax update="lista"/>
                                 </p:selectOneMenu>
                                 <p:selectOneMenu id="semana" value="#{calendarioAlimentacaoBean.diaSemana}" filter="true" filterMatchMode="contains" style="width:160px">
                                     <f:selectItems value="#{calendarioAlimentacaoBean.retornaDiasSemana()}"/>
-                                    <p:ajax update="formDieta"/>
+                                    <p:ajax update="lista"/>
                                 </p:selectOneMenu>
                                 <p:calendar id="popup" value="#{dietaBean.dieta.vencimentoDieta}" size="8" style="margin-left: 5%"/>
                             </h:panelGrid>
@@ -72,9 +72,30 @@
                         </p:panelGrid>
                     </p:panelGrid>
                     <center>
-                        <b:commandButton action="#{dietaBean.cadastrarDieta()}" style="margin-top: 2%" value="Cadastrar Dieta" look="success"/>
+                        <b:commandButton action="#{dietaBean.adicionarDietaLista()}" style="margin-top: 2%" value="Adicionar Dieta a Lista" look="success"/>
+                        <b:commandButton action="#{dietaBean.cadastrarDietas()}" style="margin-top: 2%" value="Cadastrar Dieta" look="success"/>
                     </center>
-                </b:jumbotron>
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <h2>Dias Cadastrados:</h2>
+                        </f:facet>
+                        <h:outputText value="Segunda-Feira:" style="font-weight: bold"/>
+                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Segunda-Feira')}" disabled="true"/>
+                        <h:outputText value="Terça-Feira:" style="font-weight: bold"/>
+                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Terça-Feira')}" disabled="true"/>
+                        <h:outputText value="Quarta-Feira:" style="font-weight: bold"/>
+                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Quarta-Feira')}" disabled="true"/>
+                        <h:outputText value="Quinta-Feira:" style="font-weight: bold"/>
+                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Quinta-Feira')}" disabled="true"/>
+                        <h:outputText value="Sexta-Feira:" style="font-weight: bold"/>
+                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Sexta-Feira')}" disabled="true"/>
+                        <h:outputText value="Sábado" style="font-weight: bold"/>
+                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Sábado')}" disabled="true"/>
+                        <h:outputText value="Domingo" style="font-weight: bold"/>
+                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Domingo')}" disabled="true"/>
+                    </p:panelGrid> 
+               </b:jumbotron>
             </h:form>
 
             <h:form>
