@@ -14,7 +14,8 @@ Para rodar a aplicação são necessárias as seguintes aplicações:
 O banco de dados está em nuvem no ElephantSQL, portanto é so criar um usuário.
 
 ** Se o usuário cadastrado for nutricionista é necessário algum usuário Nutricionista Logar e liberar o acesso.
-** Se for preferível existe um usuário nutricionista (Administrador) já criado,
+** Se for preferível existe um usuário nutricionista (Administrador) já criado:
+
   - Usuário: gustavo
   - Senha: gustavo
   
