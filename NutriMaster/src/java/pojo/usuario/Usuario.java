@@ -26,6 +26,7 @@ public class Usuario implements Serializable {
     private Endereco endereco;
     private List<InfoPaciente> infoPaciente;
     private Boolean administrador;
+    private Boolean liberado;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,5 +89,13 @@ public class Usuario implements Serializable {
 
     public void setAdministrador(Boolean administrador) {
         this.administrador = administrador;
+    }
+
+    public Boolean getLiberado() {
+        return liberado;
+    }
+
+    public void setLiberado(Boolean liberado) {
+        this.liberado = liberado;
     }
 }

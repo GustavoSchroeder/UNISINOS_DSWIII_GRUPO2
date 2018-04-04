@@ -56,6 +56,10 @@ public class CalendarioAlimentacaoBean implements Serializable {
         }
 
     }
+    
+    public void retirarAlimentoLista(AlimentoQuantidade aq){
+        this.alimentos.remove(aq);
+    }
 
     public void adicionarAlimentoLista() {
         AlimentoQuantidade aq = new AlimentoQuantidade();

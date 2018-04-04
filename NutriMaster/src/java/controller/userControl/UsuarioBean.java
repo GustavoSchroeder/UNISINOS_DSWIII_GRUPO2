@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.primefaces.context.RequestContext;
 import pojo.usuario.Endereco;
 import pojo.usuario.InfoPaciente;
 import pojo.usuario.Usuario;
@@ -30,13 +31,17 @@ public class UsuarioBean implements Serializable {
     private InfoPaciente infoPaciente;
     private String usuarioLogin;
     private String senhaLogIn;
+    private String tipoUsuario;
+    private List<Usuario> nutricionistaNaoLiberados;
 
     public UsuarioBean() {
         this.usuario = new Usuario();
         this.endereco = new Endereco();
         this.infoPaciente = new InfoPaciente();
+        this.nutricionistaNaoLiberados = new ArrayList<>();
         this.usuarioLogin = "";
         this.senhaLogIn = "";
+        this.tipoUsuario = "Paciente";
     }
 
     public String cadastrarUsuario() throws NoSuchAlgorithmException {
@@ -47,7 +52,14 @@ public class UsuarioBean implements Serializable {
         this.infoPaciente.setDataMarcacao(new Date());
         listOfInfo.add(this.infoPaciente);
         this.usuario.setInfoPaciente(listOfInfo);
-        this.usuario.setAdministrador(Boolean.FALSE);
+
+        if (this.tipoUsuario.equalsIgnoreCase("Paciente")) {
+            this.usuario.setAdministrador(Boolean.FALSE);
+            this.usuario.setLiberado(Boolean.TRUE);
+        } else {
+            this.usuario.setAdministrador(Boolean.TRUE);
+            this.usuario.setLiberado(Boolean.FALSE);
+        }
 
         //persistencia
         em.getTransaction().begin();
@@ -60,7 +72,57 @@ public class UsuarioBean implements Serializable {
         this.endereco = new Endereco();
         this.infoPaciente = new InfoPaciente();
         this.usuario = new Usuario();
+        this.tipoUsuario = "Paciente";
         return "index.xhtml";
+    }
+
+    public Long qtdeNutricionistasAprovar() {
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query = em.createQuery("SELECT COUNT(i.id) FROM Usuario i "
+                + "WHERE i.liberado = :liberado AND i.administrador = :adm");
+        query.setParameter("liberado", Boolean.FALSE);
+        query.setParameter("adm", Boolean.TRUE);
+       try{
+           return (Long) query.getResultList().get(0);
+       }catch(IndexOutOfBoundsException e){
+           return 0L;
+       }finally{
+        em.close();
+       }        
+    }
+
+    public void getNutricionistaNaoAprovados(Boolean show) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query = em.createQuery("SELECT i FROM Usuario i "
+                + "WHERE i.liberado = :liberado AND i.administrador = :adm");
+        query.setParameter("liberado", Boolean.FALSE);
+        query.setParameter("adm", Boolean.TRUE);
+        this.nutricionistaNaoLiberados = query.getResultList();
+        em.close();
+        if (show) {
+            RequestContext.getCurrentInstance().execute("PF('dlg3').show()");
+        }
+    }
+
+    public void usuarioIsNutricionista(Usuario u) {
+        EntityManager em = JPAUtil.getEntityManager();
+        u.setLiberado(Boolean.TRUE);
+        em.getTransaction().begin();
+        em.merge(u);
+        em.getTransaction().commit();
+        em.close();
+        getNutricionistaNaoAprovados(Boolean.FALSE);
+    }
+
+    public void usuarioIsPaciente(Usuario u) {
+        EntityManager em = JPAUtil.getEntityManager();
+        u.setLiberado(Boolean.TRUE);
+        u.setAdministrador(Boolean.FALSE);
+        em.getTransaction().begin();
+        em.merge(u);
+        em.getTransaction().commit();
+        em.close();
+        getNutricionistaNaoAprovados(Boolean.FALSE);
     }
 
     public String novoUsuario() {
@@ -91,9 +153,11 @@ public class UsuarioBean implements Serializable {
 
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT i FROM Usuario i "
-                + "WHERE i.usuario = :usuario AND i.senha = :senha");
+                + "WHERE i.usuario = :usuario AND i.senha = :senha AND i.liberado = :liberado");
         query.setParameter("usuario", this.usuarioLogin);
         query.setParameter("senha", retornaMD5(this.senhaLogIn));
+        query.setParameter("liberado", Boolean.TRUE);
+
         List<Usuario> usuarios = query.getResultList();
         try {
             if (null == usuarios || usuarios.isEmpty()) {
@@ -278,4 +342,21 @@ public class UsuarioBean implements Serializable {
     public void setInfoPaciente(InfoPaciente infoPaciente) {
         this.infoPaciente = infoPaciente;
     }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public List<Usuario> getNutricionistaNaoLiberados() {
+        return nutricionistaNaoLiberados;
+    }
+
+    public void setNutricionistaNaoLiberados(List<Usuario> nutricionistaNaoLiberados) {
+        this.nutricionistaNaoLiberados = nutricionistaNaoLiberados;
+    }
+
 }

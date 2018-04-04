@@ -20,7 +20,6 @@
                     <b:container>
                         <h2>Bem vindo ao mundo da Nutrição, #{usuarioBean.usuario.nome}!</h2>
                     </b:container>
-
                 </b:jumbotron>
                 <b:container>
                     <b:row>
@@ -37,10 +36,10 @@
                             <p><b:button outcome="" value="View details »"/></p>
                         </b:column>
                         <b:column col-md="4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                                ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><b:button outcome="" value="View details »"/></p>
+                            <h2>Nutricionistas para Aprovar</h2>
+                            <p>Aqui você poderá aprovar os usuários de seus colegas nutricionistas. Qualquer nutricionista poderá
+                            validar o usuário de outro nutricionista.</p>
+                            <p><b:commandButton action="#{usuarioBean.getNutricionistaNaoAprovados(true)}" value="Nutricionistas para aprovar:  #{usuarioBean.qtdeNutricionistasAprovar()}"/></p>
                         </b:column>
                     </b:row>
                     <hr/>
@@ -48,6 +47,38 @@
                         <p>© Company 2014</p>
                     </footer>
                 </b:container>
+
+            </h:form>
+            <h:form>
+                <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" width="90%" closable="true">
+                    <b:jumbotron>
+                        <h3>Aprovar Nutricionistas:</h3>
+                        <p:dataTable var="info" id="info" value="#{usuarioBean.nutricionistaNaoLiberados}" rowHover="true">
+                            <p:column headerText="Nome" style="text-align: center">
+                                <h:outputText value="#{info.nome}" />
+                            </p:column>
+       
+                            <p:column headerText="Administrador" style="text-align: center" >
+                                <h:outputText value="Sim" rendered="#{info.administrador}"/>
+                                <h:outputText value="Náo" rendered="#{!info.administrador}"/>
+                            </p:column>
+
+                            <p:column headerText="Liberado" style="text-align: center" >
+                                <h:outputText value="Sim" rendered="#{info.liberado}"/>
+                                <h:outputText value="Náo" rendered="#{!info.liberado}"/>
+                            </p:column>
+
+                            <p:column>
+                                <b:commandButton value="Confirmar Nutricionista" ajax="true" update="info"
+                                                 action="#{usuarioBean.usuarioIsNutricionista(info)}" look="success"/>
+                            </p:column>
+                            <p:column>
+                                <b:commandButton value="Tranformar Paciente" ajax="true" update="info"
+                                                 action="#{usuarioBean.usuarioIsPaciente(info)}"  look="danger"/>
+                            </p:column>           
+                        </p:dataTable>
+                    </b:jumbotron>
+                </p:dialog>
             </h:form>
         </h:body>
     </ui:define>

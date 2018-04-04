@@ -49,6 +49,15 @@ public class DietaBean implements Serializable {
         this.listaDietas.add(this.dieta);
         this.dieta = new Dieta();
     }
+    
+    public void buscarDieta(String dia){
+        for (CalendarioAlimentacao calendarioAlimentacao : this.dieta.getCalendariAlimentacao()) {
+            if(calendarioAlimentacao.getDiaSemana().equalsIgnoreCase(dia)){
+                this.calendarioAlimentacaoBean.setCalendariosCadastrados(calendarioAlimentacao);
+                return;
+            }
+        }
+    }
 
     public void atribuirPaciente() {
         EntityManager em = JPAUtil.getEntityManager();

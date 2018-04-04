@@ -18,7 +18,7 @@
 
                 <b:jumbotron>
                     <!--Escrever um Converter-->
-                    <p:panelGrid columns="2" style="width: 100%" layout="grid">
+                    <p:panelGrid id="input" columns="2" style="width: 95%; margin: 0 auto;" layout="grid">
                         <p:panelGrid columns="1" layout="grid"  style="width: 95%; margin: 0 auto;">
                             <h:panelGrid columns="1" style="width: 60%; margin: 0 auto; margin-bottom: 2%; text-align: center">
                                 <h:outputText value="Título da Dieta" style="font-weight: bold" />
@@ -52,7 +52,7 @@
                                     <p:commandButton icon="fa fa-plus" onclick="PF('dlg2').show();" title="Adicionar Alimentos"/>
                                 </h:panelGrid>
                                 <p:spinner id="basic" value="#{calendarioAlimentacaoBean.qtdeAlimento}" maxlength="2" size="3"/>
-                                <p:commandButton value="Adicionar Alimento" action="#{calendarioAlimentacaoBean.adicionarAlimentoLista()}" update="formDieta"/>
+                                <p:commandButton value="Adicionar Alimento" action="#{calendarioAlimentacaoBean.adicionarAlimentoLista()}" update="input"/>
                             </h:panelGrid>
                         </p:panelGrid>
 
@@ -68,34 +68,41 @@
                                 <p:column headerText="Qtde." style="text-align: center">
                                     <h:outputText value="#{value.quantidade}" />
                                 </p:column>
+                                <p:column>
+                                    <p:commandButton action="#{calendarioAlimentacaoBean.retirarAlimentoLista(value)}" 
+                                                     icon="fa fa-trash" update=":formDieta:lista" async="true"/>
+                                </p:column>
                             </p:dataTable>
                         </p:panelGrid>
                     </p:panelGrid>
-                    <center>
-                        <b:commandButton action="#{dietaBean.adicionarDietaLista()}" style="margin-top: 2%" value="Adicionar Dieta a Lista" look="success"/>
-                        <b:commandButton action="#{dietaBean.cadastrarDietas()}" style="margin-top: 2%" value="Cadastrar Dieta" look="success"/>
-                    </center>
 
-                    <p:panelGrid columns="2">
-                        <f:facet name="header">
-                            <h2>Dias Cadastrados:</h2>
-                        </f:facet>
-                        <h:outputText value="Segunda-Feira:" style="font-weight: bold"/>
-                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Segunda-Feira')}" disabled="true"/>
-                        <h:outputText value="Terça-Feira:" style="font-weight: bold"/>
-                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Terça-Feira')}" disabled="true"/>
-                        <h:outputText value="Quarta-Feira:" style="font-weight: bold"/>
-                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Quarta-Feira')}" disabled="true"/>
-                        <h:outputText value="Quinta-Feira:" style="font-weight: bold"/>
-                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Quinta-Feira')}" disabled="true"/>
-                        <h:outputText value="Sexta-Feira:" style="font-weight: bold"/>
-                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Sexta-Feira')}" disabled="true"/>
-                        <h:outputText value="Sábado" style="font-weight: bold"/>
-                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Sábado')}" disabled="true"/>
-                        <h:outputText value="Domingo" style="font-weight: bold"/>
-                        <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Domingo')}" disabled="true"/>
-                    </p:panelGrid> 
-               </b:jumbotron>
+                    <h:panelGrid columns="2" style="width: 90%; margin: 0 auto; margin-top: 2%">
+                        <p:panelGrid columns="4">
+                            <f:facet name="header">
+                                <h2>Dias Cadastrados:</h2>
+                            </f:facet>
+                            <h:outputText value="Segunda-Feira:" style="font-weight: bold"/>
+                            <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Segunda-Feira')}" disabled="true"/>
+                            <h:outputText value="Terça-Feira:" style="font-weight: bold"/>
+                            <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Terça-Feira')}" disabled="true"/>
+                            <h:outputText value="Quarta-Feira:" style="font-weight: bold"/>
+                            <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Quarta-Feira')}" disabled="true"/>
+                            <h:outputText value="Quinta-Feira:" style="font-weight: bold"/>
+                            <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Quinta-Feira')}" disabled="true"/>
+                            <h:outputText value="Sexta-Feira:" style="font-weight: bold"/>
+                            <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Sexta-Feira')}" disabled="true"/>
+                            <h:outputText value="Sábado" style="font-weight: bold"/>
+                            <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Sábado')}" disabled="true"/>
+                            <h:outputText value="Domingo" style="font-weight: bold"/>
+                            <p:selectBooleanCheckbox value="#{dietaBean.isDiaCadastrado('Domingo')}" disabled="true"/>
+                        </p:panelGrid> 
+
+                        <h:panelGrid columns="1">
+                            <b:commandButton action="#{dietaBean.adicionarDietaLista()}" style="margin-top: 2%; width: 200px" value="Adicionar Dieta a Lista" look="info"/>
+                            <b:commandButton action="#{dietaBean.cadastrarDietas()}" style="margin-top: 2%; width: 200px" value="Cadastrar Dieta" look="success"/>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </b:jumbotron>
             </h:form>
 
             <h:form>

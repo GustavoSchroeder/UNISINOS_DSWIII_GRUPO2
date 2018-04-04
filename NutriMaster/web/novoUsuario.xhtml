@@ -16,9 +16,15 @@
     </b:jumbotron>
     <!-- Add 50px padding top to the body for the navbar -->
     <h:body style="padding-top: 50px; padding-bottom: 20px;">
-        <b:form>
+        <b:form id="form">
             <b:panelGrid columns="1">
                 <b:panel title="Sobre você" look="primary">
+                    <b:selectOneMenu value="#{usuarioBean.tipoUsuario}" colMd="2" required="true" label="Tipo de cadastro:" labelColMd="2">
+                        <f:selectItem itemLabel="Paciente" itemValue="Paciente" />
+                        <f:selectItem itemLabel="Nutricionista" itemValue="Nutricionista" />
+                        <p:ajax update="infoPaciente" async="true"/>
+                    </b:selectOneMenu>
+                    
                     <b:inputText value="#{usuarioBean.usuario.nome}" label="Qual seu nome?" required="true" />
                     <b:inputText value="#{usuarioBean.usuario.usuario}" label="Usuário" required="true"/>
                     <b:inputText value="#{usuarioBean.usuario.senha}" type="password" label="Senha" required="true"/>
@@ -37,7 +43,7 @@
                     </h:panelGrid>
 
                 </b:panel>
-                <b:panel title="Sobre seu corpo" look="primary">
+                <b:panel id="infoPaciente" title="Sobre seu corpo" look="primary" rendered="#{usuarioBean.tipoUsuario.equalsIgnoreCase('Paciente')}">
                     <b:panelGrid columns="2">
                         <h:outputText value="Qual seu peso?" />
                         <p:inputNumber id="input1" value="#{usuarioBean.infoPaciente.peso}"
