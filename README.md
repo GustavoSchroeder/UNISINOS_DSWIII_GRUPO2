@@ -1,6 +1,7 @@
 # UNISINOS_DSWIII_GRUPO2
 
 Desenvolvedor <b>Gustavo Lazarotto Schroeder</b>
+<hr/>
 Grupo 2 - Augusto Pasini, Edinei Perazzoli, Gustavo L. Schroeder, Reni Steffenon, Wendriu Munhoz
 
 <h2> Para Utilizar </h2>
