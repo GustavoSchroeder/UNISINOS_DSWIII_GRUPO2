@@ -4,14 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/telaInicial.xhtml</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/usuario/Usuario.java</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/novoUsuario.xhtml</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/index.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/novoUsuario.xhtml</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/userControl/UsuarioBean.java</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/CalendarioAlimentacao.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/resource/padraoSistema.xhtml</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/DietaBean.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/CalendarioAlimentacaoBean.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/DietaBean.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/Dieta.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/dieta.xhtml</file>
         </group>

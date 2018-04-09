@@ -11,6 +11,10 @@
     <ui:define name="content">
         <h:body style="padding-top: 50px; padding-bottom: 20px;">
             <h:form id="formDieta">
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                    <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                </p:dialog>
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"
                          delay="10000" escape="true" />
@@ -20,7 +24,7 @@
                     <!--Escrever um Converter-->
                     <p:panelGrid id="input" columns="2" style="width: 95%; margin: 0 auto;" layout="grid">
                         <p:panelGrid columns="1" layout="grid"  style="width: 95%; margin: 0 auto;">
-                            <h:panelGrid columns="1" style="width: 60%; margin: 0 auto; margin-bottom: 2%; text-align: center">
+                            <h:panelGrid columns="1" style="width: 60%; margin: 0 auto; margin-bottom: 2%; text-align: center" rendered="false">
                                 <h:outputText value="Título da Dieta" style="font-weight: bold" />
                                 <p:inputText value="#{dietaBean.dieta.dieta}"/>
                             </h:panelGrid>
@@ -34,10 +38,9 @@
                                     <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
                                     <p:ajax update="lista"/>
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="semana" value="#{calendarioAlimentacaoBean.diaSemana}" filter="true" filterMatchMode="contains" style="width:160px">
+                                <p:selectCheckboxMenu id="semana" value="#{calendarioAlimentacaoBean.diasSemana}" style="width:160px">
                                     <f:selectItems value="#{calendarioAlimentacaoBean.retornaDiasSemana()}"/>
-                                    <p:ajax update="lista"/>
-                                </p:selectOneMenu>
+                                </p:selectCheckboxMenu>
                                 <p:calendar id="popup" value="#{dietaBean.dieta.vencimentoDieta}" size="8" style="margin-left: 5%"/>
                             </h:panelGrid>
 
@@ -57,7 +60,7 @@
                         </p:panelGrid>
 
                         <p:panelGrid id="lista" columns="1" layout="grid" style="width: 100%">
-                            <h2>Dieta para #{calendarioAlimentacaoBean.diaSemana}</h2>
+                            <h2>Cardápio</h2>
                             <p:dataTable var="value" value="#{calendarioAlimentacaoBean.alimentos}">
                                 <p:column headerText="Alimento" style="text-align: center">
                                     <h:outputText value="#{value.alimento.alimento}" />
