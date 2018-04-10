@@ -23,9 +23,14 @@ O banco de dados está em nuvem no ElephantSQL, portanto é so criar um usuário
 
 <h2>Desenvolvimento</h2>
 A aplicação está sendo desenvolvida com as seguintes tecnologias:
-  - JSF
-    - BOOTSTRAP
-    - PRIMEFACES
-  - JAVA EE
-  - HIBERNATE
-  - POSTGRESQL
+<ul>
+ <li>JSF
+  <ul>
+   <li> BOOTSTRAP </li>
+   <li> PRIMEFACES </li>
+   <ul>
+  </li>
+  <li>JAVA EE</li>
+  <li>HIBERNATE</li>
+  <li>POSTGRESQL</li>
+ </ul>
