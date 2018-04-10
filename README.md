@@ -8,7 +8,7 @@ Grupo 2 - Augusto Pasini, Edinei Perazzoli, Gustavo L. Schroeder, Reni Steffenon
 
 Para rodar a aplicação são necessárias as seguintes aplicações:
 - <a href = "http://www.oracle.com/technetwork/java/javaee/overview/index.html">JAVA EE</a>
-- <a hreg="https://netbeans.org">NETBEANS</a>
+- <a href="https://netbeans.org">NETBEANS</a>
 - <a href = "https://javaee.github.io/glassfish/">GLASSFISH SERVER</a> (Normalmente embarcado no Netbeans)
 
 O banco de dados está em nuvem no <a href = "https://www.elephantsql.com">ElephantSQL</a>, portanto é so criar um usuário.
