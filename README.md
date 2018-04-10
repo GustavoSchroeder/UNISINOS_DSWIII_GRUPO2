@@ -28,7 +28,7 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
   <ul>
    <li> BOOTSTRAP </li>
    <li> PRIMEFACES </li>
-   <ul>
+   </ul>
   </li>
   <li>JAVA EE</li>
   <li>HIBERNATE</li>
