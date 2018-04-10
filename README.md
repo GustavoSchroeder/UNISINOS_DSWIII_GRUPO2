@@ -11,7 +11,7 @@ Para rodar a aplicação são necessárias as seguintes aplicações:
 - NETBEANS
 - GLASSFISH SERVER (Normalmente embarcado no Netbeans)
 
-O banco de dados está em nuvem no ElephantSQL, portanto é so criar um usuário.
+O banco de dados está em nuvem no <a href = "https://www.elephantsql.com">ElephantSQL</a>, portanto é so criar um usuário.
 
 <ul>
 <li>Se o usuário cadastrado for nutricionista é necessário algum usuário Nutricionista Logar e liberar o acesso.</li>
