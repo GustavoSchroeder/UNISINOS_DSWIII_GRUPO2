@@ -14,7 +14,7 @@
         <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                  show-detail="true" show-summary="false" allowDismiss="true"
                  delay="10000" escape="true" />
-        <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <h:body style="padding-top: 50px; padding-bottom: 20px;" rendered="#{usuarioBean.usuario.administrador}">
             <h:form>
                 <b:jumbotron>
                     <b:container>
@@ -30,10 +30,9 @@
                             <p><b:commandButton action="#{usuarioBean.isUsuarioAllowedOnDieta()}" value="Criar Dieta"/></p>
                         </b:column>
                         <b:column col-md="4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                                ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><b:button outcome="" value="View details »"/></p>
+                            <h2>Pacientes</h2>
+                            <p>Nesta seção o nutricionista poderá deixar recados para seus pacientes, observar evolução, etc.</p>
+                            <p><b:commandButton action="/paciente/visaoPacientes.xhtml?faces-redirect=true" value="Entrar"/></p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Nutricionistas para Aprovar</h2>
@@ -79,6 +78,42 @@
                         </p:dataTable>
                     </b:jumbotron>
                 </p:dialog>
+            </h:form>
+        </h:body>
+        
+        <h:body style="padding-top: 50px; padding-bottom: 20px;" rendered="#{!usuarioBean.usuario.administrador}">
+            <h:form>
+                <b:jumbotron>
+                    <b:container>
+                        <h2>Bem vindo ao mundo da Nutrição, #{usuarioBean.usuario.nome}!</h2>
+                    </b:container>
+                </b:jumbotron>
+                <b:container>
+                    <b:row>
+                        <b:column col-md="4">
+                            <h2>Minhas Dietas</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
+                                ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><b:commandButton action="#" value="Consultar Minhas Dietas"/></p>
+                        </b:column>
+                        <b:column col-md="4">
+                            <h2>Heading</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
+                                ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><b:commandButton action="#" value="Consultar Minhas Dietas"/></p>
+                        </b:column>
+                        <b:column col-md="4">
+                            <h2>Meu Perfil</h2>
+                            <p>Aqui você poderá consultar seu perfil, ver recados que seu nutricionista deixou para você, atualizar seus Stas
+                            e cadastrar seus exercícios.</p>
+                            <p><b:commandButton action="#" value="Entrar"/></p>
+                        </b:column>
+                    </b:row>
+                    <hr/>
+                    <footer>
+                        <p>© Company 2014</p>
+                    </footer>
+                </b:container>
             </h:form>
         </h:body>
     </ui:define>

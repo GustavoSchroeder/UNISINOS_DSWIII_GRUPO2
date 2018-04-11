@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/resource/padraoSistema.xhtml">
+
+    <ui:define name="content">
+        <h:body style="padding-top: 50px; padding-bottom: 20px;">
+            <h:form id="formDieta">
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                    <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                </p:dialog>
+
+                <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
+                         show-detail="true" show-summary="false" allowDismiss="true"
+                         delay="10000" escape="true" />
+                <h2>Meus Pacientes</h2>
+                <b:jumbotron>
+                    <b:container>
+                        <b:row>
+                            <b:column col-md="4">
+                                <h2>Dicas Alimentares</h2>
+                            <p><b:commandButton action="/paciente/cadastrarDicasAlimentares.xhtml?faces-redirect=true" value="Cadastrar Dica"/></p>
+                            </b:column>
+                            <b:column col-md="4">
+                                <h2>Heading</h2>
+                                <p><b:button outcome="" value="View details »"/></p>
+                            </b:column>
+                            <b:column col-md="4">
+                                <h2>Heading</h2>
+                                <p><b:button outcome="" value="View details »"/></p>
+                            </b:column>
+                        </b:row>
+                        <hr/>
+                        <footer>
+                            <p>© Company 2014</p>
+                        </footer>
+                    </b:container>
+                </b:jumbotron>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/resource/padraoSistema.xhtml">
+
+    <ui:define name="content">
+        <h:form id="formDica">
+            <b:commandButton value="Voltar" ajax="true" update="@none" look="primary" style="width:80px; float: right" 
+                             action="/paciente/visaoPacientes/.xhtml?faces-redirect=true"/>
+            <h:body style="padding-top: 50px; padding-bottom: 20px;">
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                    <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                </p:dialog>
+                <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
+                         show-detail="true" show-summary="false" allowDismiss="true"
+                         delay="10000" escape="true" />
+                <h2>Cadastrar Dicas Alimentares</h2>
+
+                <b:jumbotron>
+                    <!--Escrever um Converter-->
+                    <center>
+                        <p:selectOneMenu id="paciente" required="false" value="#{dicasAlimentaresBean.pacienteStr}" 
+                                         filter="true" filterMatchMode="contains" style="width:45%; margin: 0 auto; margin-bottom: 3%">
+                            <f:selectItem itemLabel="" itemValue="null" />
+                            <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
+                        </p:selectOneMenu>
+                        
+                    </center>
+                    <b:inputText placeholder="Título de sua Dica..." value="#{dicasAlimentaresBean.titulo}"
+                                 />
+                    <b:inputTextarea placeholder="Digite sua dica aqui..." value="#{dicasAlimentaresBean.texto}"/>
+                    <center>
+                        <b:commandButton value="Cadastrar Dica" ajax="true" 
+                                         look="primary" action="#{dicasAlimentaresBean.cadastrarDica()}" >
+                            <p:ajax update="formDica" async="true"/>
+                        </b:commandButton>
+                    </center>
+                </b:jumbotron>
+            </h:body>
+        </h:form>
+    </ui:define>
+</ui:composition>
