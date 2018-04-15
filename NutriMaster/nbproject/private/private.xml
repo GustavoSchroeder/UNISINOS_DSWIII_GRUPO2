@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tuto_/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/CalendarioExercicioBean.java</file>
-            <file>file:/C:/Users/tuto_/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/CalendarioAlimentacaoBean.java</file>
-            <file>file:/C:/Users/tuto_/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/tuto_/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/Exercicio.java</file>
-            <file>file:/C:/Users/tuto_/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/paciente/ExercicioQuantidade.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/telaInicial.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/consulta/DicaAlimentar.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/visaoPacientes.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/cadastrarDicasAlimentares.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/userControl/UsuarioBean.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/DicasAlimentaresBean.java</file>
         </group>
     </open-files>
 </project-private>

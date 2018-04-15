@@ -139,14 +139,6 @@ public class UsuarioBean implements Serializable {
         return null;
     }
 
-    public String isUsuarioAllowedOnExercicio() {
-        if (this.usuario.getAdministrador()) {
-            return "/paciente/exercicio.xhtml";
-        }
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Oops!", "Você não pode cadastrar seu próprio exercício, contate seu nutricionista."));
-        return null;        
-    }
     public String logOut() {
         return "/index.xhtml?faces-redirect=true";
     }
