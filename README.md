@@ -5,24 +5,17 @@ Grupo 2 - Augusto Pasini, Edinei Perazzoli, Gustavo L. Schroeder, Reni Steffenon
 
 <h2> Para Utilizar </h2>
 
-Para rodar a aplicação são necessárias as seguintes aplicações:
-- <a href = "http://www.oracle.com/technetwork/java/javaee/overview/index.html">JAVA EE</a>
-- <a href="https://netbeans.org">NETBEANS</a>
-- <a href = "https://javaee.github.io/glassfish/">GLASSFISH SERVER</a> (Normalmente embarcado no Netbeans)
-
-O banco de dados está em nuvem no <a href = "https://www.elephantsql.com">ElephantSQL</a>, portanto é so criar um usuário.
-
+<h4>Para rodar a aplicação são necessárias as seguintes aplicações:</h4>
 <ul>
-<li>Se o usuário cadastrado for nutricionista é necessário algum usuário Nutricionista Logar e liberar o acesso.</li>
-<li>Se for preferível existe um usuário nutricionista (Administrador) já criado:
-  <ul>
-   <li>Usuário: gustavo</li>
-   <li>Senha: gustavo</li>
- </ul>
- </li>
+  <li><a href = "http://www.oracle.com/technetwork/java/javaee/overview/index.html">JAVA EE</a></li>
+  <li><a href="https://netbeans.org">NETBEANS</a></li>
+  <li><a href = "https://javaee.github.io/glassfish/">GLASSFISH SERVER</a> (Normalmente embarcado no Netbeans)</li>
 </ul>
-  
-  
+
+<i>
+O banco de dados está alocado em nuvem no <a href = "https://www.elephantsql.com">ElephantSQL</a>, portanto é so criar um usuário.
+</i>
+
 <br/>
 
 <h2>Desenvolvimento</h2>
@@ -34,7 +27,11 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
    <li> PRIMEFACES </li>
    </ul>
   </li>
-  <li>JAVA EE</li>
+  <li>JAVA</li>
   <li>HIBERNATE</li>
   <li>POSTGRESQL</li>
  </ul>
+ 
+ <h2>Uaaauuuu, quero ver funcionando, como faz?</h2>
+ A aplicação está alocada em: http://im.hbsp.com.br:8089/NutriMaster/
+  
