@@ -1,7 +1,10 @@
 # UNISINOS_DSWIII_GRUPO2
+Production Instance - http://im.hbsp.com.br:8089/NutriMaster/
 
 <hr/>
 Grupo 2 - Augusto Pasini, Edinei Perazzoli, Gustavo L. Schroeder, Reni Steffenon, Wendriu Munhoz
+
+##### JAVA EE
 
 <h2> Para Utilizar </h2>
 
@@ -31,7 +34,4 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
   <li>HIBERNATE</li>
   <li>POSTGRESQL</li>
  </ul>
- 
- <h2>Uaaauuuu, quero ver funcionando, como faz?</h2>
- A aplicação está alocada em: http://im.hbsp.com.br:8089/NutriMaster/
-  
+
