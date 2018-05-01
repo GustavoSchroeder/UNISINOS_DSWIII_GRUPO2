@@ -28,10 +28,8 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
 A aplicação está sendo desenvolvida com as seguintes tecnologias:
 <ul>
  <li>Mojarra JavaServer Faces 2.3.0</LI>
-  <ul>
    <li> BOOTSTRAP 1.2.0</li>
    <li> PRIMEFACES 6.2</li>
-   </ul>
   </li>
   <li>JAVA 7</li>
   <li>JTA 1.1</li>
