@@ -18,28 +18,25 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
   <li><a href="https://netbeans.org">NETBEANS</a></li>
   <li><a href = "https://javaee.github.io/glassfish/">GLASSFISH SERVER</a></li>
   <li><a href = "https://www.postgresql.org">POSTGRESQL</a></li>
+  <li><a href = "https://www.elephantsql.com">ELEPHANTSQL CLOUD</a></li>
   <li><a href = "https://pt.wikipedia.org/wiki/JavaServer_Faces">JSF</a></li>
   <li><a href = "https://www.primefaces.org">PRIMEFACES</a></li>
   <li><a href = "https://www.bootsfaces.net">BOOTSFACES</a></li>
 </ul>
 
-<i>
-O banco de dados está alocado em nuvem no <a href = "https://www.elephantsql.com">ElephantSQL</a>, portanto é so criar um usuário.
-</i>
-
-<br/>
-
 <h2>Desenvolvimento</h2>
 A aplicação está sendo desenvolvida com as seguintes tecnologias:
 <ul>
- <li>JSF
+ <li>Mojarra JavaServer Faces 2.3.0</LI>
   <ul>
-   <li> BOOTSTRAP </li>
-   <li> PRIMEFACES </li>
+   <li> BOOTSTRAP 1.2.0</li>
+   <li> PRIMEFACES 6.2</li>
    </ul>
   </li>
-  <li>JAVA</li>
-  <li>HIBERNATE</li>
-  <li>POSTGRESQL</li>
+  <li>JAVA 7</li>
+  <li>JTA 1.1</li>
+  <li>HIBERNATE 3</li>
+  <li>HIBERNATE JPA 2.0</li>
+  <li>POSTGRESQL 10</li>
  </ul>
 
