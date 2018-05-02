@@ -26,12 +26,12 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
 
 <h2>Desenvolvimento</h2>
 A aplicação está sendo desenvolvida com as seguintes tecnologias:
- **Mojarra JavaServer Faces 2.3.0
- **BootsFaces 1.2.0
- **PrimeFaces 6.2
- **Hibernate 3
- **Hibernate JPA 2.0
- **Java 8
- **JTA 1.1
- **PostgreSQL 10
+ <li>Mojarra JavaServer Faces 2.3.0 </li>
+ <li>BootsFaces 1.2.0</li>
+ <li>PrimeFaces 6.2</li>
+ <li>Hibernate 3</li>
+ <li>Hibernate JPA 2.0</li>
+ <li>Java 8</li>
+ <li>JTA 1.1</li>
+ <li>PostgreSQL 10</li>
 
