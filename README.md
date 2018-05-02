@@ -31,7 +31,7 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
    <li> BOOTSTRAP 1.2.0</li>
    <li> PRIMEFACES 6.2</li>
   </li>
-  <li>JAVA 7</li>
+  <li>JAVA 8</li>
   <li>JTA 1.1</li>
   <li>HIBERNATE 3</li>
   <li>HIBERNATE JPA 2.0</li>
