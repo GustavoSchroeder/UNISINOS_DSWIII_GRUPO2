@@ -18,7 +18,7 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
   <li><a href="https://netbeans.org">NETBEANS</a></li>
   <li><a href = "https://javaee.github.io/glassfish/">GLASSFISH SERVER</a></li>
   <li><a href = "https://www.postgresql.org">POSTGRESQL</a></li>
-  <li><a href = "https://www.elephantsql.com">ELEPHANTSQL CLOUD</a></li>
+  <li><a href = "https://www.elephantsql.com">ELEPHANTSQL PostgreSQL as a Service</a></li>
   <li><a href = "https://pt.wikipedia.org/wiki/JavaServer_Faces">JSF</a></li>
   <li><a href = "https://www.primefaces.org">PRIMEFACES</a></li>
   <li><a href = "https://www.bootsfaces.net">BOOTSFACES</a></li>
