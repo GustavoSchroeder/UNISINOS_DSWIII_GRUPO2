@@ -27,7 +27,26 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
 
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+A nutrição e os bons hábitos de alimentação estão se tornando parte importante nas vidas de uma parcela cada vez maior da população. Segundo pesquisas realizadas no Brasil em 2006 42,7% da população estava acima do peso, já em 2011 esse número passou para 48,5%. Isso representa um aumento de 5,8%, o que é preocupante levando em consideração que esse percentual tende a se manter ascendente.
+
+Com esse aumento crescente da obesidade os profissionais de nutrição vêm sendo cada vez mais procurados, desta forma identificamos a necessidade de um sistema especializado que permita que os nutricionistas realizem o controle e acompanhamento do desempenho de seus pacientes.
+
+
+### Objetivo geral;
+
+Proporcionar um sistema que possibilite ao nutricionista controle sobre seus pacientes, de forma integrada e facilitada para que seja acessível por todas as partes interessadas. Além disso, permitir a realização de vendas de produtos relacionados à nutrição para clientes interessados.
+
+### Objetivos específicos;
+
+* Permitir o cadastro de nutricionistas e pacientes no sistema;
+
+* Permitir que o nutricionista cadastre dietas e exercícios a serem realizados para seu paciente;
+
+* Permitir ao nutricionista gerar gráficos de desempenho de seus pacientes;
+
+* Permitir ao paciente o pagamento de suas parcelas;
+
+* Permitir ao paciente o acompanhamento de sua alimentação;
 
 ## Development
 
