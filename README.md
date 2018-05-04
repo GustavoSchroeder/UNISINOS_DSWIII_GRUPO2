@@ -37,4 +37,7 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
 
 <h1 align="center">Equipe</h1>
 |<a href="https://github.com/GustavoSchroder" 
-<img src="https://avatars3.githubusercontent.com/u/5934353?s=460&v=4" width="100px;"/><br/><sub><b>Gustavo Lazarotto Schroeder (Developer)</b> </a>
+[<img src="https://avatars3.githubusercontent.com/u/5934353?s=460&v=4" width="100px;"/>]
+<br/>
+<sub>
+  <b>Gustavo Lazarotto Schroeder (Developer)</b> </a>
