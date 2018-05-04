@@ -46,11 +46,11 @@ Describe and show how to run the tests with code examples.
 
 ## Contributors
 
-<a href = "https://github.com/tutopasini"> Augusto Pasini </a>,
-<a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a>,
-<a href = "https://github.com/GustavoSchroder">Gustavo L. Schroeder</a>,
-<a href = "">Reni Steffenon</a>,
-<a href = "https://github.com/Wendriu">Wendriu Munhoz</a>,
+<li><a href = "https://github.com/tutopasini"> Augusto Pasini </a></li>
+<li><a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a></li>
+<li><a href = "https://github.com/GustavoSchroder">Gustavo L. Schroeder</a></li>
+<li><a href = "">Reni Steffenon</a></li>
+<li><a href = "https://github.com/Wendriu">Wendriu Munhoz</a></li>
   
 ## License
 
