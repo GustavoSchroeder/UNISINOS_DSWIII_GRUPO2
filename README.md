@@ -65,9 +65,9 @@ Describe and show how to run the tests with code examples.
 ## Contributors
 
 <li><a href = "https://github.com/tutopasini"> Augusto Pasini</a> (Developer)</li>
-<li><a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a> (Infra) </li>
+<li><a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a> (Infra, Tester) </li>
 <li><a href = "https://github.com/GustavoSchroder">Gustavo L. Schroeder</a> (Developer)</li>
-<li><a href = "https://github.com/ReniSteffenon">Reni Steffenon</a> (Project Leader) </li>
+<li><a href = "https://github.com/ReniSteffenon">Reni Steffenon</a> (Project Leader, Tester) </li>
 <li><a href = "https://github.com/Wendriu">Wendriu Munhoz</a> (Scrum Muster, Documentation)</li>
   
 ## License
