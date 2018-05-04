@@ -35,4 +35,11 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
  <li>JTA 1.1</li>
  <li>PostgreSQL 10</li>
 
-<img src="https://avatars3.githubusercontent.com/u/5934353?s=460&v=4" width="100px;"/><br /><sub><b>Gustavo Lazarotto Schroeder</b></sub>
+## Team
+
+| <a href="http://fvcproductions.com" target="_blank">Gustavo L. Schroeder (DEV)</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
+| :---: |:---:| :---:|
+| [![FVCproductions](https://avatars3.githubusercontent.com/u/5934353?s=460&v=4)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
+| <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
+
+---
