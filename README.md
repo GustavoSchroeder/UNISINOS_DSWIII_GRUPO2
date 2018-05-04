@@ -35,3 +35,5 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
  <li>JTA 1.1</li>
  <li>PostgreSQL 10</li>
 
+<h1 align="center">Equipe</h1>
+| [<img src="https://avatars1.githubusercontent.com/u/9866446?v=3" width="100px;"/><br /><sub><b>Fabian Buitrago</b></sub>](https://github.com/Fabian-Buitrago)<br /> |
