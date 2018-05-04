@@ -46,11 +46,11 @@ Describe and show how to run the tests with code examples.
 
 ## Contributors
 
-<li><a href = "https://github.com/tutopasini"> Augusto Pasini </a></li>
-<li><a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a></li>
-<li><a href = "https://github.com/GustavoSchroder">Gustavo L. Schroeder</a></li>
-<li><a href = "">Reni Steffenon</a></li>
-<li><a href = "https://github.com/Wendriu">Wendriu Munhoz</a></li>
+<li><a href = "https://github.com/tutopasini"> Augusto Pasini</a> (Developer)</li>
+<li><a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a> (Infra) </li>
+<li><a href = "https://github.com/GustavoSchroder">Gustavo L. Schroeder</a> (Developer)</li>
+<li><a href = "">Reni Steffenon</a> (Project Leader) </li>
+<li><a href = "https://github.com/Wendriu">Wendriu Munhoz</a> (Scrum Muster, Documentation)</li>
   
 ## License
 
