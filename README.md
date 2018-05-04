@@ -2,6 +2,7 @@
 Production Instance - http://im.hbsp.com.br:8089/NutriMaster/
 
 <hr/>
+
 ## Grupo 2
  
 ##### JAVA EE
@@ -23,6 +24,7 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
   <li><a href = "https://www.primefaces.org">PRIMEFACES</a></li>
   <li><a href = "https://www.bootsfaces.net">BOOTSFACES</a></li>
 </ul>
+
 ## Motivation
 
 A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
