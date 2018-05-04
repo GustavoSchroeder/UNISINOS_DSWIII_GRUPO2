@@ -35,4 +35,4 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
  <li>JTA 1.1</li>
  <li>PostgreSQL 10</li>
 
-| [<img src="https://avatars3.githubusercontent.com/u/5934353?s=460&v=4" width="100px;"/><br /><sub><b>Gustavo Lazarotto Schroeder</b></sub>]|
+<img src="https://avatars3.githubusercontent.com/u/5934353?s=460&v=4" width="100px;"/><br /><sub><b>Gustavo Lazarotto Schroeder</b></sub>
