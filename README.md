@@ -29,9 +29,8 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
 
 A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
 
-## Installation
+## Development
 
-<h2>Desenvolvimento</h2>
 A aplicação está sendo desenvolvida com as seguintes tecnologias:
  <li>Mojarra JavaServer Faces 2.3.0 </li>
  <li>BootsFaces 1.2.0</li>
@@ -41,6 +40,8 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
  <li>Java 8</li>
  <li>JTA 1.1</li>
  <li>PostgreSQL 10</li>
+
+## Installation
 
 ## Tests
 
