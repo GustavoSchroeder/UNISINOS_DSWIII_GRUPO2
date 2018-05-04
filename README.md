@@ -32,11 +32,11 @@ A nutrição e os bons hábitos de alimentação estão se tornando parte import
 Com esse aumento crescente da obesidade os profissionais de nutrição vêm sendo cada vez mais procurados, desta forma identificamos a necessidade de um sistema especializado que permita que os nutricionistas realizem o controle e acompanhamento do desempenho de seus pacientes.
 
 
-### Objetivo geral;
+##### Objetivo geral;
 
 Proporcionar um sistema que possibilite ao nutricionista controle sobre seus pacientes, de forma integrada e facilitada para que seja acessível por todas as partes interessadas. Além disso, permitir a realização de vendas de produtos relacionados à nutrição para clientes interessados.
 
-### Objetivos específicos;
+##### Objetivos específicos;
 
 * Permitir o cadastro de nutricionistas e pacientes no sistema;
 
