@@ -58,6 +58,8 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
 
 ## Installation
 
+Para rodar o ambiente é necessário instalar uma IDE com suporte a Java de sua preferência (<a href="https://netbeans.org/downloads/">Netbeans<a>, <a href="https://www.eclipse.org/">Eclipse<a>, <a href="https://www.jetbrains.com/idea/">Intellij<a>)
+
 ## Tests
 
 Describe and show how to run the tests with code examples.
@@ -68,8 +70,5 @@ Describe and show how to run the tests with code examples.
 <li><a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a> (Infra, Tester) </li>
 <li><a href = "https://github.com/GustavoSchroder">Gustavo L. Schroeder</a> (Developer)</li>
 <li><a href = "https://github.com/ReniSteffenon">Reni Steffenon</a> (Project Leader, Tester) </li>
-<li><a href = "https://github.com/Wendriu">Wendriu Munhoz</a> (Scrum Muster, Documentation)</li>
-  
-## License
+<li><a href = "https://github.com/Wendriu">Wendriu Munhoz</a> (Scrum Master, Documentation)</li>
 
-A short snippet describing the license (MIT, Apache, etc.)
