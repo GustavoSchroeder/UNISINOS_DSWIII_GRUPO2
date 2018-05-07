@@ -33,7 +33,8 @@ public class UsuarioBean implements Serializable {
     private String senhaLogIn;
     private String tipoUsuario;
     private List<Usuario> nutricionistaNaoLiberados;
-
+    private Boolean display;
+    
     public UsuarioBean() {
         this.usuario = new Usuario();
         this.endereco = new Endereco();
@@ -42,6 +43,7 @@ public class UsuarioBean implements Serializable {
         this.usuarioLogin = "";
         this.senhaLogIn = "";
         this.tipoUsuario = "Paciente";
+        this.display = Boolean.FALSE;
     }
 
     public String cadastrarUsuario() throws NoSuchAlgorithmException {
@@ -128,15 +130,6 @@ public class UsuarioBean implements Serializable {
     public String novoUsuario() {
         this.usuario = new Usuario();
         return "novoUsuario.xhtml";
-    }
-
-    public String isUsuarioAllowedOnDieta() {
-        if (this.usuario.getAdministrador()) {
-            return "/paciente/dieta.xhtml";
-        }
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Oops!", "Você não pode criar sua própria dieta, contate seu nutricionista."));
-        return null;
     }
 
     public String isUsuarioAllowedOnExercicio() {
@@ -367,4 +360,11 @@ public class UsuarioBean implements Serializable {
         this.nutricionistaNaoLiberados = nutricionistaNaoLiberados;
     }
 
+    public Boolean getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Boolean display) {
+        this.display = display;
+    }
 }

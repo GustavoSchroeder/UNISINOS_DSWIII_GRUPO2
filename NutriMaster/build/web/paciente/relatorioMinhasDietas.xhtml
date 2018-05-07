@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/resource/padraoSistema.xhtml">
+
+    <ui:define name="content">
+        <h:form id="formDica">
+            <b:commandButton value="Voltar" ajax="true" update="@none" look="primary" style="width:80px; float: right" 
+                             action="/NutriMaster/faces/paciente/visaoPacientes/visaoPaciente.xhtml?faces-redirect=true"
+                             rendered="#{usuarioBean.usuario.administrador}"/>
+
+            <h:body style="padding-top: 50px; padding-bottom: 20px;">
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                    <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                </p:dialog>
+                <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
+                         show-detail="true" show-summary="false" allowDismiss="true"
+                         delay="10000" escape="true" />
+                <h2>Minhas Dietas</h2>
+
+                <b:jumbotron>
+                    <h:panelGrid columns="2" style="margin-left: 1%; margin-bottom: 1%" >
+
+                        <p:selectOneMenu id="paciente" required="false" value="#{dietaBean.paciente}" 
+                                         disabled="#{!usuarioBean.usuario.administrador}"
+                                         filter="true" filterMatchMode="contains" style="width:250px; margin: 0 auto; margin-right: 2%">
+                            <f:selectItem itemLabel="" itemValue="null" />
+                            <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
+                        </p:selectOneMenu>
+
+                        <p:commandButton action="#{dietaBean.retornaMinhasDietasByPaciente()}"
+                                         rendered="#{usuarioBean.usuario.administrador}"
+                                         value="Pesquisar" icon="fa fa-search" update="table" />
+
+                        <p:commandButton action="#{dietaBean.retornaMinhasDietas()}"
+                                         rendered="#{!usuarioBean.usuario.administrador}"
+                                         value="Pesquisar" icon="fa fa-search" update="table" />
+                    </h:panelGrid>
+
+                    <p:dataTable id="table" var="dica" value="#{dietaBean.listaDietas}"
+                                 emptyMessage="Nenhuma dieta encontrada.">
+                        <p:column headerText="Código" style="text-align: center">
+                            <h:outputText value="#{dica.id}" />
+                        </p:column>
+
+                        <p:column headerText="Nutricionista" style="text-align: center">
+                            <h:outputText value="#{dica.nutricionistaResponsavel.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Início" style="text-align: center">
+                            <h:outputText value="#{dica.dataDieta}" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Fim" style="text-align: center">
+                            <h:outputText value="#{dica.vencimentoDieta}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Detalhes" style="text-align: center">
+                            <p:commandButton action="#{dicasAlimentaresBean.abrirDicaAlimentar(dica)}" async="true" icon="fa fa-search"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </b:jumbotron>
+            </h:body>
+        </h:form>
+    </ui:define>
+</ui:composition>

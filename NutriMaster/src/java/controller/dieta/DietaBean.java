@@ -5,12 +5,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import pojo.paciente.CalendarioAlimentacao;
 import pojo.paciente.Dieta;
 import pojo.usuario.Usuario;
@@ -40,6 +44,23 @@ public class DietaBean implements Serializable {
         this.listaDietas = new ArrayList<>();
     }
 
+    @PostConstruct
+    public void init() {
+        if (this.usuarioBean.getDisplay()) {
+            retornaMinhasDietas();
+            this.usuarioBean.setDisplay(Boolean.FALSE);
+        }
+    }
+
+    public String isUsuarioAllowedOnDieta() {
+        if (this.usuarioBean.getUsuario().getAdministrador()) {
+            return "/paciente/dieta.xhtml";
+        }
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Oops!", "Você não pode criar sua própria dieta, contate seu nutricionista."));
+        return null;
+    }
+
     public void adicionarDietaLista() {
         Usuario u = this.usuarioBean.retornaUsuarioById(this.pacienteStr);
         this.calendarioAlimentacaoBean.cadastrarCalendarioAlimentacao(u);
@@ -49,10 +70,10 @@ public class DietaBean implements Serializable {
         this.listaDietas.add(this.dieta);
         this.dieta = new Dieta();
     }
-    
-    public void buscarDieta(String dia){
+
+    public void buscarDieta(String dia) {
         for (CalendarioAlimentacao calendarioAlimentacao : this.dieta.getCalendariAlimentacao()) {
-            if(calendarioAlimentacao.getDiaSemana().equalsIgnoreCase(dia)){
+            if (calendarioAlimentacao.getDiaSemana().equalsIgnoreCase(dia)) {
                 this.calendarioAlimentacaoBean.setCalendariosCadastrados(calendarioAlimentacao);
                 return;
             }
@@ -103,6 +124,40 @@ public class DietaBean implements Serializable {
             }
         }
         return cont == 7;
+    }
+
+    public void retornaMinhasDietas() {
+        this.listaDietas.clear();
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query = em.createQuery("SELECT i FROM Dieta i");
+        List<Dieta> auxList = query.getResultList();
+
+        for (Dieta auxDieta : auxList) {
+            for (CalendarioAlimentacao calendarioAlimentacao : auxDieta.getCalendariAlimentacao()) {
+                if (Objects.equals(calendarioAlimentacao.getUsuario().getId(), this.usuarioBean.getUsuario().getId())) {
+                    this.listaDietas.add(auxDieta);
+                    break;
+                }
+            }
+        }
+
+        em.close();
+    }
+
+    public String abrirRelatorioMinhasDietas() {
+        this.usuarioBean.setDisplay(Boolean.TRUE);
+        return "/paciente/relatorioMinhasDietas.xhtml?faces-redirect=true";
+    }
+
+    public String retornaMinhasDietasByPaciente() {
+        this.listaDietas.clear();
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query = em.createQuery("SELECT i FROM Dieta i "
+                + "WHERE i.calendariAlimentacao.usuario.id = :idUsuario");
+        query.setParameter("usuarioId", this.paciente.getId());
+        this.listaDietas.addAll(query.getResultList());
+        em.close();
+        return null;
     }
 
     public UsuarioBean getUsuarioBean() {
