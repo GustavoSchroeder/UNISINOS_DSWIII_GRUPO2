@@ -58,7 +58,10 @@ A aplicação está sendo desenvolvida com as seguintes tecnologias:
 
 ## Installation
 
-Para rodar o ambiente é necessário instalar uma IDE com suporte a Java de sua preferência (<a href="https://netbeans.org/downloads/">Netbeans<a>, <a href="https://www.eclipse.org/">Eclipse<a>, <a href="https://www.jetbrains.com/idea/">Intellij<a>)
+Para rodar o ambiente é necessário instalar uma IDE com suporte a Java de sua preferência (<a href="https://netbeans.org/downloads/">Netbeans<a>, <a href="https://www.eclipse.org/">Eclipse<a>, <a href="https://www.jetbrains.com/idea/">IntelliJ<a>). Após é necessário realizar a instalação de um Servidor de Aplicação de sua preferência (<a hreaf="http://wildfly.org/"WildFly</a>, <a hreaf="http://www.oracle.com/technetwork/pt/middleware/glassfish/overview/index.html">GlassFish</a>).
+ 
+ A opção dos desenvolvedores foi utilizar Netbeans juntamente com Glassfish.
+
 
 ## Tests
 
