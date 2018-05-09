@@ -10,11 +10,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.primefaces.context.RequestContext;
+import pojo.paciente.AlimentoQuantidade;
 import pojo.paciente.CalendarioAlimentacao;
 import pojo.paciente.Dieta;
 import pojo.usuario.Usuario;
@@ -36,12 +37,15 @@ public class DietaBean implements Serializable {
     private Usuario paciente;
     private String pacienteStr;
     private List<Dieta> listaDietas;
+    private Dieta dietaSelect;
+    private List<String> diasSemana;
 
     public DietaBean() {
         this.dieta = new Dieta();
         this.paciente = new Usuario();
         this.pacienteStr = "";
         this.listaDietas = new ArrayList<>();
+        this.dietaSelect = new Dieta();
     }
 
     @PostConstruct
@@ -50,6 +54,49 @@ public class DietaBean implements Serializable {
             retornaMinhasDietas();
             this.usuarioBean.setDisplay(Boolean.FALSE);
         }
+        this.diasSemana = this.calendarioAlimentacaoBean.retornaDiasSemana();
+    }
+
+    public void abrirDietaDetalhes(Dieta dieta) {
+        this.dietaSelect = dieta;
+        RequestContext.getCurrentInstance().execute("PF('dietaDetalhes').show();");
+    }
+
+    public List<AlimentoQuantidade> retornaAlimentos(String diaSemana) {
+        List<AlimentoQuantidade> calendarioAux = new ArrayList<>();
+        try {
+            for (CalendarioAlimentacao calendario : this.dietaSelect.getCalendariAlimentacao()) {
+                if (calendario.getDiaSemana().equalsIgnoreCase(diaSemana)) {
+                    calendarioAux.addAll(calendario.getAlimento());
+                }
+            }
+        } catch (NullPointerException e) {
+        }
+
+        return calendarioAux;
+    }
+
+    public List<AlimentoQuantidade> retornaAlimentosFO(String diaSemana) {
+        try {
+            for (CalendarioAlimentacao calendario : this.dietaSelect.getCalendariAlimentacao()) {
+                if (calendario.getDiaSemana().equalsIgnoreCase(diaSemana)) {
+                    return calendario.getAlimento();
+                }
+            }
+        } catch (NullPointerException e) {
+        }
+
+        return new ArrayList<>();
+    }
+
+    public String retornaPaciente(Dieta dieta) {
+        try {
+            for (CalendarioAlimentacao calendarioAlimentacao : dieta.getCalendariAlimentacao()) {
+                return calendarioAlimentacao.getUsuario().getNome();
+            }
+        } catch (NullPointerException e) {
+        }
+        return "-";
     }
 
     public String isUsuarioAllowedOnDieta() {
@@ -57,7 +104,8 @@ public class DietaBean implements Serializable {
             return "/paciente/dieta.xhtml";
         }
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Oops!", "Você não pode criar sua própria dieta, contate seu nutricionista."));
+        context.addMessage(null, new FacesMessage("Oops!",
+                "Você não pode criar sua própria dieta, contate seu nutricionista."));
         return null;
     }
 
@@ -145,7 +193,9 @@ public class DietaBean implements Serializable {
     }
 
     public String abrirRelatorioMinhasDietas() {
-        this.usuarioBean.setDisplay(Boolean.TRUE);
+        if (this.usuarioBean.getUsuario().getAdministrador()) {
+            this.usuarioBean.setDisplay(Boolean.TRUE);
+        }
         return "/paciente/relatorioMinhasDietas.xhtml?faces-redirect=true";
     }
 
@@ -154,7 +204,7 @@ public class DietaBean implements Serializable {
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT i FROM Dieta i "
                 + "WHERE i.calendariAlimentacao.usuario.id = :idUsuario");
-        query.setParameter("usuarioId", this.paciente.getId());
+        query.setParameter("usuarioId", this.usuarioBean.getUsuarioSelect().getId());
         this.listaDietas.addAll(query.getResultList());
         em.close();
         return null;
@@ -208,4 +258,19 @@ public class DietaBean implements Serializable {
         this.listaDietas = listaDietas;
     }
 
+    public Dieta getDietaSelect() {
+        return dietaSelect;
+    }
+
+    public void setDietaSelect(Dieta dietaSelect) {
+        this.dietaSelect = dietaSelect;
+    }
+
+    public List<String> getDiasSemana() {
+        return diasSemana;
+    }
+
+    public void setDiasSemana(List<String> diasSemana) {
+        this.diasSemana = diasSemana;
+    }
 }

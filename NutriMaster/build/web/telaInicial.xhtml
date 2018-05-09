@@ -29,6 +29,11 @@
                             <p><b:commandButton action="#{dietaBean.isUsuarioAllowedOnDieta()}" value="Cadastrar Dietas"/></p>
                         </b:column>
                         <b:column col-md="4">
+                            <h2>Consultar Dietas Criadas</h2>
+                            <p>Aqui você poderá consultar as dietas que você criou para seus pacientes!</p>
+                            <p><b:commandButton action="#{dietaBean.abrirRelatorioMinhasDietas()}" value="Relatório de Dietas"/></p>
+                        </b:column>
+                        <b:column col-md="4">
                             <h2>Pacientes</h2>
                             <p>Nesta seção o nutricionista poderá deixar recados para seus pacientes, observar evolução, etc.</p>
                             <p><b:commandButton action="/paciente/visaoPacientes.xhtml?faces-redirect=true" value="Entrar"/></p>
@@ -36,11 +41,9 @@
                         <b:column col-md="4">
                             <h2>Nutricionistas para Aprovar</h2>
                             <p>Aqui você poderá aprovar os usuários de seus colegas nutricionistas. Qualquer nutricionista poderá
-                            validar o usuário de outro nutricionista.</p>
+                                validar o usuário de outro nutricionista.</p>
                             <p><b:commandButton action="#{usuarioBean.getNutricionistaNaoAprovados(true)}" value="Nutricionistas para aprovar:  #{usuarioBean.qtdeNutricionistasAprovar()}"/></p>
                         </b:column>
-                    </b:row>
-                    <b:row>
                         <b:column col-md="4">
                             <h2>Rotinas de Exercícios</h2>
                             <p>Cadastre as recomendações de exercícios para o seu paciente!</p>
@@ -62,7 +65,7 @@
                             <p:column headerText="Nome" style="text-align: center">
                                 <h:outputText value="#{info.nome}" />
                             </p:column>
-       
+
                             <p:column headerText="Administrador" style="text-align: center" >
                                 <h:outputText value="Sim" rendered="#{info.administrador}"/>
                                 <h:outputText value="Náo" rendered="#{!info.administrador}"/>
@@ -86,7 +89,7 @@
                 </p:dialog>
             </h:form>
         </h:body>
-        
+
         <h:body style="padding-top: 50px; padding-bottom: 20px;" rendered="#{!usuarioBean.usuario.administrador}">
             <h:form>
                 <b:jumbotron>
@@ -110,7 +113,7 @@
                         <b:column col-md="4">
                             <h2>Meus Exercícios</h2>
                             <p>Aqui você poderá consultar seu perfil, ver recados que seu nutricionista deixou para você, atualizar seus Stas
-                            e cadastrar seus exercícios.</p>
+                                e cadastrar seus exercícios.</p>
                             <p><b:commandButton action="#" value="Entrar"/></p>
                         </b:column>
                     </b:row>
