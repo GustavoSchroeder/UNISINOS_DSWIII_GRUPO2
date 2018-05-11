@@ -16,28 +16,33 @@
 
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
             <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                <h:graphicImage value="/./imagens/ajax-loader.gif" />
             </p:dialog>
 
 
-            <h2>Minhas Dietas</h2>
 
             <b:jumbotron>
-                <h:panelGrid columns="2" style="margin-left: 1%; margin-bottom: 1%" >
-                    <p:selectOneMenu id="selectPaciente" value="#{usuarioBean.usuarioSelect}"
+                <h2>Relatório Analítico de Dietas</h2>
+
+
+                <h:panelGrid columns="2" style="margin: 0 auto; margin-bottom: 2%">
+                    <b:selectOneMenu id="selectPaciente" value="#{usuarioBean.usuarioSelect}"
                                      disabled="#{!usuarioBean.usuario.administrador}"
-                                     filter="true" filterMatchMode="contains" style="width:250px; margin: 0 auto; margin-right: 2%">
-                        <f:selectItem itemLabel="" itemValue="null" />
+                                     style="width:250px; margin: 0 auto; float: right; margin-right: 3%">
+                        <f:selectItem itemLabel="-" itemValue="null" />
                         <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
-                    </p:selectOneMenu>
-
-                    <p:commandButton id="pesq" action="#{dietaBean.retornaMinhasDietasByPaciente()}"
-                                     value="Pesquisar" icon="fa fa-search" update="table" />
-
-                    <p:commandButton action="#{dietaBean.retornaMinhasDietas()}"
-                                     rendered="#{!usuarioBean.usuario.administrador}"
-                                     value="Pesquisar" icon="fa fa-search" update="table" />
+                    </b:selectOneMenu>
+                    <b:commandButton id="pesq" value="Pesquisar" ajax="true" update="table" look="success" action="#{dietaBean.retornaMinhasDietasByPaciente()}" style="float: left" disabled="#{!usuarioBean.usuario.administrador}"/>
                 </h:panelGrid>
+
+
+
+<!--            <p:commandButton id="pesq" action="#{dietaBean.retornaMinhasDietasByPaciente()}"
+                             value="Pesquisar" icon="fa fa-search" update="table" />
+
+            <p:commandButton action="#{dietaBean.retornaMinhasDietas()}"
+                             rendered="#{!usuarioBean.usuario.administrador}"
+                             value="Pesquisar" icon="fa fa-search" update="table" />-->
 
                 <p:dataTable id="table" var="dica" value="#{dietaBean.listaDietas}"
                              emptyMessage="Nenhuma dieta encontrada.">

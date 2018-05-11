@@ -4,8 +4,10 @@ import controller.userControl.UsuarioBean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -39,13 +41,15 @@ public class DietaBean implements Serializable {
     private List<Dieta> listaDietas;
     private Dieta dietaSelect;
     private List<String> diasSemana;
+    private Date vcto;
 
     public DietaBean() {
-        this.dieta = new Dieta();
+        this.dieta = null;
         this.paciente = new Usuario();
         this.pacienteStr = "";
         this.listaDietas = new ArrayList<>();
         this.dietaSelect = new Dieta();
+        this.vcto = new Date();
     }
 
     @PostConstruct
@@ -111,12 +115,38 @@ public class DietaBean implements Serializable {
 
     public void adicionarDietaLista() {
         Usuario u = this.usuarioBean.retornaUsuarioById(this.pacienteStr);
-        this.calendarioAlimentacaoBean.cadastrarCalendarioAlimentacao(u);
-        this.dieta.setCalendariAlimentacao(this.calendarioAlimentacaoBean.retornaCalendarios(u));
-        this.dieta.setNutricionistaResponsavel(this.usuarioBean.getUsuario());
-        this.dieta.setDataDieta(new Date());
-        this.listaDietas.add(this.dieta);
-        this.dieta = new Dieta();
+        this.calendarioAlimentacaoBean.cadastrarCalendarioAlimentacao(u, diasCadastrados());
+
+        if (null == this.dieta) {
+            this.dieta = new Dieta();
+
+            for (CalendarioAlimentacao cal : this.calendarioAlimentacaoBean.retornaCalendarios(u)) {
+                if (adicionarDietaLista(cal)) {
+                    if (null == this.dieta.getCalendariAlimentacao()) {
+                        this.dieta.setCalendariAlimentacao(new ArrayList<>());
+                    }
+                    this.dieta.getCalendariAlimentacao().add(cal);
+                }
+            }
+
+            //this.dieta.setCalendariAlimentacao(this.calendarioAlimentacaoBean.retornaCalendarios(u));
+            this.dieta.setNutricionistaResponsavel(this.usuarioBean.getUsuario());
+            this.dieta.setDataDieta(new Date());
+            this.dieta = (this.dieta);
+        } else {
+            for (CalendarioAlimentacao cal : this.calendarioAlimentacaoBean.retornaCalendarios(u)) {
+                if (adicionarDietaLista(cal)) {
+                    if (null == this.dieta.getCalendariAlimentacao()) {
+                        this.dieta.setCalendariAlimentacao(new ArrayList<>());
+                    }
+                    this.dieta.getCalendariAlimentacao().add(cal);
+                }
+            }
+        }
+    }
+
+    private Boolean adicionarDietaLista(CalendarioAlimentacao cal) {
+        return (!isDiaCadastrado(cal.getDiaSemana()));
     }
 
     public void buscarDieta(String dia) {
@@ -134,6 +164,28 @@ public class DietaBean implements Serializable {
         em.close();
     }
 
+    public Usuario retornarUsuario(String usuario) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.find(Usuario.class, usuario.substring(0, usuario.indexOf(';')));
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Long retornarIdUsuario(String usuario) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return Long.parseLong(usuario.substring(0, usuario.indexOf(';')));
+        } catch (IndexOutOfBoundsException | NumberFormatException | NullPointerException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
     public void cadastrarDietas() {
         if (!isAllDiasCadastrados()) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -143,25 +195,39 @@ public class DietaBean implements Serializable {
 
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        for (Dieta diet : this.listaDietas) {
-            em.merge(diet);
-        }
+
+        em.merge(this.dieta);
+
         em.getTransaction().commit();
         em.close();
-
+        this.dieta = null;
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Sucesso!", "Dieta cadastrada!"));
     }
 
     public Boolean isDiaCadastrado(String dia) {
-        for (Dieta listaDieta : this.listaDietas) {
-            for (CalendarioAlimentacao calendarioAlimentacao : listaDieta.getCalendariAlimentacao()) {
+        try {
+            for (CalendarioAlimentacao calendarioAlimentacao : this.dieta.getCalendariAlimentacao()) {
                 if (calendarioAlimentacao.getDiaSemana().equalsIgnoreCase(dia)) {
                     return Boolean.TRUE;
                 }
             }
+        } catch (NullPointerException e) {
         }
+
         return Boolean.FALSE;
+    }
+
+    public List<String> diasCadastrados() {
+        List<String> dias = new ArrayList<>();
+        try {
+            for (CalendarioAlimentacao calendarioAlimentacao : this.dieta.getCalendariAlimentacao()) {
+                dias.add(calendarioAlimentacao.getDiaSemana());
+            }
+        } catch (NullPointerException e) {
+        }
+
+        return dias;
     }
 
     public Boolean isAllDiasCadastrados() {
@@ -199,15 +265,31 @@ public class DietaBean implements Serializable {
         return "/paciente/relatorioMinhasDietas.xhtml?faces-redirect=true";
     }
 
-    public String retornaMinhasDietasByPaciente() {
+    public void retornaMinhasDietasByPaciente() {
         this.listaDietas.clear();
+        Set<Dieta> dietaSet = new HashSet<>();
+
         EntityManager em = JPAUtil.getEntityManager();
-        Query query = em.createQuery("SELECT i FROM Dieta i "
-                + "WHERE i.calendariAlimentacao.usuario.id = :idUsuario");
-        query.setParameter("usuarioId", this.usuarioBean.getUsuarioSelect().getId());
-        this.listaDietas.addAll(query.getResultList());
+        Query query = em.createQuery("SELECT i FROM Dieta i");
+        List<Dieta> auxList = query.getResultList();
+
+        for (Dieta d : auxList) {
+            for (CalendarioAlimentacao calendarioAlimentacao : d.getCalendariAlimentacao()) {
+                Long id = retornarIdUsuario(this.usuarioBean.getUsuarioSelect());
+                if (null != id) {
+                    if (Objects.equals(calendarioAlimentacao.getUsuario().getId(), id)) {
+                        dietaSet.add(d);
+                        break;
+                    }
+                }
+            }
+        }
+
+        for (Dieta diet : dietaSet) {
+            this.listaDietas.add(diet);
+        }
+
         em.close();
-        return null;
     }
 
     public UsuarioBean getUsuarioBean() {
@@ -272,5 +354,13 @@ public class DietaBean implements Serializable {
 
     public void setDiasSemana(List<String> diasSemana) {
         this.diasSemana = diasSemana;
+    }
+
+    public Date getVcto() {
+        return vcto;
+    }
+
+    public void setVcto(Date vcto) {
+        this.vcto = vcto;
     }
 }

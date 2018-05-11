@@ -8,6 +8,29 @@
                 xmlns="http://www.w3.org/1999/xhtml">
 
     <!--template="/resource/padraoSistema.xhtml"-->
+
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .jumbotron {
+            background-image: 
+                linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+                ),
+                url(https://previews.123rf.com/images/peangdao/peangdao1411/peangdao141100064/33644418-healthy-food-background.jpg);
+
+            background-size: cover;
+        }
+
+        img {
+            border-radius: 8px;
+        }
+    </style>
+
     <h:head>
         <title>NutriMaster</title>
         <meta name="author" content="Gustavo Lazarotto Schroeder"></meta>
@@ -38,8 +61,9 @@
         </b:navBar>
         <b:jumbotron>
             <b:container>
-                <h1>Bem vindo ao mundo da Nutrição</h1>
-                <p>NutriMaster é o software ideal para pessoas que desejam ter uma vida saudável e descomplidada!</p>
+
+                <h1 style="color: white">Bem vindo ao mundo da Nutrição</h1>
+                <p style="color: white">NutriMaster é o software ideal para pessoas que desejam ter uma vida saudável e descomplidada!</p>
                 <p>
                     <a href="https://pt.wikipedia.org/wiki/Nutrição" class="btn btn-lg btn-info">Mais informações</a>
                 </p>
@@ -55,7 +79,7 @@
                         No supermercado a opção de alimentos é quase infinita, 
                         muitas vezes se decide pelos alimentos de fácil preparo e não o de melhor valor nutricional. 
                         Aqui você terá acessoria! Cadatre-se já!</p>
-                    <p><b:button outcome="" value="View details »"/></p>
+                    <img src="https://www.facipe.edu.br/wp-content/uploads/2017/11/nutricao-clinica-cover.jpg" alt="Dieta" width="300" height="300"/>
                 </b:column>
                 <b:column col-md="4">
                     <h2>Para que serve?</h2>
@@ -65,7 +89,7 @@
                         Eles ajudam a regular o ciclo intestinal por conterem muitas fibras; 
                         ajudam no emagrecimento, 
                         pois dão uma saciedade maior do que o alimento comum; aceleram o metabolismo entre outras vantagens. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
+                    <img src="http://my-healthy-blog.pt/wp-content/uploads/2018/03/cropped-My-Healthy-Blog.jpg" alt="Dieta" width="300" height="300"/>
                 </b:column>
                 <b:column col-md="4">
                     <h2>Cadastre-se Agora!</h2>
@@ -75,7 +99,7 @@
                         É preciso lembrar que a alimentação saudável é importante, 
                         mas exercícios físicos regulares também são essenciais para levar uma vida sem maiores complicações na saúde.
                     </p>
-                    <p><b:button outcome="" value="View details »"/></p>
+                    <img src="https://d3q93wnyp4lkf8.cloudfront.net/revista/post_images/4571/ebc79efcdf02102a5efb8eb55ee95661ec0ef0f6.png?1507750562" alt="Dieta" width="300" height="300"/>
                 </b:column>
             </b:row>
             <hr/>

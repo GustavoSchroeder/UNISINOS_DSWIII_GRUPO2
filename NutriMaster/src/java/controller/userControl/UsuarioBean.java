@@ -34,7 +34,7 @@ public class UsuarioBean implements Serializable {
     private String tipoUsuario;
     private List<Usuario> nutricionistaNaoLiberados;
     private Boolean display;
-    private Usuario usuarioSelect;
+    private String usuarioSelect;
     
     public UsuarioBean() {
         this.usuario = new Usuario();
@@ -45,7 +45,7 @@ public class UsuarioBean implements Serializable {
         this.senhaLogIn = "";
         this.tipoUsuario = "Paciente";
         this.display = Boolean.FALSE;
-        this.usuarioSelect = new Usuario();
+        this.usuarioSelect = null;
     }
 
     public String cadastrarUsuario() throws NoSuchAlgorithmException {
@@ -370,11 +370,11 @@ public class UsuarioBean implements Serializable {
         this.display = display;
     }
 
-    public Usuario getUsuarioSelect() {
+    public String getUsuarioSelect() {
         return usuarioSelect;
     }
 
-    public void setUsuarioSelect(Usuario usuarioSelect) {
+    public void setUsuarioSelect(String usuarioSelect) {
         this.usuarioSelect = usuarioSelect;
     }
 }

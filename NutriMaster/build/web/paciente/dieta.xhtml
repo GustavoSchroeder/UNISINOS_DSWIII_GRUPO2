@@ -13,7 +13,7 @@
             <h:form id="formDieta">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                    <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                    <h:graphicImage value="/./imagens/ajax-loader.gif" />
                 </p:dialog>
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"
@@ -41,7 +41,7 @@
                                 <p:selectCheckboxMenu id="semana" value="#{calendarioAlimentacaoBean.diasSemana}" style="width:160px">
                                     <f:selectItems value="#{calendarioAlimentacaoBean.retornaDiasSemana()}"/>
                                 </p:selectCheckboxMenu>
-                                <p:calendar id="popup" value="#{dietaBean.dieta.vencimentoDieta}" size="8" style="margin-left: 5%"/>
+                                <p:calendar id="popup" value="#{dietaBean.vcto}" size="8" style="margin-left: 5%"/>
                             </h:panelGrid>
 
                             <h:panelGrid columns="3" style="width: 90%; margin: 0 auto;">

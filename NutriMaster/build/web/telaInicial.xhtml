@@ -14,11 +14,27 @@
         <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                  show-detail="true" show-summary="false" allowDismiss="true"
                  delay="10000" escape="true" />
+
+        <style>
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+            .jumbotron {
+                background-image: url("https://i.pinimg.com/originals/76/89/c5/7689c5513084cd3ae199cec4f9b84af3.jpg");
+            }
+
+            img {
+                border-radius: 8px;
+            }
+        </style>
+
         <h:body style="padding-top: 50px; padding-bottom: 20px;" rendered="#{usuarioBean.usuario.administrador}">
             <h:form>
                 <b:jumbotron>
                     <b:container>
-                        <h2>Bem vindo ao mundo da Nutrição, #{usuarioBean.usuario.nome}!</h2>
+                        <h2 style="color: white">Bem vindo ao mundo da Nutrição, #{usuarioBean.usuario.nome}!</h2>
                     </b:container>
                 </b:jumbotron>
                 <b:container>
@@ -26,33 +42,33 @@
                         <b:column col-md="4">
                             <h2>Criar Dieta</h2>
                             <p>Aqui você poderá criar dieta para seus pacientes!</p>
-                            <p><b:commandButton action="#{dietaBean.isUsuarioAllowedOnDieta()}" value="Cadastrar Dietas"/></p>
+                            <p><b:commandButton look="primary" action="#{dietaBean.isUsuarioAllowedOnDieta()}" value="Cadastrar Dietas"/></p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Consultar Dietas Criadas</h2>
                             <p>Aqui você poderá consultar as dietas que você criou para seus pacientes!</p>
-                            <p><b:commandButton action="#{dietaBean.abrirRelatorioMinhasDietas()}" value="Relatório de Dietas"/></p>
+                            <p><b:commandButton look="primary" action="#{dietaBean.abrirRelatorioMinhasDietas()}" value="Relatório de Dietas"/></p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Pacientes</h2>
                             <p>Nesta seção o nutricionista poderá deixar recados para seus pacientes, observar evolução, etc.</p>
-                            <p><b:commandButton action="/paciente/visaoPacientes.xhtml?faces-redirect=true" value="Entrar"/></p>
+                            <p><b:commandButton look="primary" action="/paciente/visaoPacientes.xhtml?faces-redirect=true" value="Entrar"/></p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Nutricionistas para Aprovar</h2>
                             <p>Aqui você poderá aprovar os usuários de seus colegas nutricionistas. Qualquer nutricionista poderá
                                 validar o usuário de outro nutricionista.</p>
-                            <p><b:commandButton action="#{usuarioBean.getNutricionistaNaoAprovados(true)}" value="Nutricionistas para aprovar:  #{usuarioBean.qtdeNutricionistasAprovar()}"/></p>
+                            <p><b:commandButton look="primary" action="#{usuarioBean.getNutricionistaNaoAprovados(true)}" value="Nutricionistas para aprovar:  #{usuarioBean.qtdeNutricionistasAprovar()}"/></p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Rotinas de Exercícios</h2>
                             <p>Cadastre as recomendações de exercícios para o seu paciente!</p>
-                            <p><b:commandButton action="#{usuarioBean.isUsuarioAllowedOnExercicio()}" value="Cadastrar Exercício"/></p>
+                            <p><b:commandButton look="primary" action="#{usuarioBean.isUsuarioAllowedOnExercicio()}" value="Cadastrar Exercício"/></p>
                         </b:column>
                     </b:row>
                     <hr/>
                     <footer>
-                        <p>© Company 2014</p>
+                        <p>© Desenvolvimento de Software III - Grupo 2</p>
                     </footer>
                 </b:container>
 
