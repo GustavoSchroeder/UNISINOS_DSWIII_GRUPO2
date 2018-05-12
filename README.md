@@ -71,8 +71,8 @@ Describe and show how to run the tests with code examples.
 
 <div class="row"> 
   <div class="column">
-    <img src="https://thumbs.dreamstime.com/z/hands-holding-blue-earth-cloud-sky-elements-imag-background-image-furnished-nasa-61052787.jpg" style="width:100%">
-    <img src="https://thumbs.dreamstime.com/z/hands-holding-blue-earth-cloud-sky-elements-imag-background-image-furnished-nasa-61052787.jpg" style="width:100%">
+    <img src="https://thumbs.dreamstime.com/z/hands-holding-blue-earth-cloud-sky-elements-imag-background-image-furnished-nasa-61052787.jpg" style="width:20%">
+    <img src="https://thumbs.dreamstime.com/z/hands-holding-blue-earth-cloud-sky-elements-imag-background-image-furnished-nasa-61052787.jpg" style="width:20%">
     <img src="/w3images/falls2.jpg" style="width:100%">
     <img src="/w3images/paris.jpg" style="width:100%">
     <img src="/w3images/nature.jpg" style="width:100%">
