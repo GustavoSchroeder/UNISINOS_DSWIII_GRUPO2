@@ -69,6 +69,17 @@ Describe and show how to run the tests with code examples.
 
 ## Contributors
 
+<div class="row"> 
+  <div class="column">
+    <img src="https://thumbs.dreamstime.com/z/hands-holding-blue-earth-cloud-sky-elements-imag-background-image-furnished-nasa-61052787.jpg" style="width:100%">
+    <img src="https://thumbs.dreamstime.com/z/hands-holding-blue-earth-cloud-sky-elements-imag-background-image-furnished-nasa-61052787.jpg" style="width:100%">
+    <img src="/w3images/falls2.jpg" style="width:100%">
+    <img src="/w3images/paris.jpg" style="width:100%">
+    <img src="/w3images/nature.jpg" style="width:100%">
+    <img src="/w3images/mist.jpg" style="width:100%">
+    <img src="/w3images/paris.jpg" style="width:100%">
+  </div>
+ </div>
 <li><a href = "https://github.com/tutopasini"> Augusto Pasini</a> (Developer)</li>
 <li><a href = "https://github.com/EdineiPerazzoli">Edinei Perazzoli</a> (Infra, Tester) </li>
 <li><a href = "https://github.com/GustavoSchroder">Gustavo L. Schroeder</a> (Developer)</li>
