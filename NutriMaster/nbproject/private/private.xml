@@ -14,7 +14,13 @@
         </group>
         <group>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/telaInicial.xhtml</file>
-            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/relatorioMinhasDietas.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/usuario/InfoPaciente.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/pojo/usuario/Usuario.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/index.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/atualizarDados.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/novoUsuario.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/userControl/UsuarioBean.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/resource/padraoSistema.xhtml</file>
         </group>
     </open-files>
 </project-private>

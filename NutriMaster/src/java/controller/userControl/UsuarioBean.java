@@ -35,7 +35,11 @@ public class UsuarioBean implements Serializable {
     private List<Usuario> nutricionistaNaoLiberados;
     private Boolean display;
     private String usuarioSelect;
-    
+    private Double peso;
+    private Double altura;
+    private Boolean changeOnPeso;
+    private Boolean changeOnAltura;
+
     public UsuarioBean() {
         this.usuario = new Usuario();
         this.endereco = new Endereco();
@@ -46,6 +50,10 @@ public class UsuarioBean implements Serializable {
         this.tipoUsuario = "Paciente";
         this.display = Boolean.FALSE;
         this.usuarioSelect = null;
+        this.peso = 0.0;
+        this.altura = 0.0;
+        this.changeOnAltura = Boolean.FALSE;
+        this.changeOnPeso = Boolean.FALSE;
     }
 
     public String cadastrarUsuario() throws NoSuchAlgorithmException {
@@ -80,19 +88,42 @@ public class UsuarioBean implements Serializable {
         return "index.xhtml";
     }
 
+    public void atualizarMeusDados() {
+        EntityManager em = JPAUtil.getEntityManager();
+        InfoPaciente info = new InfoPaciente();
+        info.setAltura(this.altura);
+        info.setPeso(this.peso);
+        info.setDataMarcacao(new Date());
+        em.getTransaction().begin();
+        em.persist(info);
+        em.getTransaction().commit();
+        if (null == this.usuario.getInfoPaciente() || this.usuario.getInfoPaciente().isEmpty()) {
+            this.usuario.setInfoPaciente(new ArrayList<>());
+        }
+        this.usuario.getInfoPaciente().add(info);
+        em.getTransaction().begin();
+        em.merge(this.usuario);
+        em.getTransaction().commit();
+        this.usuario = em.find(Usuario.class, this.usuario.getId());
+        em.close();
+        this.peso = 0.0;
+        this.altura = 0.0;
+        RequestContext.getCurrentInstance().execute("PF('atualizarDados').hide()");
+    }
+
     public Long qtdeNutricionistasAprovar() {
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT COUNT(i.id) FROM Usuario i "
                 + "WHERE i.liberado = :liberado AND i.administrador = :adm");
         query.setParameter("liberado", Boolean.FALSE);
         query.setParameter("adm", Boolean.TRUE);
-       try{
-           return (Long) query.getResultList().get(0);
-       }catch(IndexOutOfBoundsException e){
-           return 0L;
-       }finally{
-        em.close();
-       }        
+        try {
+            return (Long) query.getResultList().get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return 0L;
+        } finally {
+            em.close();
+        }
     }
 
     public void getNutricionistaNaoAprovados(Boolean show) {
@@ -106,6 +137,24 @@ public class UsuarioBean implements Serializable {
         if (show) {
             RequestContext.getCurrentInstance().execute("PF('dlg3').show()");
         }
+    }
+
+    private void fetchLastUpdateDados() {
+        EntityManager em = JPAUtil.getEntityManager();
+        InfoPaciente output = this.usuario.getInfoPaciente().get(0);
+        for (int i = 1; i < this.usuario.getInfoPaciente().size(); i++) {
+            if (output.getDataMarcacao().after(this.usuario.getInfoPaciente().get(i).getDataMarcacao())) {
+                output = this.usuario.getInfoPaciente().get(i);
+            }
+        }
+        em.close();
+        this.altura = output.getAltura();
+        this.peso = output.getPeso();
+    }
+
+    public void openAtualizarDados() {
+        fetchLastUpdateDados();
+        RequestContext.getCurrentInstance().execute("PF('atualizarDados').show()");
     }
 
     public void usuarioIsNutricionista(Usuario u) {
@@ -140,8 +189,9 @@ public class UsuarioBean implements Serializable {
         }
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Oops!", "Você não pode cadastrar seu próprio exercício, contate seu nutricionista."));
-        return null;        
+        return null;
     }
+
     public String logOut() {
         return "/index.xhtml?faces-redirect=true";
     }
@@ -376,5 +426,37 @@ public class UsuarioBean implements Serializable {
 
     public void setUsuarioSelect(String usuarioSelect) {
         this.usuarioSelect = usuarioSelect;
+    }
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+
+    public Double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(Double altura) {
+        this.altura = altura;
+    }
+
+    public Boolean getChangeOnPeso() {
+        return changeOnPeso;
+    }
+
+    public void setChangeOnPeso(Boolean changeOnPeso) {
+        this.changeOnPeso = changeOnPeso;
+    }
+
+    public Boolean getChangeOnAltura() {
+        return changeOnAltura;
+    }
+
+    public void setChangeOnAltura(Boolean changeOnAltura) {
+        this.changeOnAltura = changeOnAltura;
     }
 }

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <b:panelGrid id="panel" columns="3">
+
+        <h:outputText value="Qual seu peso?" />
+        <p:inputNumber id="input1" value="#{usuarioBean.peso}" disabled="#{!usuarioBean.changeOnPeso}"
+                       decimalSeparator="," thousandSeparator="."/>  
+        <p:selectBooleanCheckbox value="#{usuarioBean.changeOnPeso}">
+            <p:ajax update="panel" async="true"/>
+        </p:selectBooleanCheckbox>
+
+        <h:outputText value="Qual sua altura?" />        
+        <p:inputNumber id="input2" value="#{usuarioBean.altura}" disabled="#{!usuarioBean.changeOnAltura}"
+                       decimalSeparator="," thousandSeparator="."/> 
+        <p:selectBooleanCheckbox value="#{usuarioBean.changeOnAltura}">
+            <p:ajax update="panel" async="true"/>
+        </p:selectBooleanCheckbox>
+    </b:panelGrid>
+
+    <p:commandButton value="Atualizar" action="#{usuarioBean.atualizarMeusDados()}"/>
+
+</ui:composition>
+
