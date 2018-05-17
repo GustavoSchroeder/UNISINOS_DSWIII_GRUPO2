@@ -28,6 +28,11 @@
             img {
                 border-radius: 8px;
             }
+
+            .jqplot-yaxis {
+                margin-right: 10px;
+                display: none;
+            }
         </style>
 
         <h:body style="padding-top: 50px; padding-bottom: 20px;" rendered="#{usuarioBean.usuario.administrador}">
@@ -120,8 +125,6 @@
                             <p style="text-justify: inter-word; text-align: justify;">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
                                 ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                             <p>
-                                <b:commandButton action="#{usuarioBean.openAtualizarDados()}" value="Atualizar Meus Dados" look="success" 
-                                                 style="float: left" rendered="#{!usuarioBean.usuario.administrador}"/>
                                 <b:commandButton action="#{dietaBean.abrirRelatorioMinhasDietas()}" value="Consultar Minhas Dietas"/>
                             </p>
                         </b:column>
@@ -135,6 +138,26 @@
                             <p style="text-justify: inter-word; text-align: justify;">Aqui você poderá consultar seu perfil, ver recados que seu nutricionista deixou para você, atualizar seus Stas
                                 e cadastrar seus exercícios.</p>
                             <p><b:commandButton action="#" value="Entrar"/></p>
+                        </b:column>
+                    </b:row>
+
+                    <b:row>
+                        <b:column col-md="4">
+                            <h2>Minhas Informações</h2>
+                            <p style="text-justify: inter-word; text-align: justify;">Aqui você poderá consultar seu perfil, ver recados que seu nutricionista deixou para você, atualizar seus Stas
+                                e cadastrar seus exercícios.</p>
+                            <p><b:commandButton action="#{usuarioBean.openAtualizarDados()}" value="Atualizar Meus Dados" look="success" 
+                                                style="float: left" rendered="#{!usuarioBean.usuario.administrador}"/></p>
+                        </b:column>
+                        <b:column col-md="8">
+                            <h:panelGrid columns="1" id="graf" style="width:100%">
+                                <p:chart type="bar" model="#{usuarioBean.barModel}" style="height:300px"/>
+                                <p:selectOneRadio id="console" value="#{usuarioBean.tipoGrafico}" style="margin: 0 auto;">
+                                    <f:selectItem itemLabel="Altura" itemValue="1" />
+                                    <f:selectItem itemLabel="Peso" itemValue="0" />
+                                    <p:ajax async="true" listener="#{usuarioBean.initBarModel()}" update="graf"/>
+                                </p:selectOneRadio>
+                            </h:panelGrid>
                         </b:column>
                     </b:row>
                     <hr/>

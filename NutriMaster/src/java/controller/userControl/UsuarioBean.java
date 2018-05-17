@@ -3,7 +3,10 @@ package controller.userControl;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -13,6 +16,8 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.primefaces.context.RequestContext;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 import pojo.usuario.Endereco;
 import pojo.usuario.InfoPaciente;
 import pojo.usuario.Usuario;
@@ -39,6 +44,8 @@ public class UsuarioBean implements Serializable {
     private Double altura;
     private Boolean changeOnPeso;
     private Boolean changeOnAltura;
+    private BarChartModel barModel;
+    private Integer tipoGrafico;
 
     public UsuarioBean() {
         this.usuario = new Usuario();
@@ -54,6 +61,7 @@ public class UsuarioBean implements Serializable {
         this.altura = 0.0;
         this.changeOnAltura = Boolean.FALSE;
         this.changeOnPeso = Boolean.FALSE;
+        this.tipoGrafico = 0;
     }
 
     public String cadastrarUsuario() throws NoSuchAlgorithmException {
@@ -88,6 +96,32 @@ public class UsuarioBean implements Serializable {
         return "index.xhtml";
     }
 
+    public void initBarModel() {
+        this.barModel = new BarChartModel();
+        List<InfoPaciente> listInfoP = fetchLastTenUpdatesInfoPaciente();
+        BarChartModel model = new BarChartModel();
+
+        ChartSeries serie = new ChartSeries();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        for (InfoPaciente info : listInfoP) {
+            if (this.tipoGrafico == 0) {
+                serie.set(sdf.format(info.getDataMarcacao()), info.getPeso());
+            } else {
+                serie.set(sdf.format(info.getDataMarcacao()), info.getAltura());
+            }
+        }
+
+        model.addSeries(serie);
+
+        this.barModel = model;
+        this.barModel.setAnimate(true);
+        this.barModel.setBarWidth(45);
+        this.barModel.setMouseoverHighlight(true);
+        this.barModel.setShadow(true);
+        this.barModel.setShowPointLabels(true);
+        this.barModel.setTitle("Meu Desempenho");
+    }
+
     public void atualizarMeusDados() {
         EntityManager em = JPAUtil.getEntityManager();
         InfoPaciente info = new InfoPaciente();
@@ -108,6 +142,7 @@ public class UsuarioBean implements Serializable {
         em.close();
         this.peso = 0.0;
         this.altura = 0.0;
+        initBarModel();
         RequestContext.getCurrentInstance().execute("PF('atualizarDados').hide()");
     }
 
@@ -150,6 +185,25 @@ public class UsuarioBean implements Serializable {
         em.close();
         this.altura = output.getAltura();
         this.peso = output.getPeso();
+    }
+
+    private List<InfoPaciente> fetchLastTenUpdatesInfoPaciente() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<InfoPaciente> outputList = new ArrayList<>();
+        List<InfoPaciente> currentList = this.usuario.getInfoPaciente();
+        Collections.sort(currentList, new CustomComparator());
+        //Collections.reverse(currentList);
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                outputList.add(currentList.get(i));
+            } catch (IndexOutOfBoundsException e) {
+                break;
+            }
+        }
+
+        em.close();
+        return outputList;
     }
 
     public void openAtualizarDados() {
@@ -219,6 +273,7 @@ public class UsuarioBean implements Serializable {
                 return null;
             } else {
                 this.usuario = (Usuario) query.getResultList().get(0);
+                initBarModel();
                 return "telaInicial.xhtml";
             }
         } catch (NullPointerException e) {
@@ -458,5 +513,28 @@ public class UsuarioBean implements Serializable {
 
     public void setChangeOnAltura(Boolean changeOnAltura) {
         this.changeOnAltura = changeOnAltura;
+    }
+
+    public BarChartModel getBarModel() {
+        return barModel;
+    }
+
+    public void setBarModel(BarChartModel barModel) {
+        this.barModel = barModel;
+    }
+
+    public Integer getTipoGrafico() {
+        return tipoGrafico;
+    }
+
+    public void setTipoGrafico(Integer tipoGrafico) {
+        this.tipoGrafico = tipoGrafico;
+    }
+}
+
+class CustomComparator implements Comparator<InfoPaciente> {
+
+    public int compare(InfoPaciente o1, InfoPaciente o2) {
+        return o1.getDataMarcacao().compareTo(o2.getDataMarcacao());
     }
 }
