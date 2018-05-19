@@ -22,8 +22,8 @@
 
                 <b:jumbotron>
                     <!--Escrever um Converter-->
-                    <p:panelGrid id="input" columns="2" style="width: 95%; margin: 0 auto;" layout="grid">
-                        <p:panelGrid columns="1" layout="grid"  style="width: 95%; margin: 0 auto;">
+                    <b:panelGrid id="input" columns="2" style="width: 95%; margin: 0 auto;">
+                        <b:panelGrid columns="1" style="width: 95%; margin: 0 auto;">
                             <h:panelGrid columns="1" style="width: 60%; margin: 0 auto; margin-bottom: 2%; text-align: center" rendered="false">
                                 <h:outputText value="Título da Dieta" style="font-weight: bold" />
                                 <p:inputText value="#{dietaBean.dieta.dieta}"/>
@@ -57,9 +57,9 @@
                                 <p:spinner id="basic" value="#{calendarioAlimentacaoBean.qtdeAlimento}" maxlength="2" size="3"/>
                                 <p:commandButton value="Adicionar Alimento" action="#{calendarioAlimentacaoBean.adicionarAlimentoLista()}" update="input"/>
                             </h:panelGrid>
-                        </p:panelGrid>
+                        </b:panelGrid>
 
-                        <p:panelGrid id="lista" columns="1" layout="grid" style="width: 100%">
+                        <b:panelGrid id="lista" columns="1" style="width: 100%">
                             <h2>Cardápio</h2>
                             <p:dataTable var="value" value="#{calendarioAlimentacaoBean.alimentos}">
                                 <p:column headerText="Alimento" style="text-align: center">
@@ -76,10 +76,10 @@
                                                      icon="fa fa-trash" update=":formDieta:lista" async="true"/>
                                 </p:column>
                             </p:dataTable>
-                        </p:panelGrid>
-                    </p:panelGrid>
+                        </b:panelGrid>
+                    </b:panelGrid>
 
-                    <h:panelGrid columns="2" style="width: 90%; margin: 0 auto; margin-top: 2%">
+                    <b:panelGrid columns="2" style="width: 90%; margin: 0 auto; margin-top: 2%">
                         <p:panelGrid columns="4">
                             <f:facet name="header">
                                 <h2>Dias Cadastrados:</h2>
@@ -104,7 +104,7 @@
                             <b:commandButton action="#{dietaBean.adicionarDietaLista()}" style="margin-top: 2%; width: 200px" value="Adicionar Dieta a Lista" look="info"/>
                             <b:commandButton action="#{dietaBean.cadastrarDietas()}" style="margin-top: 2%; width: 200px" value="Cadastrar Dieta" look="success"/>
                         </h:panelGrid>
-                    </h:panelGrid>
+                    </b:panelGrid>
                 </b:jumbotron>
             </h:form>
 
