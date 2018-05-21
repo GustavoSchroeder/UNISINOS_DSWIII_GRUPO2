@@ -1,0 +1,2 @@
+controller.userControl.UsuarioBean
+controller.userControl.CustomComparator

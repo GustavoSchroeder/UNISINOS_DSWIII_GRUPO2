@@ -149,6 +149,14 @@
                             <p><b:commandButton action="#{usuarioBean.openAtualizarDados()}" value="Atualizar Meus Dados" look="success" 
                                                 style="float: left" rendered="#{!usuarioBean.usuario.administrador}"/></p>
                         </b:column>
+                        <b:column col-md="4">
+                            <h2>Mensalidades</h2>
+                            <p style="text-justify: inter-word; text-align: justify;">Aqui você poderá consultar suas mensalidades pagas ou em aberto e realizar seu pagamento.</p>
+                            <p><b:commandButton action="/paciente/mensalidade.xhtml?faces-redirect=true" value="Consultar mensalidades" look="success"/></p>
+                        </b:column>                        
+                    </b:row>
+                    
+                    <b:row>
                         <b:column col-md="8">
                             <h:panelGrid columns="1" id="graf" style="width:100%">
                                 <p:chart type="bar" model="#{usuarioBean.barModel}" style="height:300px"/>
@@ -159,7 +167,9 @@
                                 </p:selectOneRadio>
                             </h:panelGrid>
                         </b:column>
+
                     </b:row>
+                    
                     <hr/>
                     <footer>
                         <p>© Company 2014</p>
