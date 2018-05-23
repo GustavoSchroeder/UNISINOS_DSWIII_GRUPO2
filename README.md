@@ -1,10 +1,16 @@
 # UNISINOS_DSWIII_GRUPO2
 Production Instance - http://im.hbsp.com.br:8089/NutriMaster/
  
-##### JAVA EE
-[![JAVAEE Logo](http://matera.com/br/wp-content/uploads/2015/09/javaee-642x276.png)](https://javaee.github.io)
+## NUTRIMASTER
 
-Java Enterprise Edition (Java EE) é uma plataforma de programação para servidores na linguagem de programação Java. A plataforma fornece uma API e um ambiente de tempo de execução para o desenvolvimento e execução de softwares corporativos, incluindo serviços de rede e web, e outras aplicações de rede de larga escala, multicamadas, escaláveis, confiáveis e seguras. Java EE estende a Java Platform, Standard Edition (Java SE), fornecendo uma API para mapeamento objeto-relacional, arquiteturas multicamada e distribuídas e web services. A plataforma incorpora um desenho amplamente baseado em componentes modulares rodando em um servidor de aplicação. Softwares para Java EE são primeiramente desenvolvidos na linguagem de programação Java. A plataforma enfatiza a convenção sobre configuração e anotações para configuração.
+[![NUTRIMASTER Logo](https://raw.githubusercontent.com/GustavoSchroder/Utilities/master/Imagem1.png)](http://im.hbsp.com.br:8089/NutriMaster/)
+
+## Motivation
+
+A nutrição e os bons hábitos de alimentação estão se tornando parte importante nas vidas de uma parcela cada vez maior da população. Segundo pesquisas realizadas no Brasil em 2006 42,7% da população estava acima do peso, já em 2011 esse número passou para 48,5%. Isso representa um aumento de 5,8%, o que é preocupante levando em consideração que esse percentual tende a se manter ascendente.
+
+Com esse aumento crescente da obesidade os profissionais de nutrição vêm sendo cada vez mais procurados, desta forma identificamos a necessidade de um sistema especializado que permita que os nutricionistas realizem o controle e acompanhamento do desempenho de seus pacientes.
+ 
 
 ## Before You Begin
 
@@ -21,11 +27,10 @@ Antes de começar, recomendamos que você leia sobre os as tecnologias utilizada
   <li><a href = "https://www.bootsfaces.net">BOOTSFACES</a></li>
 </ul>
 
-## Motivation
+### JAVA EE
+[![JAVAEE Logo](http://matera.com/br/wp-content/uploads/2015/09/javaee-642x276.png)](https://javaee.github.io)
 
-A nutrição e os bons hábitos de alimentação estão se tornando parte importante nas vidas de uma parcela cada vez maior da população. Segundo pesquisas realizadas no Brasil em 2006 42,7% da população estava acima do peso, já em 2011 esse número passou para 48,5%. Isso representa um aumento de 5,8%, o que é preocupante levando em consideração que esse percentual tende a se manter ascendente.
-
-Com esse aumento crescente da obesidade os profissionais de nutrição vêm sendo cada vez mais procurados, desta forma identificamos a necessidade de um sistema especializado que permita que os nutricionistas realizem o controle e acompanhamento do desempenho de seus pacientes.
+Java Enterprise Edition (Java EE) é uma plataforma de programação para servidores na linguagem de programação Java. A plataforma fornece uma API e um ambiente de tempo de execução para o desenvolvimento e execução de softwares corporativos, incluindo serviços de rede e web, e outras aplicações de rede de larga escala, multicamadas, escaláveis, confiáveis e seguras. Java EE estende a Java Platform, Standard Edition (Java SE), fornecendo uma API para mapeamento objeto-relacional, arquiteturas multicamada e distribuídas e web services. A plataforma incorpora um desenho amplamente baseado em componentes modulares rodando em um servidor de aplicação. Softwares para Java EE são primeiramente desenvolvidos na linguagem de programação Java. A plataforma enfatiza a convenção sobre configuração e anotações para configuração.
 
 
 #### Objetivo geral;
