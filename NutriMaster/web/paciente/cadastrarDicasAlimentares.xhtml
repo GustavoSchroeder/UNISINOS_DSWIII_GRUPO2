@@ -29,12 +29,13 @@
                                          filter="true" filterMatchMode="contains" style="width:45%; margin: 0 auto; margin-bottom: 3%">
                             <f:selectItem itemLabel="" itemValue="null" />
                             <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
+                            <p:ajax update="paciente" async="true"/>
                         </p:selectOneMenu>
                         
                     </center>
-                    <b:inputText placeholder="Título de sua Dica..." value="#{dicasAlimentaresBean.titulo}"
+                    <b:inputText placeholder="Título de sua Dica..." value="#{dicasAlimentaresBean.titulo}" update="titulo" id="titulo"
                                  />
-                    <b:inputTextarea placeholder="Digite sua dica aqui..." value="#{dicasAlimentaresBean.texto}"/>
+                    <b:inputTextarea placeholder="Digite sua dica aqui..." value="#{dicasAlimentaresBean.texto}"  style="height: 350px" id="texto" update="texto"/>
                     <center>
                         <b:commandButton value="Cadastrar Dica" ajax="true" 
                                          look="primary" action="#{dicasAlimentaresBean.cadastrarDica()}" >

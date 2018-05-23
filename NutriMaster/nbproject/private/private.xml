@@ -24,10 +24,14 @@
         </group>
         <group name="DSWIII">
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/telaInicial.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/visaoPacientes.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/cadastrarDicasAlimentares.xhtml</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/userControl/UsuarioBean.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/exercicio.xhtml</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/converter/AlimentoConverter.java</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/DietaBean.java</file>
             <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/web/paciente/dieta.xhtml</file>
+            <file>file:/Users/gustavolazarottoschroeder/Documents/GitHub/UNISINOS_DSWIII_GRUPO2/NutriMaster/src/java/controller/dieta/DicasAlimentaresBean.java</file>
         </group>
     </open-files>
 </project-private>

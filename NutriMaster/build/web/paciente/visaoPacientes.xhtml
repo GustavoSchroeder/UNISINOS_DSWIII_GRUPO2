@@ -9,6 +9,21 @@
                 template="/resource/padraoSistema.xhtml">
 
     <ui:define name="content">
+
+        <style>
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+            .jumbotron {
+                background-image: url("https://i.pinimg.com/originals/76/89/c5/7689c5513084cd3ae199cec4f9b84af3.jpg");
+            }
+
+
+
+        </style>
+
         <h:body style="padding-top: 50px; padding-bottom: 20px;">
             <h:form id="formDieta">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
@@ -19,29 +34,25 @@
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"
                          delay="10000" escape="true" />
-                <h2>Meus Pacientes</h2>
+
                 <b:jumbotron>
-                    <b:container>
-                        <b:row>
-                            <b:column col-md="4">
-                                <h2>Dicas Alimentares</h2>
-                                <p><b:commandButton action="/paciente/cadastrarDicasAlimentares.xhtml?faces-redirect=true" value="Cadastrar Dica"/></p>
-                            </b:column>
-                            <b:column col-md="4">
-                                <h2>Dicas Alimentares</h2>
-                                <p><b:commandButton action="/paciente/relatorioDicasAlimentares.xhtml?faces-redirect=true" value="Relatório de Dicas Alimentares"/></p>
-                            </b:column>
-                            <b:column col-md="4">
-                                <h2>Heading</h2>
-                                <p><b:button outcome="" value="View details »"/></p>
-                            </b:column>
-                        </b:row>
-                        <hr/>
-                        <footer>
-                            <p>© Company 2014</p>
-                        </footer>
-                    </b:container>
+                    <h2 style="color: white">Meus Pacientes</h2>
                 </b:jumbotron>
+
+                <b:container>
+                    <b:row>
+                        <b:column col-md="4">
+                            <h2>Dicas Alimentares</h2>
+                            <p><b:commandButton action="/paciente/cadastrarDicasAlimentares.xhtml?faces-redirect=true" value="Cadastrar Dica"/></p>
+                        </b:column>
+                        <b:column col-md="4">
+                            <h2>Dicas Alimentares</h2>
+                            <p><b:commandButton action="/paciente/relatorioDicasAlimentares.xhtml?faces-redirect=true" value="Relatório de Dicas Alimentares"/></p>
+                        </b:column>
+
+                    </b:row>
+                    <hr/>
+                </b:container>
             </h:form>
         </h:body>
     </ui:define>

@@ -4,9 +4,11 @@ import controller.userControl.UsuarioBean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.primefaces.context.RequestContext;
@@ -111,13 +113,26 @@ public class DicasAlimentaresBean {
     }
     
     public void cadastrarDica() {
+        
+        if(null == this.titulo || this.titulo.equalsIgnoreCase("")){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Oooops!", "Você não definiu um título."));
+            return;
+        }
+        
+        if(null == this.texto || this.texto.equalsIgnoreCase("")){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Oooops!", "Você não escreveu sua dica!"));
+            return;
+        }
+        
         DicaAlimentar dica = new DicaAlimentar();
         dica.setDica(this.texto);
         dica.setTitulo(this.titulo);
         dica.setDataCadastro(new Date());
         dica.setLida(Boolean.FALSE);
         dica.setPaciente(this.usuarioBean.retornaUsuarioById(this.pacienteStr));
-        dica.setNutricionista(this.usuarioBean.getUsuario());
+        dica.setNutricionista(this.usuarioBean.retornaUsuarioById(this.usuarioBean.getUsuario().getId()));
         
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();

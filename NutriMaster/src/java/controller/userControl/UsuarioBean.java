@@ -325,6 +325,18 @@ public class UsuarioBean implements Serializable {
             em.close();
         }
     }
+    
+    public Usuario retornaUsuarioById(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.find(Usuario.class, id);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
     private Long extractID(String usuario) {
         return Long.parseLong(usuario.substring(0, usuario.indexOf(";")));
