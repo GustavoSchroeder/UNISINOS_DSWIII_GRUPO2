@@ -11,9 +11,9 @@
     <ui:define name="content">
         <h:form id="formDica">
             <b:commandButton value="Voltar" ajax="true" update="@none" look="primary" style="width:80px; float: right" 
-                             action="/NutriMaster/faces/paciente/visaoPacientes/visaoPaciente.xhtml?faces-redirect=true"
-                              rendered="#{usuarioBean.usuario.administrador}"/>
-            
+                             action="/faces/paciente/visaoPacientes.xhtml?faces-redirect=true"
+                             rendered="#{usuarioBean.usuario.administrador}"/>
+
             <h:body style="padding-top: 50px; padding-bottom: 20px;">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
@@ -22,64 +22,65 @@
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"
                          delay="10000" escape="true" />
-                <h2>Relatório Dicas Alimentares</h2>
 
                 <b:jumbotron>
-                    <h:panelGrid columns="3" style="margin-left: 1%" >
-                        <h:panelGrid columns="2">
-                            <p:selectBooleanCheckbox value="#{dicasAlimentaresBean.pesquisarPorNome}" disabled="#{usuarioBean.usuario.administrador}">
-                                <p:ajax update="paciente"/>
-                            </p:selectBooleanCheckbox>
-                            
-                            <p:selectOneMenu id="paciente" required="false" value="#{dicasAlimentaresBean.buscarPorNomePaciente}" 
-                                             disabled="#{!dicasAlimentaresBean.pesquisarPorNome}"
-                                             filter="true" filterMatchMode="contains" style="width:250px; margin: 0 auto; margin-bottom: 3%">
-                                <f:selectItem itemLabel="" itemValue="null" />
-                                <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
-                            </p:selectOneMenu>
-                        </h:panelGrid>
+                    <h2>Relatório Dicas Alimentares</h2>
+                </b:jumbotron>
 
-                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                            <p:outputLabel for="tipo" value="Dicas:" />
-                            <p:selectOneRadio id="tipo" value="#{dicasAlimentaresBean.tipo}" disabled="#{usuarioBean.usuario.administrador}">
-                                <f:selectItem itemLabel="Não Lidas" itemValue="0" />
-                                <f:selectItem itemLabel="Lidas" itemValue="1" />
-                                <f:selectItem itemLabel="Todas" itemValue="2" />
-                            </p:selectOneRadio>
-                        </h:panelGrid>
+                <h:panelGrid columns="3" style="margin-left: 1%" >
+                    <h:panelGrid columns="2">
+                        <p:selectBooleanCheckbox value="#{dicasAlimentaresBean.pesquisarPorNome}" disabled="#{usuarioBean.usuario.administrador}">
+                            <p:ajax update="paciente"/>
+                        </p:selectBooleanCheckbox>
 
-                        <p:commandButton action="#{dicasAlimentaresBean.retornaListaDicas()}" value="Pesquisar" icon="fa fa-search" update="table" />
+                        <p:selectOneMenu id="paciente" required="false" value="#{dicasAlimentaresBean.buscarPorNomePaciente}" 
+                                         disabled="#{!dicasAlimentaresBean.pesquisarPorNome}"
+                                         filter="true" filterMatchMode="contains" style="width:250px; margin: 0 auto; margin-bottom: 3%">
+                            <f:selectItem itemLabel="" itemValue="null" />
+                            <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
+                        </p:selectOneMenu>
                     </h:panelGrid>
 
-                    <p:dataTable id="table" var="dica" value="#{dicasAlimentaresBean.listOfDicas}"
-                                 emptyMessage="Nenhuma dica encontrada.">
-                        <p:column headerText="Paciente" style="text-align: center">
-                            <h:outputText value="#{dica.paciente.nome}" />
-                        </p:column>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:outputLabel for="tipo" value="Dicas:" />
+                        <p:selectOneRadio id="tipo" value="#{dicasAlimentaresBean.tipo}" disabled="#{usuarioBean.usuario.administrador}">
+                            <f:selectItem itemLabel="Não Lidas" itemValue="0" />
+                            <f:selectItem itemLabel="Lidas" itemValue="1" />
+                            <f:selectItem itemLabel="Todas" itemValue="2" />
+                        </p:selectOneRadio>
+                    </h:panelGrid>
 
-                        <p:column headerText="Lida" style="text-align: center">
-                            <h:outputText value="Sim" rendered="#{dica.lida}"/>
-                            <h:outputText value="Não" rendered="#{!dica.lida}"/>
-                        </p:column>
+                    <p:commandButton action="#{dicasAlimentaresBean.retornaListaDicas()}" value="Pesquisar" icon="fa fa-search" update="table" />
+                </h:panelGrid>
 
-                        <p:column headerText="Nutricionista" style="text-align: center">
-                            <h:outputText value="#{dica.nutricionista.nome}" />
-                        </p:column>
+                <p:dataTable id="table" var="dica" value="#{dicasAlimentaresBean.listOfDicas}"
+                             emptyMessage="Nenhuma dica encontrada.">
+                    <p:column headerText="Paciente" style="text-align: center">
+                        <h:outputText value="#{dica.paciente.nome}" />
+                    </p:column>
 
-                        <p:column headerText="Detalhes" style="text-align: center">
-                            <p:commandButton action="#{dicasAlimentaresBean.abrirDicaAlimentar(dica)}" async="true" update="fullDica" icon="fa fa-search"/>
-                        </p:column>
-                        <p:column headerText="Editar Dica" style="text-align: center" rendered="#{usuarioBean.usuario.administrador}">
-                            <p:commandButton action="#{dicasAlimentaresBean.editarDicaAlimentar(dica)}" async="true" update="editarDica" icon="fa fa-edit"/>
-                        </p:column>
-                    </p:dataTable>
-                </b:jumbotron>
+                    <p:column headerText="Lida" style="text-align: center">
+                        <h:outputText value="Sim" rendered="#{dica.lida}"/>
+                        <h:outputText value="Não" rendered="#{!dica.lida}"/>
+                    </p:column>
+
+                    <p:column headerText="Nutricionista" style="text-align: center">
+                        <h:outputText value="#{dica.nutricionista.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Detalhes" style="text-align: center">
+                        <p:commandButton action="#{dicasAlimentaresBean.abrirDicaAlimentar(dica)}" async="true" update="fullDica" icon="fa fa-search"/>
+                    </p:column>
+                    <p:column headerText="Editar Dica" style="text-align: center" rendered="#{usuarioBean.usuario.administrador}">
+                        <p:commandButton action="#{dicasAlimentaresBean.editarDicaAlimentar(dica)}" async="true" update="editarDica" icon="fa fa-edit"/>
+                    </p:column>
+                </p:dataTable>
             </h:body>
         </h:form>
-        
+
         <h:form id="editarDica">
             <p:dialog header="#{dicasAlimentaresBean.titulo}" closable="true" widgetVar="editarDica" modal="true" height="300" width="75%">
-               
+
                 <b:jumbotron>
                     <b:inputText value="#{dicasAlimentaresBean.titulo}" id="titulo" update="titulo"
                                  />
@@ -96,18 +97,18 @@
 
         <h:form id="fullDica">
             <p:dialog header="#{dicasAlimentaresBean.dicaAlimentarSelect.titulo}" widgetVar="fullDica" modal="true" height="400" width="75%" closable="false">
-               
-                    <h2>#{dicasAlimentaresBean.dicaAlimentarSelect.titulo}</h2>
 
-                    <b:jumbotron>
-                        <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.dica}" escape="false"/>
-                        <br/>
-                        <br/>
-                        Atenciosamente.
-                        <br/>
-                        <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.nutricionista.nome}" escape="false"/>
-                    </b:jumbotron>
-            
+                <h2>#{dicasAlimentaresBean.dicaAlimentarSelect.titulo}</h2>
+
+                <b:jumbotron>
+                    <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.dica}" escape="false"/>
+                    <br/>
+                    <br/>
+                    Atenciosamente.
+                    <br/>
+                    <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.nutricionista.nome}" escape="false"/>
+                </b:jumbotron>
+
                 <p:commandButton action="#{dicasAlimentaresBean.fecharDicaAlimentar()}" value="Fechar"/>
             </p:dialog>
         </h:form>

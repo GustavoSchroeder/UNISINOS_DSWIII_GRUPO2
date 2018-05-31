@@ -21,18 +21,30 @@
                 height: auto;
                 margin: 0 auto;
             }
-            .jumbotron {
-                background-image: url("https://i.pinimg.com/originals/76/89/c5/7689c5513084cd3ae199cec4f9b84af3.jpg");
-            }
-
-            img {
-                border-radius: 8px;
-            }
-
+          
             .jqplot-yaxis {
                 margin-right: 10px;
                 display: none;
             }
+            
+            .jumbotron {
+            background-image: 
+                linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+                ),
+                url(https://i.pinimg.com/originals/76/89/c5/7689c5513084cd3ae199cec4f9b84af3.jpg);
+
+            background-size: cover;
+        }
+
+        img {
+            border-radius: 8px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 350px;
+        }
         </style>
 
         <h:body style="padding-top: 50px; padding-bottom: 20px;" rendered="#{usuarioBean.usuario.administrador}">
@@ -55,7 +67,7 @@
                             <p><b:commandButton look="primary" action="#{dietaBean.abrirRelatorioMinhasDietas()}" value="Relatório de Dietas"/></p>
                         </b:column>
                         <b:column col-md="4">
-                            <h2>Pacientes</h2>
+                            <h2>Dicas Alimentares</h2>
                             <p>Nesta seção o nutricionista poderá deixar recados para seus pacientes, observar evolução, etc.</p>
                             <p><b:commandButton look="primary" action="/paciente/visaoPacientes.xhtml?faces-redirect=true" value="Entrar"/></p>
                         </b:column>
@@ -63,7 +75,8 @@
                             <h2>Nutricionistas para Aprovar</h2>
                             <p>Aqui você poderá aprovar os usuários de seus colegas nutricionistas. Qualquer nutricionista poderá
                                 validar o usuário de outro nutricionista.</p>
-                            <p><b:commandButton look="primary" action="#{usuarioBean.getNutricionistaNaoAprovados(true)}" value="Nutricionistas para aprovar:  #{usuarioBean.qtdeNutricionistasAprovar()}"/></p>
+                            <p><b:commandButton look="primary" action="#{usuarioBean.getNutricionistaNaoAprovados(true)}" 
+                                                value="Nutricionistas para aprovar: #{usuarioBean.qtdeNutricionistasAprovar()}"/></p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Rotinas de Exercícios</h2>
@@ -122,22 +135,21 @@
                     <b:row>
                         <b:column col-md="4">
                             <h2>Minhas Dietas</h2>
-                            <p style="text-justify: inter-word; text-align: justify;">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                                ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p style="text-justify: inter-word; text-align: justify;">Aqui você pode ver os planos alimentares que seu nutricionista criou para você!</p>
                             <p>
-                                <b:commandButton action="#{dietaBean.abrirRelatorioMinhasDietas()}" value="Consultar Minhas Dietas"/>
+                                <b:commandButton look="success" action="#{dietaBean.abrirRelatorioMinhasDietas()}" value="Consultar Minhas Dietas"/>
                             </p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Minhas Dicas</h2>
                             <p style="text-justify: inter-word; text-align: justify;">Aqui você poderá conferir as dicas e anotações deixadas por sua nutricionista especialmente para você! Aproveite!</p>
-                            <p><b:commandButton action="/paciente/relatorioDicasAlimentares.xhtml?faces-redirect=true" value="Consultar Minhas Dicas"/></p>
+                            <p><b:commandButton look="success" action="/paciente/relatorioDicasAlimentares.xhtml?faces-redirect=true" value="Consultar Minhas Dicas"/></p>
                         </b:column>
                         <b:column col-md="4">
                             <h2>Meus Exercícios</h2>
                             <p style="text-justify: inter-word; text-align: justify;">Aqui você poderá consultar seu perfil, ver recados que seu nutricionista deixou para você, atualizar seus Stas
                                 e cadastrar seus exercícios.</p>
-                            <p><b:commandButton action="#" value="Entrar"/></p>
+                            <p><b:commandButton action="#" value="Entrar" look="success"/></p>
                         </b:column>
                     </b:row>
 

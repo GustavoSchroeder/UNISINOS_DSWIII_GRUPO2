@@ -3,19 +3,13 @@ package controller.dieta;
 import controller.userControl.UsuarioBean;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import pojo.consulta.DicaAlimentar;
-import pojo.paciente.Dieta;
 import pojo.paciente.Mensalidade;
-import pojo.paciente.RotinaExercicio;
 import pojo.usuario.Usuario;
 import util.JPAUtil;
 
@@ -52,6 +46,21 @@ public class MensalidadeBean implements Serializable {
         query = em.createQuery("SELECT i FROM Mensalidade i WHERE i.paciente.id = :pacienteId");
         query.setParameter("pacienteId", this.usuarioBean.getUsuario().getId());
         return query.getResultList();
+    }
+
+    public List<Mensalidade> retornaMensalidadesPaciente() {
+        EntityManager em = JPAUtil.getEntityManager();
+        Query query;
+        query = em.createQuery("SELECT i FROM Mensalidade i WHERE i.paciente.id = :pacienteId");
+        query.setParameter("pacienteId", this.usuarioBean.getUsuario().getId());
+        try {
+            return query.getResultList();
+        } catch (NullPointerException e) {
+
+        } finally {
+            em.close();
+            return new ArrayList<>();
+        }
     }
 
     public void pagarMensalidade(Long id) {

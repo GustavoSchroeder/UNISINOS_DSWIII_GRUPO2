@@ -45,7 +45,7 @@
                             <p:commandButton action="#{mensalidadeBean.pagarMensalidade(mensalidade)}" async="true" update="pagRealizado" icon="fa fa-edit"/>
                         </p:column>
                     </p:dataTable>
-                    <p:commandButton action="#{MensalidadeBean.retornaMensalidades()}" value="Atualizar" icon="fa fa-refresh" update="table" />                    
+                    <p:commandButton action="#{mensalidadeBean.retornaMensalidadesPaciente()}" value="Atualizar" icon="fa fa-refresh" update="table" />                    
                 </b:jumbotron>
             </h:body>
         </h:form>

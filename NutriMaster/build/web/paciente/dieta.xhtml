@@ -9,6 +9,32 @@
                 template="/resource/padraoSistema.xhtml">
 
     <ui:define name="content">
+          <style>
+           img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .jumbotron {
+            background-image: 
+                linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+                ),
+                url(https://oldwayspt.org/sites/default/files/thumbnails/image/TradDiet_F100847174.jpg);
+
+            background-size: cover;
+        }
+
+        img {
+            border-radius: 8px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 350px;
+        }
+        </style>
+        
         <h:body style="padding-top: 50px; padding-bottom: 20px;">
             <h:form id="formDieta">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
@@ -18,9 +44,11 @@
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"
                          delay="10000" escape="true" />
-                <h2>Cadastrar Dieta</h2>
-
                 <b:jumbotron>
+                    <h2 style="color: white">Cadastrar Dieta</h2>
+                </b:jumbotron>
+                
+                <b:panel>
                     <!--Escrever um Converter-->
                     <b:panelGrid id="input" columns="2" style="width: 95%; margin: 0 auto;">
                         <b:panelGrid columns="1" style="width: 95%; margin: 0 auto;">
@@ -105,7 +133,7 @@
                             <b:commandButton action="#{dietaBean.cadastrarDietas()}" style="margin-top: 2%; width: 200px" value="Cadastrar Dieta" look="success"/>
                         </h:panelGrid>
                     </b:panelGrid>
-                </b:jumbotron>
+                </b:panel>
             </h:form>
 
             <h:form>

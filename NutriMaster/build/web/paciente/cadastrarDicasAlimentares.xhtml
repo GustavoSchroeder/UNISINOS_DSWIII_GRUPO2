@@ -11,7 +11,7 @@
     <ui:define name="content">
         <h:form id="formDica">
             <b:commandButton value="Voltar" ajax="true" update="@none" look="primary" style="width:80px; float: right" 
-                             action="/paciente/visaoPacientes/.xhtml?faces-redirect=true"/>
+                             action="/faces/paciente/visaoPacientes.xhtml?faces-redirect=true"/>
             <h:body style="padding-top: 50px; padding-bottom: 20px;">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
