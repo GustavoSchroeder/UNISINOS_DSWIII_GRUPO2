@@ -83,6 +83,11 @@
                             <p>Cadastre as recomendações de exercícios para o seu paciente!</p>
                             <p><b:commandButton look="primary" action="#{usuarioBean.isUsuarioAllowedOnExercicio()}" value="Cadastrar Exercício"/></p>
                         </b:column>
+                        <b:column col-md="4">
+                            <h2>Consultar Exercícios criados</h2>
+                            <p>Aqui você poderá consultar os exercícios que você criou para seus pacientes!</p>
+                            <p><b:commandButton look="primary" action="#{exercicioBean.abrirRelatorioMeusExercicios()}" value="Relatório de Exercícios"/></p>
+                        </b:column>                        
                     </b:row>
                     <hr/>
                     <footer>
@@ -147,9 +152,8 @@
                         </b:column>
                         <b:column col-md="4">
                             <h2>Meus Exercícios</h2>
-                            <p style="text-justify: inter-word; text-align: justify;">Aqui você poderá consultar seu perfil, ver recados que seu nutricionista deixou para você, atualizar seus Stas
-                                e cadastrar seus exercícios.</p>
-                            <p><b:commandButton action="#" value="Entrar" look="success"/></p>
+                            <p style="text-justify: inter-word; text-align: justify;">Aqui você pode consultar as rotinas de exercícios cadastradas pelo seu nutricionista!</p>
+                            <p><b:commandButton action="/paciente/relatorioMeusExercicios.xhtml?faces-redirect=true" value="Consultar Meus Exercícios" look="success"/></p>
                         </b:column>
                     </b:row>
 

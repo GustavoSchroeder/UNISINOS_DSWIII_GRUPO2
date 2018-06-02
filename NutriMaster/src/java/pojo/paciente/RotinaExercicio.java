@@ -22,11 +22,11 @@ import pojo.usuario.Usuario;
 public class RotinaExercicio implements Serializable{
     
     private Long id;
-    private String exercicio;
+    private Exercicio exercicio;
     private Double duracaoExercicio;
     private Usuario nutricionistaResponsavel;
-    private List<CalendarioExercicio> calendarioExercicio;
     private Integer qtdeSemanal;
+    private Usuario usuario;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +38,12 @@ public class RotinaExercicio implements Serializable{
         this.id = id;
     }
 
-    public String getExercicio() {
+    @OneToOne
+    public Exercicio getExercicio() {
         return exercicio;
     }
 
-    public void setExercicio(String exercicio) {
+    public void setExercicio(Exercicio exercicio) {
         this.exercicio = exercicio;
     }
 
@@ -53,17 +54,6 @@ public class RotinaExercicio implements Serializable{
 
     public void setNutricionistaResponsavel(Usuario nutricionistaResponsavel) {
         this.nutricionistaResponsavel = nutricionistaResponsavel;
-    }
-
-        @OneToMany (fetch = FetchType.EAGER)
-            @Fetch(FetchMode.SUBSELECT) 
-
-    public List<CalendarioExercicio> getCalendarioExercicio() {
-        return calendarioExercicio;
-    }
-
-    public void setCalendarioExercicio(List<CalendarioExercicio> calendarioExercicio) {
-        this.calendarioExercicio = calendarioExercicio;
     }
 
     public Integer getQtdeSemanal() {
@@ -80,6 +70,15 @@ public class RotinaExercicio implements Serializable{
 
     public void setDuracaoExercicio(Double duracaoExercicio) {
         this.duracaoExercicio = duracaoExercicio;
+    }
+    
+    @OneToOne
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 }

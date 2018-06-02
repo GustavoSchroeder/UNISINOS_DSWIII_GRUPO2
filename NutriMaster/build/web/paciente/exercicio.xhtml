@@ -9,19 +9,46 @@
                 template="/resource/padraoSistema.xhtml">
 
     <ui:define name="content">
+          <style>
+           img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .jumbotron {
+            background-image: 
+                linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+                ),
+                url(https://oldwayspt.org/sites/default/files/thumbnails/image/TradDiet_F100847174.jpg);
+
+            background-size: cover;
+        }
+
+        img {
+            border-radius: 8px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 350px;
+        }
+        </style>
+        
         <h:body style="padding-top: 50px; padding-bottom: 20px;">
             <h:form id="formExercicio">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                    <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                    <h:graphicImage value="/./imagens/ajax-loader.gif" />
                 </p:dialog>
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"
                          delay="10000" escape="true" />
-                <h2>Cadastrar Exercício</h2>
-
                 <b:jumbotron>
-                    <!--Escrever um Converter-->
+                    <h2 style="color: white">Cadastrar Exercício</h2>
+                </b:jumbotron>
+
+                <b:panel>
                     <p:panelGrid id="input" columns="2" style="width: 95%; margin: 0 auto;" layout="grid">
                         <p:panelGrid columns="1" layout="grid"  style="width: 95%; margin: 0 auto;">
                             <h:panelGrid columns="1" style="width: 60%; margin: 0 auto; margin-bottom: 2%; text-align: center" rendered="false">
@@ -38,10 +65,10 @@
                                     <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
                                     <p:ajax update="lista"/>
                                 </p:selectOneMenu>
-                                <p:spinner id="qtde" value="#{calendarioExercicioBean.qtdeExercicio}" maxlength="2" size="3"/>
+                                <p:spinner id="qtde" value="#{exercicioBean.exercicio.qtdeSemanal}" maxlength="2" size="3"/>
                                 <h:panelGrid columns="2">
-                                    <p:selectOneMenu id="exerc" value="#{calendarioExercicioBean.exercicio}" filter="true" filterMatchMode="contains" style="width:125px">
-                                        <f:selectItems value="#{calendarioExercicioBean.retornaListNomeExercicios()}"/>
+                                    <p:selectOneMenu id="exerc" value="#{exercicioBean.nomeExercicio}" filter="true" filterMatchMode="contains" style="width:125px">
+                                        <f:selectItems value="#{exercicioBean.retornaListNomeExercicios()}"/>
                                     </p:selectOneMenu>
                                     <p:commandButton icon="fa fa-plus" onclick="PF('dlg2').show();" title="Adicionar Exercícios"/>
                                 </h:panelGrid>
@@ -52,30 +79,27 @@
                                 <h:outputText value="Horás diárias " style="font-weight: bold"/>                                
                                 <h:outputText value="Lista " style="font-weight: bold"/>
                                 <h:panelGrid columns="1" style="margin-bottom: 10px">
-                                    <p:inputText id="decimal" value="#{calendarioExercicioBean.duracaoExercicio}" />
+                                    <p:inputText id="decimal" value="#{exercicioBean.exercicio.duracaoExercicio}" />
                                     <p:slider for="decimal" minValue="0.1" maxValue="10.0" step="0.1" />            
                                 </h:panelGrid>
-                                <p:commandButton value="Adicionar Exercício" action="#{calendarioExercicioBean.adicionarExercicioLista()}" update="input"/>                           
+                                <p:commandButton value="Adicionar Exercício" action="#{exercicioBean.adicionarExercicioLista()}" update="input"/>                           
                             </h:panelGrid>
                         </p:panelGrid>
 
                         <p:panelGrid id="lista" columns="1" layout="grid" style="width: 100%">
                             <h2>Exercícios</h2>
-                            <p:dataTable var="value" value="#{calendarioExercicioBean.exercicios}">
+                            <p:dataTable var="value" value="#{exercicioBean.listaExercicios}">
                                 <p:column headerText="Exercício" style="text-align: center">
                                     <h:outputText value="#{value.exercicio.exercicio}" />
                                 </p:column>
                                 <p:column headerText="Qtde. p/semana" style="text-align: center">
-                                    <h:outputText value="#{value.quantidade}" />
+                                    <h:outputText value="#{value.qtdeSemanal}" />
                                 </p:column>
                                 <p:column headerText="Horas p/dia" style="text-align: center">
                                     <h:outputText value="#{value.duracaoExercicio}" />
                                 </p:column>                                
-                                <p:column headerText="Calorias p/semana" style="text-align: center">
-                                    <h:outputText value="#{value.caloriasSemanais}" />
-                                </p:column>                                
                                 <p:column>
-                                    <p:commandButton action="#{calendarioExercicioBean.retirarExercicioLista(value)}" 
+                                    <p:commandButton action="#{exercicioBean.retirarExercicioLista(value)}" 
                                                      icon="fa fa-trash" update=":formExercicio:lista" async="true"/>
                                 </p:column>
                             </p:dataTable>
@@ -88,17 +112,17 @@
                             <b:commandButton action="#{exercicioBean.cadastrarExercicios()}" style="margin-top: 2%; width: 200px" value="Cadastrar exercício" look="success"/>
                         </h:panelGrid>
                     </h:panelGrid>
-                </b:jumbotron>
+                </b:panel>
             </h:form>
 
             <h:form>
                 <p:dialog id="dialogExercicio" header="Adicionar Exercício" widgetVar="dlg2" modal="true" width="500px">
                     <p:panelGrid columns="2" layout="grid">
                         <h:outputText value="Exercicio:"/>
-                        <p:inputText value="#{calendarioExercicioBean.objExercicio.exercicio}"/>
+                        <p:inputText value="#{exercicioBean.exercicio.exercicio.exercicio}"/>
                         <h:outputText value="Calorias p/hora:"/>
-                        <p:inputText value="#{calendarioExercicioBean.objExercicio.calorias}"/>
-                        <p:commandButton value="Cadastrar" action="#{calendarioExercicioBean.cadastrarExercicio()}"/>
+                        <p:inputText value="#{exercicioBean.exercicio.exercicio.calorias}"/>
+                        <p:commandButton value="Cadastrar" action="#{exercicioBean.cadastrarExercicio()}"/>
                     </p:panelGrid>
                 </p:dialog> 
             </h:form>

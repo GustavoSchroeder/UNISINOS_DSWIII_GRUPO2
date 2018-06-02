@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/resource/padraoSistema.xhtml">
+
+    <ui:define name="content">
+        <style>
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+            }
+            .jumbotron {
+                background-image: 
+                    linear-gradient(
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)
+                    ),
+                    url(https://oldwayspt.org/sites/default/files/thumbnails/image/TradDiet_F100847174.jpg);
+
+                background-size: cover;
+            }
+
+            img {
+                border-radius: 8px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 350px;
+            }
+        </style>
+
+        <h:form id="formDica">
+            <b:commandButton value="Voltar" ajax="true" update="@none" look="primary" style="width:80px; float: right" 
+                             action="/NutriMaster/faces/paciente/visaoPacientes/visaoPaciente.xhtml?faces-redirect=true"
+                             rendered="#{usuarioBean.usuario.administrador}"/>
+
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <h:graphicImage value="/./imagens/ajax-loader.gif" />
+            </p:dialog>
+
+
+
+            <b:jumbotron>
+                <h2 style="color: white">Relatório de Exercícios</h2>
+            </b:jumbotron>
+
+            <b:panelGrid columns="2" style="margin: 0 auto; margin-bottom: 2%">
+                <b:selectOneMenu id="selectPaciente" value="#{usuarioBean.usuarioSelect}"
+                                 disabled="#{!usuarioBean.usuario.administrador}"
+                                 style="width:250px; margin: 0 auto; float: right;">
+                    <f:selectItem itemLabel="-" itemValue="null" />
+                    <f:selectItems value="#{usuarioBean.retornaUsuariosPacientesCod()}" var="usuario" itemLabel="#{usuarioBean.retornaNome(usuario)}"/>
+                </b:selectOneMenu>
+                <b:commandButton id="pesq" value="Pesquisar" ajax="true" update="table" look="success" action="#{exercicioBean.retornaMeusExerciciosByPaciente()}" style="float: left" disabled="#{!usuarioBean.usuario.administrador}"/>
+            </b:panelGrid>
+
+
+            <p:dataTable id="table" var="exercicio" value="#{exercicioBean.listaExercicios}"
+                         emptyMessage="Nenhum exercício encontrado.">
+
+                <p:column headerText="Paciente" style="text-align: center" priority="1">
+                    <h:outputText value="#{exercicioBean.retornaPaciente(exercicio)}" />
+                </p:column>
+
+                <p:column headerText="Nutricionista" style="text-align: center" priority="3">
+                    <h:outputText value="#{exercicio.nutricionistaResponsavel.nome}" />
+                </p:column>
+
+                <p:column headerText="Duração do exercício" style="text-align: center" priority="5">
+                    <h:outputText value="#{exercicio.duracaoExercicio}" />
+                </p:column>
+
+                <p:column headerText="Repetições por semana" style="text-align: center" priority="5">
+                    <h:outputText value="#{exercicio.qtdeSemanal}" />
+                </p:column>
+
+                <p:column headerText="Descrição" style="text-align: center" priority="5">
+                    <h:outputText value="#{exercicio.exercicio.exercicio}" />
+                </p:column>
+                
+                <p:column headerText="Calorias" style="text-align: center" priority="5">
+                    <h:outputText value="#{exercicio.exercicio.calorias}" />
+                </p:column>                
+
+            </p:dataTable>Ï
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
