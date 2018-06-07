@@ -168,12 +168,12 @@
                         <b:column col-md="4">
                             <h2>Mensalidades</h2>
                             <p style="text-justify: inter-word; text-align: justify;">Aqui você poderá consultar suas mensalidades pagas ou em aberto e realizar seu pagamento.</p>
-                            <p><b:commandButton action="/paciente/mensalidade.xhtml?faces-redirect=true" value="Consultar mensalidades" look="success"/></p>
+                            <p><b:commandButton action="/financeiro/mensalidade.xhtml?faces-redirect=true" value="Consultar mensalidades" look="success"/></p>
                         </b:column>                        
                     </b:row>
                     
                     <b:row>
-                        <b:column col-md="8">
+                        <b:column col-md="20" style="margin: 0 auto; width: 100%">
                             <h:panelGrid columns="1" id="graf" style="width:100%">
                                 <p:chart type="bar" model="#{usuarioBean.barModel}" style="height:300px"/>
                                 <p:selectOneRadio id="console" value="#{usuarioBean.tipoGrafico}" style="margin: 0 auto;">

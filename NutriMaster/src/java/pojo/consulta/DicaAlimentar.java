@@ -46,6 +46,7 @@ public class DicaAlimentar implements Serializable {
         this.titulo = titulo;
     }
 
+    @Column (length = 5000)
     public String getDica() {
         return dica;
     }

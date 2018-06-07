@@ -11,9 +11,9 @@ import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.primefaces.context.RequestContext;
-import pojo.paciente.Alimento;
-import pojo.paciente.AlimentoQuantidade;
-import pojo.paciente.CalendarioAlimentacao;
+import pojo.alimentacao.Alimento;
+import pojo.alimentacao.AlimentoQuantidade;
+import pojo.alimentacao.CalendarioAlimentacao;
 import pojo.usuario.Usuario;
 import util.JPAUtil;
 

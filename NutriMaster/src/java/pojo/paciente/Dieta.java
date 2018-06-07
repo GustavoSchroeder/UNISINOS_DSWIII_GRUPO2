@@ -1,5 +1,6 @@
 package pojo.paciente;
 
+import pojo.alimentacao.CalendarioAlimentacao;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

@@ -39,7 +39,7 @@
             <h:form id="formExercicio">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                    <h:graphicImage value="/./imagens/ajax-loader.gif" />
+                    <h:graphicImage value="/./imagens/ajax-loader.gif" style="width: 25px"/>
                 </p:dialog>
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"

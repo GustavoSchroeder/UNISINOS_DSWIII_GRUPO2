@@ -15,7 +15,7 @@
             <h:body style="padding-top: 50px; padding-bottom: 20px;">
                 <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                 <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                    <p:graphicImage name="/./imagens/ajax-loader.gif" />
+                    <p:graphicImage name="/./imagens/ajax-loader.gif" style="width: 25px"/>
                 </p:dialog>
                 <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
                          show-detail="true" show-summary="false" allowDismiss="true"

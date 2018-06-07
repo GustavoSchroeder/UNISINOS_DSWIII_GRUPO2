@@ -33,6 +33,7 @@
                 margin-right: auto;
                 width: 350px;
             }
+
         </style>
 
         <h:form id="formDica">
@@ -42,7 +43,7 @@
 
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
             <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                <h:graphicImage value="/./imagens/ajax-loader.gif" />
+                <h:graphicImage value="/./imagens/ajax-loader.gif" style="width: 25px"/>
             </p:dialog>
 
 
@@ -106,7 +107,7 @@
         </h:form>
 
         <h:form id="detalhes">
-            <p:dialog id="dietaDetalhes" header="Detalhes da Dieta" widgetVar="dietaDetalhes" modal="true" height="300px">
+            <p:dialog id="dietaDetalhes" header="Detalhes da Dieta" widgetVar="dietaDetalhes" modal="true" height="600px">
                 <h2>#{dietaBean.retornaPaciente(dietaBean.dietaSelect)}</h2>
                 <p:dataGrid var="dia" value="#{dietaBean.diasSemana}" columns="2" layout="grid" id="dia">
 

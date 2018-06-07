@@ -22,7 +22,7 @@ import util.JPAUtil;
 @ManagedBean
 @ViewScoped
 public class DicasAlimentaresBean {
-    
+
     private String titulo;
     private String texto;
     @ManagedProperty("#{usuarioBean}")
@@ -33,7 +33,7 @@ public class DicasAlimentaresBean {
     private Boolean pesquisarPorNome;
     private String buscarPorNomePaciente;
     private DicaAlimentar dicaAlimentarSelect;
-    
+
     public DicasAlimentaresBean() {
         zerarVariaveis();
         this.listOfDicas = new ArrayList<>();
@@ -46,14 +46,14 @@ public class DicasAlimentaresBean {
         this.pesquisarPorNome = Boolean.FALSE;
         this.buscarPorNomePaciente = null;
     }
-    
+
     private void zerarVariaveis() {
         this.titulo = "";
         this.texto = "";
         this.pacienteStr = "";
         this.dicaAlimentarSelect = new DicaAlimentar();
     }
-    
+
     public Long qtdeNaoLidasPorPaciente() {
         EntityManager em = JPAUtil.getEntityManager();
         Query query = em.createQuery("SELECT COUNT(i.id) FROM DicaAlimentar i WHERE i.paciente.id = :pacienteId");
@@ -66,20 +66,20 @@ public class DicasAlimentaresBean {
             em.close();
         }
     }
-    
+
     private List<DicaAlimentar> retornaDicasNutricionista(EntityManager em) {
         Query query = em.createQuery("SELECT i FROM DicaAlimentar i "
                 + "WHERE i.nutricionista.id = :nutricionistaId");
         query.setParameter("nutricionistaId", this.usuarioBean.getUsuario().getId());
         return query.getResultList();
     }
-    
+
     private List<DicaAlimentar> retornaDicasPorPaciente(EntityManager em, String nomePaciente) {
         Query query = em.createQuery("SELECT i FROM DicaAlimentar i WHERE i.paciente.nome = :nomePaciente");
         query.setParameter("nomePaciente", this.usuarioBean.retornaNome(nomePaciente));
         return query.getResultList();
     }
-    
+
     public List<DicaAlimentar> retornaDicasPaciente(EntityManager em) {
         Query query;
         if (this.tipo == 2) {
@@ -96,7 +96,7 @@ public class DicasAlimentaresBean {
         }
         return query.getResultList();
     }
-    
+
     public void retornaListaDicas() {
         EntityManager em = JPAUtil.getEntityManager();
         this.listOfDicas.clear();
@@ -111,21 +111,21 @@ public class DicasAlimentaresBean {
         }
         em.close();
     }
-    
+
     public void cadastrarDica() {
-        
-        if(null == this.titulo || this.titulo.equalsIgnoreCase("")){
+
+        if (null == this.titulo || this.titulo.equalsIgnoreCase("")) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Oooops!", "Você não definiu um título."));
             return;
         }
-        
-        if(null == this.texto || this.texto.equalsIgnoreCase("")){
+
+        if (null == this.texto || this.texto.equalsIgnoreCase("")) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Oooops!", "Você não escreveu sua dica!"));
             return;
         }
-        
+
         DicaAlimentar dica = new DicaAlimentar();
         dica.setDica(this.texto);
         dica.setTitulo(this.titulo);
@@ -133,15 +133,23 @@ public class DicasAlimentaresBean {
         dica.setLida(Boolean.FALSE);
         dica.setPaciente(this.usuarioBean.retornaUsuarioById(this.pacienteStr));
         dica.setNutricionista(this.usuarioBean.retornaUsuarioById(this.usuarioBean.getUsuario().getId()));
-        
+
         EntityManager em = JPAUtil.getEntityManager();
-        em.getTransaction().begin();
-        em.merge(dica);
-        em.getTransaction().commit();
-        em.close();
-        zerarVariaveis();
+        try {
+            em.getTransaction().begin();
+            em.merge(dica);
+            em.getTransaction().commit();
+            zerarVariaveis();
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Oooops!", "Ocorreu um erro ao salvar sua dica ;("));
+            return;
+        } finally {
+            em.close();
+        }
+
     }
-    
+
     public void editarDica() {
         this.dicaAlimentarSelect.setDataCadastro(new Date());
         this.dicaAlimentarSelect.setLida(Boolean.FALSE);
@@ -157,7 +165,7 @@ public class DicasAlimentaresBean {
         retornaListaDicas();
         RequestContext.getCurrentInstance().execute("PF('editarDica').hide()");
     }
-    
+
     public DicaAlimentar editarDica(DicaAlimentar dica) {
         dica.setLida(Boolean.TRUE);
         EntityManager em = JPAUtil.getEntityManager();
@@ -167,7 +175,7 @@ public class DicasAlimentaresBean {
         em.close();
         return dica;
     }
-    
+
     public void abrirDicaAlimentar(DicaAlimentar dica) {
         if (!this.usuarioBean.getUsuario().getAdministrador()) {
             dica = editarDica(dica);
@@ -175,87 +183,87 @@ public class DicasAlimentaresBean {
         this.dicaAlimentarSelect = dica;
         RequestContext.getCurrentInstance().execute("PF('fullDica').show()");
     }
-    
+
     public void editarDicaAlimentar(DicaAlimentar dica) {
         this.dicaAlimentarSelect = dica;
         this.titulo = dica.getTitulo();
         this.texto = dica.getDica();
         RequestContext.getCurrentInstance().execute("PF('editarDica').show()");
     }
-    
+
     public void fecharDicaAlimentar() {
         this.dicaAlimentarSelect = new DicaAlimentar();
         RequestContext.getCurrentInstance().execute("PF('fullDica').hide()");
     }
-    
+
     public String getTitulo() {
         return titulo;
     }
-    
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    
+
     public String getTexto() {
         return texto;
     }
-    
+
     public void setTexto(String texto) {
         this.texto = texto;
     }
-    
+
     public UsuarioBean getUsuarioBean() {
         return usuarioBean;
     }
-    
+
     public void setUsuarioBean(UsuarioBean usuarioBean) {
         this.usuarioBean = usuarioBean;
     }
-    
+
     public String getPacienteStr() {
         return pacienteStr;
     }
-    
+
     public void setPacienteStr(String pacienteStr) {
         this.pacienteStr = pacienteStr;
     }
-    
+
     public Integer getTipo() {
         return tipo;
     }
-    
+
     public void setTipo(Integer tipo) {
         this.tipo = tipo;
     }
-    
+
     public List<DicaAlimentar> getListOfDicas() {
         return listOfDicas;
     }
-    
+
     public void setListOfDicas(List<DicaAlimentar> listOfDicas) {
         this.listOfDicas = listOfDicas;
     }
-    
+
     public Boolean getPesquisarPorNome() {
         return pesquisarPorNome;
     }
-    
+
     public void setPesquisarPorNome(Boolean pesquisarPorNome) {
         this.pesquisarPorNome = pesquisarPorNome;
     }
-    
+
     public String getBuscarPorNomePaciente() {
         return buscarPorNomePaciente;
     }
-    
+
     public void setBuscarPorNomePaciente(String buscarPorNomePaciente) {
         this.buscarPorNomePaciente = buscarPorNomePaciente;
     }
-    
+
     public DicaAlimentar getDicaAlimentarSelect() {
         return dicaAlimentarSelect;
     }
-    
+
     public void setDicaAlimentarSelect(DicaAlimentar dicaAlimentarSelect) {
         this.dicaAlimentarSelect = dicaAlimentarSelect;
     }
