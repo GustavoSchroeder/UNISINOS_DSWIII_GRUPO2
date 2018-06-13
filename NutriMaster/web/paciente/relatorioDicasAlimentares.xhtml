@@ -9,8 +9,8 @@
                 template="/resource/padraoSistema.xhtml">
 
     <ui:define name="content">
-        
-         <style>
+
+        <style>
             img {
                 max-width: 100%;
                 height: auto;
@@ -94,7 +94,7 @@
                     <p:column headerText="Nutricionista" style="text-align: center">
                         <h:outputText value="#{dica.nutricionista.nome}" />
                     </p:column>
-                    
+
                     <p:column headerText="Criada em" style="text-align: center">
                         <h:outputText value="#{dica.dataCadastro}" >
                             <f:convertDateTime parent="dd/MM/yyyy"/>
@@ -113,9 +113,8 @@
 
         <h:form id="editarDica">
             <p:dialog header="#{dicasAlimentaresBean.titulo}" closable="true" widgetVar="editarDica" modal="true" height="300" width="75%">
-
-                <b:jumbotron>
-                    <b:inputText value="#{dicasAlimentaresBean.titulo}" id="titulo" update="titulo"
+                
+                  <b:inputText value="#{dicasAlimentaresBean.titulo}" id="titulo" update="titulo"
                                  />
                     <b:inputTextarea value="#{dicasAlimentaresBean.texto}" id="texto" update="texto"/>
                     <center>
@@ -124,24 +123,23 @@
                             <p:ajax update="formDica" async="true"/>
                         </b:commandButton>
                     </center>
-                </b:jumbotron>
             </p:dialog>
         </h:form>
 
         <h:form id="fullDica">
             <p:dialog header="#{dicasAlimentaresBean.dicaAlimentarSelect.titulo}" widgetVar="fullDica" modal="true" height="400" width="75%" closable="false">
 
-                <h2>#{dicasAlimentaresBean.dicaAlimentarSelect.titulo}</h2>
-
                 <b:jumbotron>
-                    <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.dica}" escape="false"/>
-                    <br/>
-                    <br/>
-                    Atenciosamente.
-                    <br/>
-                    <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.nutricionista.nome}" escape="false"/>
+                    <h2 style="color: white">#{dicasAlimentaresBean.dicaAlimentarSelect.titulo}</h2>
                 </b:jumbotron>
 
+                <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.dica}" escape="false"/>
+                <br/>
+                <br/>
+                Atenciosamente.
+                <br/>
+                <h:outputText value="#{dicasAlimentaresBean.dicaAlimentarSelect.nutricionista.nome}" escape="false"/>
+                <br/>
                 <p:commandButton action="#{dicasAlimentaresBean.fecharDicaAlimentar()}" value="Fechar"/>
             </p:dialog>
         </h:form>
