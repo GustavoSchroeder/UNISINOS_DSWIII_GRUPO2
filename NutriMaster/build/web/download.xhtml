@@ -3,9 +3,9 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns="http://www.w3.org/1999/xhtml">
-    
-    <p:commandButton value="Baixar boleto" ajax="false" icon="ui-icon-arrowthick-1-s">
-        <p:fileDownload value="#{fileDownloadView.file}" />
-    </p:commandButton>
+
+    <p:commandButton value="Download do Boleto" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{mensalidadeBean.file}" />
+    </p:commandButton>                                      
 
 </ui:composition>

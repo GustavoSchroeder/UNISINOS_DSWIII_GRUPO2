@@ -73,13 +73,13 @@
 
                     <p:column headerText="Baixar" style="text-align: center">
                         <p:commandButton action="#{mensalidadeBean.pagarMensalidade(mensalidades.id)}" async="true" icon="fa fa-money"/>
-                        <p:commandButton value="Download do Boleto" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-                            <p:fileDownload value="#{mensalidadeBean.file}" />
-                        </p:commandButton>                                      
                     </p:column>
                 </p:dataTable>
                 <p:commandButton action="#{mensalidadeBean.retornaListaMensalidades()}" value="Atualizar" icon="fa fa-refresh" update="table" />     
-            </h:body>
+                <p:dialog id="download" header="Baixar boleto" widgetVar="download" modal="true" width="200px" height="60px">
+                    <ui:include src="/download.xhtml" />
+                </p:dialog>
+            </h:body>            
         </h:form>
     </ui:define>
 </ui:composition>

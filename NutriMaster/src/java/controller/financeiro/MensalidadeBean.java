@@ -8,10 +8,7 @@ import br.com.caelum.stella.boleto.Endereco;
 import br.com.caelum.stella.boleto.Pagador;
 import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
-import br.com.caelum.stella.boleto.transformer.GeradorDeBoletoHTML;
 import controller.userControl.UsuarioBean;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,7 +17,6 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +31,6 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import pojo.financeiro.Mensalidade;
 import pojo.usuario.Usuario;
-import util.FileDownloadView;
 import util.JPAUtil;
 
 /**
@@ -200,15 +195,17 @@ public class MensalidadeBean implements Serializable {
 
         GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);
         String caminhoWebInf = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/WEB-INF/");
+        String caminhoBoleto = caminhoWebInf + "\\" + this.usuarioBean.getUsuario().getId() + "_" + proc.getTimeInMillis() + ".pdf";
         try {
-            FileOutputStream out = new FileOutputStream(caminhoWebInf + "\\boleto.pdf");
+            FileOutputStream out = new FileOutputStream(caminhoBoleto);
             gerador.geraPDF(out);
             out.close();
         } catch (IOException ex) {
             Logger.getLogger(MensalidadeBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        InputStream stream = new FileInputStream(caminhoWebInf + "\\boleto.pdf"); //Caminho onde está salvo o arquivo.
+        InputStream stream = new FileInputStream(caminhoBoleto);
         file = new DefaultStreamedContent(stream, "application/pdf", "boleto.pdf");
+        RequestContext.getCurrentInstance().execute("PF('download').show()");
     }
 
     public Mensalidade buscaPorId(Long id) {
