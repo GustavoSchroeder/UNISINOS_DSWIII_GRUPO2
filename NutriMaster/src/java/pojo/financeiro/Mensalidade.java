@@ -20,6 +20,7 @@ public class Mensalidade implements Serializable{
     private Long id;
     private Usuario paciente;
     private Date vencimento;
+    private Date lancamento;
     private double valor;
     private boolean pago;
     
@@ -65,6 +66,15 @@ public class Mensalidade implements Serializable{
 
     public void setPago(boolean pago) {
         this.pago = pago;
+    }
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getLancamento() {
+        return lancamento;
+    }
+
+    public void setLancamento(Date lancamento) {
+        this.lancamento = lancamento;
     }
 
 }
