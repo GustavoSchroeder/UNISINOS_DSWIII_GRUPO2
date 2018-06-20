@@ -64,6 +64,7 @@ public class MensalidadeBean implements Serializable {
     }
 
     public void retornaListaMensalidades() {
+        this.lancaMensalidade();
         EntityManager em = JPAUtil.getEntityManager();
         this.mensalidades.clear();
         this.mensalidades.addAll(retornaMensalidadesPaciente(em));
@@ -94,8 +95,9 @@ public class MensalidadeBean implements Serializable {
     public List<Mensalidade> retornaMensalidadesMes() {
         EntityManager em = JPAUtil.getEntityManager();
         Query query;
-        query = em.createQuery("SELECT i FROM Mensalidade i WHERE FUNC('MONTH',i.lancamento) = :mesLancamento");
-        query.setParameter("mesLancamento", Calendar.getInstance().get(Calendar.MONTH));
+        query = em.createQuery("SELECT i FROM Mensalidade i WHERE i.paciente.id = :pacienteId AND EXTRACT(MONTH FROM i.lancamento) = :mesLancamento");
+        query.setParameter("pacienteId", this.usuarioBean.getUsuario().getId());
+        query.setParameter("mesLancamento", Calendar.getInstance().get(Calendar.MONTH) + 1);
         try {
             return query.getResultList();
         } catch (NullPointerException e) {
